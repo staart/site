@@ -14,27 +14,16 @@ export const getSiteMeta = async (
   return ucFirst(configKey);
 };
 
-export const addData = async (html: string) => {
+export const getData = async () => {
   const config = await getConfig();
+  config.data = config.data || {};
   if (!config.ignoreReplaceTitle)
-    html = html.replace(
-      new RegExp("<!--title-->", "g"),
-      await getSiteMeta("title", "name")
-    );
+    config.data.title = await getSiteMeta("title", "name");
   if (!config.ignoreReplaceDescription)
-    html = html.replace(
-      new RegExp("<!--description-->", "g"),
-      await getSiteMeta("description")
-    );
+    config.data.description = await getSiteMeta("description");
   if (!config.ignoreReplaceAuthor)
-    html = html.replace(
-      new RegExp("<!--author-->", "g"),
-      (await getSiteMeta("author")).split(" <")[0]
-    );
+    config.data.author = (await getSiteMeta("author")).split(" <")[0];
   if (!config.ignoreReplaceYear)
-    html = html.replace(
-      new RegExp("<!--year-->", "g"),
-      new Date().getFullYear().toString()
-    );
-  return html;
+    config.data.year = new Date().getFullYear().toString();
+  return config;
 };

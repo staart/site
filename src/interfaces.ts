@@ -6,6 +6,8 @@ export interface StaartSiteConfig {
   _gitRepo?: GitUrl;
   contentDir?: string;
   distDir?: string;
+  templatePath?: string;
+  stylePath?: string;
   contentFileExt?: string[];
   ignoreReplaceTitle?: boolean;
   ignoreReplaceDescription?: boolean;

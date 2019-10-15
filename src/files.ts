@@ -18,6 +18,20 @@ export const getDistPath = async () => {
     : join(__dirname, "..", "public");
 };
 
+export const getTemplatePath = async () => {
+  const config = await getConfig();
+  return config.templatePath
+    ? join(__dirname, "..", config.templatePath)
+    : join(await getContentPath(), "..", "index.html");
+};
+
+export const getStylePath = async () => {
+  const config = await getConfig();
+  return config.stylePath
+    ? join(__dirname, "..", config.stylePath)
+    : join(await getContentPath(), "..", "style.scss");
+};
+
 export const readContentFile = async (path: string) => {
   return await cached(`file-${path}`, async () =>
     readFile(join(await getContentPath(), path))

@@ -7,3 +7,9 @@ export interface StaartSiteConfig {
   contentDir?: string;
   contentFileExt?: string[];
 }
+
+export interface FrontMatter {
+  title?: string;
+  emoji?: string;
+  seoImage?: string;
+}

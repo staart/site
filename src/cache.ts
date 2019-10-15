@@ -5,6 +5,7 @@ const cache = new Fraud({
 });
 
 export const cached = async (name: string, f: Function) => {
+  name = name.replace(/[^a-zA-Z ]/g, "");
   await ensureDir(".cache/staart-site");
   try {
     return await cache.read(`func-${name}`);

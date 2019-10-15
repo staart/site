@@ -1,9 +1,14 @@
-import marked from "marked";
+import marked, { Renderer } from "marked";
 import frontMatter from "front-matter";
 import { FrontMatter } from "./interfaces";
 
-export const renderMd = (md: string) => {
-  return marked.parse(md);
+export const renderMd = (md: string, avoidParagraphs = false) => {
+  const renderer = new Renderer();
+  if (avoidParagraphs) renderer.paragraph = p => p;
+  return marked.parse(md, {
+    smartypants: true,
+    renderer
+  });
 };
 
 export const getTitle = async (md: string) => {

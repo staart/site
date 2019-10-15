@@ -27,7 +27,7 @@ export const getData = async () => {
     config.data.author = (await getSiteMeta("author")).split(" <")[0];
   if (!config.ignoreReplaceYear)
     config.data.year = new Date().getFullYear().toString();
-  return config;
+  return { ...config, ...config.data };
 };
 
 export const renderHb = async (content: string) => {
@@ -37,6 +37,6 @@ export const renderHb = async (content: string) => {
   return template(await getData());
 };
 
-export const render = async (content: string) => {
-  return renderMd(await renderHb(content));
+export const render = async (content: string, avoidParagraphs = false) => {
+  return renderMd(await renderHb(content), avoidParagraphs);
 };

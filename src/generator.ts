@@ -64,10 +64,15 @@ export const generate = async () => {
   const template = compile(
     (await getTemplate()).replace(new RegExp("/*{{css}}*/", "g"), "{{css}}")
   );
-  const result = template({
+  const data = {
     ...(await getData()),
-    content: await render(await getHomeContent())
-  });
+    content: await getHomeContent()
+  };
+  for await (const key of Object.keys(data)) {
+    if (typeof data[key] === "string")
+      data[key] = await render(data[key], true);
+  }
+  const result = template(data);
   await writeFile(
     join(await getDistPath(), "index.html"),
     minify(result, { collapseWhitespace: true })

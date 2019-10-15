@@ -1,10 +1,8 @@
 import { success, error } from "signale";
-import { getGitHubRepoUrl } from "./github";
-import { listContentFiles } from "./files";
+import { generate } from "./generator";
 
 const staartSite = async () => {
-  console.log("GitHub URL", await getGitHubRepoUrl());
-  console.log("Content files", await listContentFiles());
+  return await generate();
 };
 
 const startTime = new Date().getTime();

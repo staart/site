@@ -5,7 +5,13 @@ export interface StaartSiteConfig {
   repo?: string;
   _gitRepo?: GitUrl;
   contentDir?: string;
+  distDir?: string;
   contentFileExt?: string[];
+  ignoreReplaceTitle?: boolean;
+  ignoreReplaceDescription?: boolean;
+  ignoreReplaceAuthor?: boolean;
+  ignoreReplaceYear?: boolean;
+  [index: string]: any;
 }
 
 export interface FrontMatter {

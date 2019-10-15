@@ -10,6 +10,17 @@ export const getConfig = async (): Promise<StaartSiteConfig> => {
   return cached("config", _getConfig);
 };
 
+export const readPackage = async (): Promise<
+  { [key: string]: any } | undefined
+> => {
+  const searchResult = await explorer.search();
+  if (!searchResult) return;
+  const packagePath = join(searchResult.filepath, "..", "package.json");
+  try {
+    return await readJSON(packagePath);
+  } catch (error) {}
+};
+
 const _getConfig = async () => {
   const searchResult = await explorer.search();
   const config: StaartSiteConfig = searchResult ? searchResult.config : {};

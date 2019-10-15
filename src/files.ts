@@ -11,6 +11,13 @@ export const getContentPath = async () => {
     : join(__dirname, "..", "content");
 };
 
+export const getDistPath = async () => {
+  const config = await getConfig();
+  return config.distDir
+    ? join(__dirname, "..", config.distDir)
+    : join(__dirname, "..", "public");
+};
+
 export const readContentFile = async (path: string) => {
   return await cached(`file-${path}`, async () =>
     readFile(join(await getContentPath(), path))

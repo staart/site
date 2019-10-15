@@ -1,4 +1,4 @@
-import { readFile } from "fs-extra";
+import { readFile, pathExists } from "fs-extra";
 import { join, parse } from "path";
 import { getConfig } from "./config";
 import recursiveReadDir from "recursive-readdir";
@@ -30,6 +30,17 @@ export const getStylePath = async () => {
   return config.stylePath
     ? join(__dirname, "..", config.stylePath)
     : join(await getContentPath(), "..", "style.scss");
+};
+
+export const getHomePath = async () => {
+  const config = await getConfig();
+  if (config.homePath) return config.homePath;
+  const contentDir = await getContentPath();
+  if (pathExists(join(contentDir, "index.md")))
+    return join(contentDir, "index.md");
+  if (pathExists(join(contentDir, "README.md")))
+    return join(contentDir, "README.md");
+  return join(contentDir, "..", "README.md");
 };
 
 export const readContentFile = async (path: string) => {

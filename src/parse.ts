@@ -2,7 +2,7 @@ import marked from "marked";
 import frontMatter from "front-matter";
 import { FrontMatter } from "./interfaces";
 
-export const parseMarkdown = async (md: string) => {
+export const renderMd = (md: string) => {
   return marked.parse(md);
 };
 

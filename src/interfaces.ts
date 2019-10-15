@@ -8,6 +8,7 @@ export interface StaartSiteConfig {
   distDir?: string;
   templatePath?: string;
   stylePath?: string;
+  homePath?: string;
   contentFileExt?: string[];
   ignoreReplaceTitle?: boolean;
   ignoreReplaceDescription?: boolean;

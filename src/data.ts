@@ -1,4 +1,6 @@
 import { getConfig, readPackage } from "./config";
+import { compile } from "handlebars";
+import { renderMd } from "./parse";
 
 const ucFirst = (string: string) =>
   `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
@@ -26,4 +28,15 @@ export const getData = async () => {
   if (!config.ignoreReplaceYear)
     config.data.year = new Date().getFullYear().toString();
   return config;
+};
+
+export const renderHb = async (content: string) => {
+  const template = compile(
+    content.replace(new RegExp("/*{{css}}*/", "g"), "{{css}}")
+  );
+  return template(await getData());
+};
+
+export const render = async (content: string) => {
+  return renderMd(await renderHb(content));
 };

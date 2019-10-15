@@ -1,11 +1,16 @@
 import { ensureDir, readFile, writeFile } from "fs-extra";
-import { getDistPath, getTemplatePath, getStylePath } from "./files";
+import {
+  getDistPath,
+  getTemplatePath,
+  getStylePath,
+  getHomePath
+} from "./files";
 import { cached } from "./cache";
 import { join } from "path";
 import { compile } from "handlebars";
-import { getData } from "./data";
+import { getData, render } from "./data";
 import { minify } from "html-minifier";
-import { render } from "sass";
+import { render as scss } from "sass";
 
 export const getTemplate = async (): Promise<string> => {
   return cached("template", async () => {
@@ -19,23 +24,37 @@ export const getTemplate = async (): Promise<string> => {
   });
 };
 
-const renderScss = (scss: string): Promise<string> =>
+export const getHomeContent = async (): Promise<string> => {
+  return cached("home", async () => {
+    try {
+      return (await readFile(await getHomePath())).toString();
+    } catch (error) {
+      return (await readFile(
+        join(__dirname, "..", "src", "index.md")
+      )).toString();
+    }
+  });
+};
+
+const renderScss = (styles: string): Promise<string> =>
   new Promise((resolve, reject) => {
-    render({ data: scss }, (error, result) => {
+    scss({ data: styles }, (error, result) => {
       if (error) return reject(error);
       resolve(result.css.toString());
     });
   });
 export const getCss = async (): Promise<string> => {
-  // return cached("css", async () => {
-  try {
-    return await renderScss((await readFile(await getStylePath())).toString());
-  } catch (error) {
-    return await renderScss(
-      (await readFile(join(__dirname, "..", "src", "style.scss"))).toString()
-    );
-  }
-  // });
+  return cached("css", async () => {
+    try {
+      return await renderScss(
+        (await readFile(await getStylePath())).toString()
+      );
+    } catch (error) {
+      return await renderScss(
+        (await readFile(join(__dirname, "..", "src", "style.scss"))).toString()
+      );
+    }
+  });
 };
 
 export const generate = async () => {
@@ -47,7 +66,7 @@ export const generate = async () => {
   );
   const result = template({
     ...(await getData()),
-    css: await getCss()
+    content: await render(await getHomeContent())
   });
   await writeFile(
     join(await getDistPath(), "index.html"),

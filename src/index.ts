@@ -1,8 +1,13 @@
 import { success, error } from "signale";
 import { getConfig } from "./config";
+import { cached } from "./cache";
 
 const staartSite = async () => {
   const config = await getConfig();
+  const anand = await cached("anand", async () => {
+    return "anand";
+  });
+  console.log("Anand is", anand);
 };
 
 const startTime = new Date().getTime();

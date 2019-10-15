@@ -1,13 +1,8 @@
 import { success, error } from "signale";
-import { getConfig } from "./config";
-import { cached } from "./cache";
+import { getGitHubRepoUrl } from "./github";
 
 const staartSite = async () => {
-  const config = await getConfig();
-  const anand = await cached("anand", async () => {
-    return "anand";
-  });
-  console.log("Anand is", anand);
+  console.log("GitHub URL", await getGitHubRepoUrl());
 };
 
 const startTime = new Date().getTime();

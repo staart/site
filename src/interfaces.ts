@@ -4,4 +4,6 @@ export interface StaartSiteConfig {
   title?: string;
   repo?: string;
   _gitRepo?: GitUrl;
+  contentDir?: string;
+  contentFileExt?: string[];
 }

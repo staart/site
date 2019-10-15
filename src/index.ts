@@ -1,12 +1,8 @@
-import cosmiconfig from "cosmiconfig";
 import { success, error } from "signale";
-import { StaartSiteConfig } from "./interfaces";
-
-const explorer = cosmiconfig("staart");
+import { getConfig } from "./config";
 
 const staartSite = async () => {
-  const searchResult = await explorer.search();
-  const config: StaartSiteConfig = searchResult ? searchResult.config : {};
+  const config = await getConfig();
 };
 
 const startTime = new Date().getTime();

@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.45",
+  "version": "0.9.46",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",
@@ -17,7 +17,8 @@
     "prettier-all": "prettier '{src,setup}/**/*.{ts,js,json}' --write",
     "watch-build": "onchange '{src}/**/*.ts' -- yarn build",
     "watch-prettier": "onchange '{src}/**/*.{ts,json}' -- prettier --write {{changed}}",
-    "release": "gitmoji-changelog && gh-release"
+    "changelog": "gitmoji-changelog",
+    "release": "gh-release"
   },
   "husky": {
     "hooks": {

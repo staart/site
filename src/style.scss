@@ -228,6 +228,29 @@ pre {
   font-size: 80%;
 }
 
+table th {
+  font-weight: 600;
+}
+
+table td,
+table th {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+}
+
+table tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table tr:nth-child(2n) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+img {
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
 @media (max-width: 500px) {
   main,
   div {

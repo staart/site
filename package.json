@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.38",
+  "version": "0.9.39",
   "main": "dist/index.js",
   "repository": "git@github.com:staart/site",
   "author": "Anand Chowdhary <mail@anandchowdhary.com>",

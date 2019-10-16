@@ -37,17 +37,14 @@
     <main id="content">{{{ content }}}</main>
     <footer>
       <div>
-        <p>
-          &copy; {{ year }}
-          {{#if author}}{{{ author }}}{{/if}}
-          <a href="/sitemap.html">Sitemap</a>
+          <span>&copy; {{ year }}{{#if author}} {{{ author }}}{{/if}}</span>
+          <span><a href="/sitemap.html">Sitemap</a></span>
           <span>This site is 
           {{#if githubUrl}}<a
             href="{{ githubUrl }}"
             target="_blank"
             rel="noopener"
             >open source</a>, {{/if}} built with <a href="https://staart.js.org/site" target="_blank" rel="noopener">Staart Site</a></span>
-        </p>
       </div>
     </footer>
     <script type="application/ld+json">

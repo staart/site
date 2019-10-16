@@ -85,7 +85,7 @@ header {
   .masthead {
     background-color: $theme;
     color: $light-color;
-    padding: 6vh 0;
+    padding: 7.5vh 0;
     max-width: 100%;
   }
   a {
@@ -144,7 +144,7 @@ a {
 }
 
 header a + a,
-footer a + a {
+footer span + span {
   margin-left: 1.5rem;
 }
 

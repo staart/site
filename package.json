@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.29",
+  "version": "0.9.30",
   "main": "dist/index.js",
   "repository": "git@github.com:staart/site",
   "author": "Anand Chowdhary <mail@anandchowdhary.com>",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "generate": "node dist/index.js",
     "increment-package": "node setup/increment.js",
     "prettier-all": "prettier '{src,setup}/**/*.{ts,js,json}' --write",
     "watch-build": "onchange '{src}/**/*.ts' -- yarn build",

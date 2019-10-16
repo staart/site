@@ -5,7 +5,7 @@ import { FrontMatter } from "./interfaces";
 export const renderMd = (md: string, avoidParagraphs = false) => {
   const renderer = new Renderer();
   if (avoidParagraphs) renderer.paragraph = p => p;
-  return marked.parse(md, {
+  return marked.parse(frontMatter<FrontMatter>(md).body, {
     smartypants: true,
     renderer
   });

@@ -11,6 +11,8 @@ import { compile } from "handlebars";
 import { getData, render } from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
+import { removeHeading } from "./parse";
+import { getConfig } from "./config";
 
 export const getTemplate = async (): Promise<string> => {
   return cached("template", async () => {
@@ -62,9 +64,13 @@ export const generate = async () => {
 
   // Generate index.html
   const template = compile(await getTemplate());
+  const homeContent = await getHomeContent();
+  const config = await getConfig();
   const data = {
     ...(await getData()),
-    content: await getHomeContent()
+    content: config.keepHomeHeading
+      ? homeContent
+      : await removeHeading(homeContent)
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

@@ -11,6 +11,12 @@ export const renderMd = (md: string, avoidParagraphs = false) => {
   });
 };
 
+export const removeHeading = async (md: string) =>
+  md
+    .split("\n")
+    .filter(line => !line.startsWith("# "))
+    .join("\n");
+
 export const getTitle = async (md: string) => {
   const data = marked.lexer(md);
   let title: string | undefined;

@@ -10,6 +10,7 @@ export interface StaartSiteConfig {
   stylePath?: string;
   homePath?: string;
   contentFileExt?: string[];
+  keepHomeHeading?: boolean;
   ignoreReplaceTitle?: boolean;
   ignoreReplaceDescription?: boolean;
   ignoreReplaceAuthor?: boolean;

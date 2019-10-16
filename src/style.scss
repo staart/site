@@ -104,10 +104,16 @@ header {
       padding: 1rem 0;
       display: block;
     }
-    > div {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      li {
+        margin: 0;
+      }
     }
   }
   .icon {

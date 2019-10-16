@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.40",
+  "version": "0.9.41",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",
@@ -34,6 +34,7 @@
     "html-minifier": "^4.0.0",
     "live-server": "^1.2.1",
     "marked": "^0.7.0",
+    "minimist": "^1.2.0",
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.0",
     "signale": "^1.4.0"
@@ -44,6 +45,7 @@
     "@types/git-url-parse": "^9.0.0",
     "@types/html-minifier": "^3.5.3",
     "@types/marked": "^0.6.5",
+    "@types/minimist": "^1.2.0",
     "@types/node": "^12.11.1",
     "@types/recursive-readdir": "^2.2.0",
     "@types/sass": "^1.16.0",

@@ -280,3 +280,28 @@ img {
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  header {
+    nav {
+      background-color: rgba(255, 255, 255, 0.075);
+      color: #fff;
+    }
+    .masthead {
+      background-color: darken($theme, 5%);
+    }
+  }
+  a,
+  h2,
+  cite,
+  footer {
+    color: lighten($link-color, 10%);
+  }
+  footer a {
+    color: lighten($link-color, 25%);
+  }
+}

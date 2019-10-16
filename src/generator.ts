@@ -61,20 +61,22 @@ export const generate = async () => {
   ensureDir(await getDistPath());
 
   // Generate index.html
-  const template = compile(
-    (await getTemplate()).replace(new RegExp("/*{{css}}*/", "g"), "{{css}}")
-  );
+  const template = compile(await getTemplate());
   const data = {
     ...(await getData()),
     content: await getHomeContent()
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")
-      data[key] = await render(data[key], true);
+      data[key] = await render(data[key], key !== "content");
   }
+  data.css = await getCss();
   const result = template(data);
   await writeFile(
     join(await getDistPath(), "index.html"),
-    minify(result, { collapseWhitespace: true })
+    minify(result, {
+      collapseWhitespace: true,
+      processScripts: ["application/ld+json"]
+    })
   );
 };

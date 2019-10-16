@@ -7,7 +7,7 @@
     {{#if canonical}}
     <link rel="canonical" href="{{ canonical }}" />
     {{/if}}
-    <style>/*{{css}}*/</style>
+    <style>{{{css}}}</style>
     {{#if description}}
     <meta name="description" content="{{ description }}" />
     {{/if}} {{#if keywords}}
@@ -15,7 +15,6 @@
     {{/if}}
   </head>
   <body>
-    {{css}}
     <a href="#content" class="skip-link">Skip to main content</a>
     <header>
       <div>
@@ -35,24 +34,19 @@
         </div>
       </nav>
     </header>
-    <main id="content">{{ content }}</main>
+    <main id="content">{{{ content }}}</main>
     <footer>
       <div>
         <p>
           &copy; {{ year }}
-          {{#if author}}<a
-            href="https://o15y.com"
-            target="_blank"
-            rel="noopener"
-            >{{ author }}</a
-          >{{/if}}
+          {{#if author}}{{{ author }}}{{/if}}
           <a href="/sitemap.html">Sitemap</a>
+          <span>This site is 
           {{#if githubUrl}}<a
             href="{{ githubUrl }}"
             target="_blank"
             rel="noopener"
-            >This page is open source</a
-          >{{/if}}
+            >open source</a>, {{/if}} built with <a href="https://staart.js.org/site" target="_blank" rel="noopener">Staart Site</a></span>
         </p>
       </div>
     </footer>

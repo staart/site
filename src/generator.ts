@@ -82,7 +82,8 @@ export const generate = async () => {
     join(await getDistPath(), "index.html"),
     minify(result, {
       collapseWhitespace: true,
-      processScripts: ["application/ld+json"]
+      processScripts: ["application/ld+json"],
+      minifyCSS: true
     })
   );
 };

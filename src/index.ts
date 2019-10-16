@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { success, error, info } from "signale";
 import { generate } from "./generator";
 import { readJsonSync } from "fs-extra";

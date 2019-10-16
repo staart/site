@@ -1,6 +1,8 @@
 import { getConfig, readPackage } from "./config";
 import { compile } from "handlebars";
-import { renderMd } from "./parse";
+import { renderMd, getTitle } from "./parse";
+import { listRootFiles, readContentFile } from "./files";
+import { cached } from "./cache";
 
 const ucFirst = (string: string) =>
   `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
@@ -16,18 +18,34 @@ export const getSiteMeta = async (
   return ucFirst(configKey);
 };
 
+const getNavbar = async () => {
+  const files = await listRootFiles();
+  let data = "";
+  for await (const file of files) {
+    const md = await readContentFile(file);
+    const title = await getTitle(md);
+    data += `- [${title}](/${file.replace(".md", ".html")})\n`;
+  }
+  return data;
+};
+
 export const getData = async () => {
-  const config = await getConfig();
-  config.data = config.data || {};
-  if (!config.ignoreReplaceTitle)
-    config.data.title = await getSiteMeta("title", "name");
-  if (!config.ignoreReplaceDescription)
-    config.data.description = await getSiteMeta("description");
-  if (!config.ignoreReplaceAuthor)
-    config.data.author = (await getSiteMeta("author")).split(" <")[0];
-  if (!config.ignoreReplaceYear)
-    config.data.year = new Date().getFullYear().toString();
-  return { ...config, ...config.data };
+  const result = await cached<{ [index: string]: any }>("data", async () => {
+    const config = await getConfig();
+    config.data = config.data || {};
+    config.data.rootFiles = await getNavbar();
+    if (!config.ignoreReplaceTitle)
+      config.data.title = await getSiteMeta("title", "name");
+    if (!config.ignoreReplaceDescription)
+      config.data.description = await getSiteMeta("description");
+    if (!config.ignoreReplaceAuthor)
+      config.data.author = (await getSiteMeta("author")).split(" <")[0];
+    if (!config.ignoreReplaceYear)
+      config.data.year = new Date().getFullYear().toString();
+    return { ...config, ...config.data };
+  });
+  if (result) return result;
+  throw new Error("Could not generate data");
 };
 
 export const renderHb = async (content: string) => {

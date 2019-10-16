@@ -1,4 +1,4 @@
-import { readFile } from "fs-extra";
+import { readFile, readdir } from "fs-extra";
 import { join, parse } from "path";
 import { getConfig } from "./config";
 import recursiveReadDir from "recursive-readdir";
@@ -54,9 +54,24 @@ export const getHomePath = async () => {
 };
 
 export const readContentFile = async (path: string) => {
-  return await cached(`file-${path}`, async () =>
-    readFile(join(await getContentPath(), path))
+  const result = await cached<string>(`file-${path}`, async () =>
+    (await readFile(join(await getContentPath(), path))).toString()
   );
+  if (result) return result;
+  throw new Error(`Could not read file: ${path}`);
+};
+
+export const listRootFiles = async () => {
+  const contentPath = await getContentPath();
+  let files = (await readdir(contentPath)).map(file =>
+    parse(file).ext ? file : `${file}/index.md`
+  );
+  const result = [];
+  for await (const file of files) {
+    if (await safeReadFile(join(await getContentPath(), file)))
+      result.push(file);
+  }
+  return result;
 };
 
 export const listContentFiles = async (

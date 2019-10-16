@@ -70,7 +70,7 @@ export const generate = async () => {
   const template = compile(await getTemplate());
   const homeContent = await getHomeContent();
   const config = await getConfig();
-  const data = {
+  const data: { [index: string]: any } = {
     ...(await getData()),
     content: config.keepHomeHeading
       ? homeContent

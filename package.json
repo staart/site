@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.42",
+  "version": "0.9.43",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",
@@ -16,11 +16,14 @@
     "increment-package": "node setup/increment.js",
     "prettier-all": "prettier '{src,setup}/**/*.{ts,js,json}' --write",
     "watch-build": "onchange '{src}/**/*.ts' -- yarn build",
-    "watch-prettier": "onchange '{src}/**/*.{ts,json}' -- prettier --write {{changed}}"
+    "watch-prettier": "onchange '{src}/**/*.{ts,json}' -- prettier --write {{changed}}",
+    "changelog": "gitmoji-changelog",
+    "release": "gh-release"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn increment-package && yarn prettier-all && git add ."
+      "pre-commit": "yarn increment-package && yarn prettier-all && git add .",
+      "pre-push": "yarn changelog && git add . && git commit -m ':pencil: Update changelog'"
     }
   },
   "dependencies": {
@@ -50,6 +53,8 @@
     "@types/recursive-readdir": "^2.2.0",
     "@types/sass": "^1.16.0",
     "@types/signale": "^1.2.1",
+    "gh-release": "^3.5.0",
+    "gitmoji-changelog": "^1.1.0",
     "husky": "^3.0.9",
     "node-cache": "^4.2.1",
     "onchange": "^6.1.0",

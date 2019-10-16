@@ -44,11 +44,13 @@ export const getHomePath = async () => {
   const contentDir = await getContentPath();
   if (config.homePath) return config.homePath;
   let file: string | undefined = undefined;
-  file = join(contentDir, "..", "README.md");
+  file = join(contentDir, "index.md");
   if (safeReadFile(file)) return file;
   file = join(contentDir, "README.md");
   if (safeReadFile(file)) return file;
-  return join(contentDir, "index.md");
+  file = join(contentDir, "..", "README.md");
+  if (safeReadFile(file)) return file;
+  return join("..", "src", "index.md");
 };
 
 export const readContentFile = async (path: string) => {

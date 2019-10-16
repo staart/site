@@ -82,9 +82,12 @@ main {
 
 header {
   text-align: center;
-  background-color: $theme;
-  color: $light-color;
-  padding: 7.5vh 0 0 0;
+  .masthead {
+    background-color: $theme;
+    color: $light-color;
+    padding: 6vh 0;
+    max-width: 100%;
+  }
   a {
     display: inline-block;
     color: inherit;
@@ -94,7 +97,6 @@ header {
     }
   }
   nav {
-    margin-top: 5vh;
     padding: 1rem 0;
     background-color: whitesmoke;
     color: $text-color;

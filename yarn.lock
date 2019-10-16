@@ -277,11 +277,6 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.0.0.tgz#23c0df14f6a88077f5f986c0d167ec03c3d5537c"
   integrity sha512-Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==
 
-bluebird@^3.4.1:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.0.tgz#56a6a886e03f6ae577cffedeb524f8f2450293cf"
-  integrity sha512-aBQ1FxIa7kSWCcmKHlcHFlT2jt6J/l4FzC7KcPELkOJOsPOb/bccdhmIrKDfXhwFrmc7vDoDrrepFvGqjyXGJg==
-
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -852,14 +847,6 @@ fragment-cache@^0.2.1:
   integrity sha1-QpD60n8T6Jvn8zeZxrxaCr//DRk=
   dependencies:
     map-cache "^0.2.2"
-
-fraud@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/fraud/-/fraud-5.2.0.tgz#9561a3ff2512ccf141500545bf63d52122e92397"
-  integrity sha512-lgkKKbJ5udteYOLMJRq8Ckc9F24nH9Zr1f7n1cB+UZSRZdsvBARMMwJSbV8QXohVPa5hFDmZxc8BnG8hAxNxNQ==
-  dependencies:
-    node-cache "^4.2.0"
-    promise-serial "^0.1.5"
 
 fresh@0.5.2:
   version "0.5.2"
@@ -1707,7 +1694,7 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-node-cache@^4.2.0:
+node-cache@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/node-cache/-/node-cache-4.2.1.tgz#efd8474dee4edec4138cdded580f5516500f7334"
   integrity sha512-BOb67bWg2dTyax5kdef5WfU3X8xu4wPg+zHzkvls0Q/QpYycIFRLEEIdAx9Wma43DxG6Qzn4illdZoYseKWa4A==
@@ -2105,13 +2092,6 @@ process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
-
-promise-serial@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/promise-serial/-/promise-serial-0.1.5.tgz#68fb4d0e283c912459e02377a26a8d067bf567d1"
-  integrity sha512-WyxsnHCk/dr3ZDckvtadj1X4/YuOUrGhIYKmnVnOyC3DOLq4xY/iyEMMjMtSe1aE8JYw1z/nOTetrMqRrd4luQ==
-  dependencies:
-    bluebird "^3.4.1"
 
 protocols@^1.1.0, protocols@^1.4.0:
   version "1.4.7"

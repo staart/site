@@ -14,8 +14,8 @@ import { render as scss } from "sass";
 import { removeHeading } from "./parse";
 import { getConfig } from "./config";
 
-export const getTemplate = async (): Promise<string> => {
-  return cached("template", async () => {
+export const getTemplate = async () => {
+  const result = await cached<string>("template", async () => {
     try {
       return (await readFile(await getTemplatePath())).toString();
     } catch (error) {
@@ -24,10 +24,12 @@ export const getTemplate = async (): Promise<string> => {
       )).toString();
     }
   });
+  if (result) return result;
+  throw new Error("Template not found");
 };
 
-export const getHomeContent = async (): Promise<string> => {
-  return cached("home", async () => {
+export const getHomeContent = async () => {
+  const result = await cached<string>("home", async () => {
     try {
       return (await readFile(await getHomePath())).toString();
     } catch (error) {
@@ -36,17 +38,19 @@ export const getHomeContent = async (): Promise<string> => {
       )).toString();
     }
   });
+  if (result) return result;
+  throw new Error("Homepage not found");
 };
 
-const renderScss = (styles: string): Promise<string> =>
+const renderScss = (styles: string) =>
   new Promise((resolve, reject) => {
     scss({ data: styles }, (error, result) => {
       if (error) return reject(error);
       resolve(result.css.toString());
     });
   });
-export const getCss = async (): Promise<string> => {
-  return cached("css", async () => {
+export const getCss = async () => {
+  return await cached<string>("css", async () => {
     try {
       return await renderScss(
         (await readFile(await getStylePath())).toString()

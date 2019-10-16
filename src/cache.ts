@@ -1,17 +1,11 @@
-import Fraud from "fraud";
-import { ensureDir } from "fs-extra";
-const cache = new Fraud({
-  directory: ".cache/staart-site"
-});
+import NodeCache from "node-cache";
+const cache = new NodeCache();
 
-export const cached = async (name: string, f: Function) => {
+export const cached = async <T>(name: string, f: Function) => {
   name = name.replace(/[^a-zA-Z ]/g, "");
-  await ensureDir(".cache/staart-site");
-  try {
-    return await cache.read(`func-${name}`);
-  } catch (error) {
-    const result = await f();
-    cache.create(`func-${name}`, result);
-    return result;
-  }
+  let result = cache.get<T>(`func-${name}`);
+  if (result) return result;
+  result = await f();
+  cache.set(`func-${name}`, result);
+  return result;
 };

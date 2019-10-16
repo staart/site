@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.31",
+  "version": "0.9.32",
   "main": "dist/index.js",
   "repository": "git@github.com:staart/site",
   "author": "Anand Chowdhary <mail@anandchowdhary.com>",
@@ -26,7 +26,6 @@
     "axios": "^0.19.0",
     "concurrently": "^5.0.0",
     "cosmiconfig": "^5.2.1",
-    "fraud": "^5.2.0",
     "front-matter": "^3.0.2",
     "fs-extra": "^8.1.0",
     "git-url-parse": "^11.1.2",
@@ -49,6 +48,7 @@
     "@types/sass": "^1.16.0",
     "@types/signale": "^1.2.1",
     "husky": "^3.0.9",
+    "node-cache": "^4.2.1",
     "onchange": "^6.1.0",
     "prettier": "^1.18.2",
     "typescript": "^3.6.4"

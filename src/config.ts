@@ -6,8 +6,10 @@ import gitUrlParse from "git-url-parse";
 import { cached } from "./cache";
 const explorer = cosmiconfig("staart");
 
-export const getConfig = async (): Promise<StaartSiteConfig> => {
-  return cached("config", _getConfig);
+export const getConfig = async () => {
+  const config = await cached<StaartSiteConfig>("config", _getConfig);
+  if (config) return config;
+  throw new Error("Config not found");
 };
 
 export const readPackage = async (): Promise<

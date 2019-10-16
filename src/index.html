@@ -39,6 +39,7 @@
       <div>
           <span>&copy; {{ year }}{{#if author}} {{{ author }}}{{/if}}</span>
           <span><a href="/sitemap.html">Sitemap</a></span>
+          {{#if agastyaApiKey}}<span><button onclick="window.agastya.open()">Accessibility</button></span>{{/if}}
           <span>This site is 
           {{#if githubUrl}}<a
             href="{{ githubUrl }}"
@@ -47,6 +48,19 @@
             >open source</a>, {{/if}} built with <a href="https://staart.js.org/site" target="_blank" rel="noopener">Staart Site</a></span>
       </div>
     </footer>
+    {{#if agastyaApiKey}}<script src="https://platform-beta.oswaldlabs.com/v1/agastya/load/{{agastyaApiKey}}"></script>
+    <script>
+      window.a11ySettings = window.a11ySettings || {};
+      window.a11ySettings.variables = window.a11ySettings.variables || {};
+      window.a11ySettings.variables.displayNone = true;
+    </script>{{/if}}
+    {{#if googleAnalytics}}<script async src="https://www.googletagmanager.com/gtag/js?id={{googleAnalytics}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "{{googleAnalytics}}");
+    </script>{{/if}}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

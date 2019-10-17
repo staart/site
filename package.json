@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",
-    "@types/fs-extra": "^8.0.0",
+    "@types/fs-extra": "^8.0.1",
     "@types/git-url-parse": "^9.0.0",
     "@types/html-minifier": "^3.5.3",
     "@types/marked": "^0.6.5",

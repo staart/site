@@ -19,13 +19,19 @@ export const getSiteMeta = async (
 };
 
 export const getNavbar = async (files?: string[]) => {
-  if (!files) files = await listRootFiles();
-  files = files.sort((a, b) => a.localeCompare(b));
+  if (!files)
+    files = (await listRootFiles())
+      .sort((a, b) => a.localeCompare(b))
+      .reverse();
   let data = "";
   for await (const file of files) {
-    const md = await readContentFile(file);
-    const title = await getTitle(md);
-    data += `- [${title}](/${file.replace(".md", ".html")})\n`;
+    if (file.startsWith("[")) {
+      data += `- ${file}\n`;
+    } else {
+      const md = await readContentFile(file);
+      const title = await getTitle(md);
+      data += `- [${title}](/${file.replace(".md", ".html")})\n`;
+    }
   }
   return data;
 };
@@ -35,6 +41,7 @@ export const getData = async () => {
     const config = await getConfig();
     config.data = config.data || {};
     config.data.rootFiles = await getNavbar();
+    config.data.navBar = await getNavbar(config.navbar);
     if (!config.ignoreReplaceTitle)
       config.data.title = await getSiteMeta("title", "name");
     if (!config.ignoreReplaceDescription)

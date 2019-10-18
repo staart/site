@@ -15,7 +15,64 @@ Staart Site is a docs/helpdesk website starter with static site generator writte
 - Sitemap & schema data for SEO
 - 1.2kb minzipped CSS, dark & light theme
 
-## 🏗️ Built with Staart
+## 💻 Getting started
+
+The easiest way is to use `npx` to generate a static site in your current working directory:
+
+```bash
+npx @staart/site
+```
+
+You should see something like the following output in your terminal:
+
+```
+✔  success   Start Site built in 0.39s
+```
+
+Alternately, you can add the package as a `devDependency`:
+
+```bash
+npm install @staart/site --save-dev
+```
+
+And then use the `generate` function:
+
+```ts
+import { generate } from "@staart/site";
+
+generate({ /* options */ })
+  .then(() => console.log("Completed"))
+  .catch(error => console.error(error));
+```
+
+## 🛠️ Configuration
+
+You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)-compatible configuration file, like `staart.config.js`.
+
+| Option | Description | Default |
+| ------ | ----------- | ------- |
+| `title` | Name of the site | `Staart Site` |
+| `repo` | URL to git repository | `repository` key in `package.json` |
+| `contentDir` | Folder with markdown content | `./content` |
+| `distDir` | Output directory | `./public` |
+| `templatePath` | HTML template file path | `./index.html` |
+| `stylePath` | Scss stylesheet path | `style.scss` |
+| `homePath` | Markdown file path for homepage | `README.md` |
+| `hostname` | Base URL for sitemap | `http://localhost:8080` |
+| `navbar` | Array of filenames for navbar | Root files/folders in `contentDir` |
+| `contentFileExt` | File extension for content files | `md` |
+| `keepHomeHeading` | Show `h1` heading on homepage | `false` |
+| `ignoreReplaceTitle` | Don't update `<title>` from `title` | `false` |
+| `ignoreReplaceDescription` | Don't update meta description | `false` |
+| `ignoreReplaceAuthor` | Don't update footer author | `false` |
+| `ignoreReplaceYear` | Don't update copyright year | `false` |
+| `noHome` | Don't generate `index.html` | `false` |
+| `noSitemap` | Don't generate sitemaps | `false` |
+| `noContentList` | Don't add content lists | `false` |
+
+Staart Site also uses the `repository` and `author` fields for copyright/last modified information, but you can overwrite them using the configuration above.
+
+## 🏗️ Built with Staart Site
 
 - **[Add your Staart Site](https://github.com/staart/site/edit/master/README.md)**
 

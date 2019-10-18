@@ -7,28 +7,26 @@ import { cached } from "./cache";
 export const getContentPath = async () => {
   const config = await getConfig();
   return config.contentDir
-    ? join(__dirname, "..", config.contentDir)
-    : join(__dirname, "..", "content");
+    ? join(".", config.contentDir)
+    : join(".", "content");
 };
 
 export const getDistPath = async () => {
   const config = await getConfig();
-  return config.distDir
-    ? join(__dirname, "..", config.distDir)
-    : join(__dirname, "..", "public");
+  return config.distDir ? join(".", config.distDir) : join(".", "public");
 };
 
 export const getTemplatePath = async () => {
   const config = await getConfig();
   return config.templatePath
-    ? join(__dirname, "..", config.templatePath)
+    ? join(".", config.templatePath)
     : join(await getContentPath(), "..", "index.html");
 };
 
 export const getStylePath = async () => {
   const config = await getConfig();
   return config.stylePath
-    ? join(__dirname, "..", config.stylePath)
+    ? join(".", config.stylePath)
     : join(await getContentPath(), "..", "style.scss");
 };
 

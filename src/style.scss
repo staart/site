@@ -304,4 +304,8 @@ img {
   footer a {
     color: lighten($link-color, 25%);
   }
+  code {
+    background: #ab2323;
+    color: #fff;
+  }
 }

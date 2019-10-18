@@ -20,6 +20,10 @@ export interface StaartSiteConfig {
   noHome?: boolean;
   noSitemap?: boolean;
   noContentList?: boolean;
+  themeColor?: string;
+  textColor?: string;
+  linkColor?: string;
+  lightColor?: string;
   [index: string]: any;
 }
 

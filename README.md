@@ -59,6 +59,10 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `stylePath` | Scss stylesheet path | `style.scss` |
 | `homePath` | Markdown file path for homepage | `README.md` |
 | `hostname` | Base URL for sitemap | `http://localhost:8080` |
+| `themeColor` | Main theme color | `#0e632c` |
+| `textColor` | Dark text color | `#001b01` |
+| `linkColor` | Hyperlink color | `#0e632c` |
+| `lightColor` | Light text color | `#ffffff` |
 | `navbar` | Array of filenames for navbar | Root files/folders in `contentDir` |
 | `contentFileExt` | File extension for content files | `md` |
 | `keepHomeHeading` | Show `h1` heading on homepage | `false` |

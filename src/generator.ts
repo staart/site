@@ -66,7 +66,8 @@ const renderScss = (styles: string) =>
     });
   });
 export const getCss = async () => {
-  return await cached<string>("css", async () => {
+  const config = await getConfig();
+  return (await cached<string>("css", async () => {
     try {
       return await renderScss(
         (await readFile(await getStylePath())).toString()
@@ -76,7 +77,20 @@ export const getCss = async () => {
         (await readFile(join(__dirname, "..", "src", "style.scss"))).toString()
       );
     }
-  });
+  }))
+    .replace("$theme: #0e632c", `$theme: ${config.themeColor || "#0e632c"};`)
+    .replace(
+      "$text-color: #001b01",
+      `$text-color: ${config.textColor || "#001b01"};`
+    )
+    .replace(
+      "$link-color: #0e632c",
+      `$link-color: ${config.linkColor || "#0e632c"};`
+    )
+    .replace(
+      "$light-color: #fff",
+      `$light-color: ${config.lightColor || "#fff"};`
+    );
 };
 
 export const generate = async () => {

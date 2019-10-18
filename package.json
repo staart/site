@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.53",
+  "version": "0.9.54",
   "module": "dist/module.js",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -40,6 +40,7 @@
     "live-server": "^1.2.1",
     "marked": "^0.7.0",
     "minimist": "^1.2.0",
+    "node-cache": "^4.2.1",
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.0",
     "signale": "^1.4.0",
@@ -59,7 +60,6 @@
     "gh-release": "^3.5.0",
     "gitmoji-changelog": "^1.1.0",
     "husky": "^3.0.9",
-    "node-cache": "^4.2.1",
     "onchange": "^6.1.0",
     "prettier": "^1.18.2",
     "typescript": "^3.6.4"

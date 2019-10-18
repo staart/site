@@ -17,6 +17,7 @@ import { render as scss } from "sass";
 import { removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
+import color from "color";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -78,6 +79,20 @@ export const getCss = async () => {
       );
     }
   }))
+    .replace(
+      "#149040",
+      color(config.linkColor || "#0e632c")
+        .lighten(0.75)
+        .rgb()
+        .string()
+    )
+    .replace(
+      "#1ed35e",
+      color(config.linkColor || "#0e632c")
+        .lighten(1.5)
+        .rgb()
+        .string()
+    )
     .replace(
       "$theme-color: #0e632c",
       `$theme-color: ${config.themeColor || "#0e632c"};`

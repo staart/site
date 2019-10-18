@@ -1,4 +1,4 @@
-$theme: #0e632c;
+$theme-color: #0e632c;
 $text-color: #001b01;
 $link-color: #0e632c;
 $light-color: #fff;
@@ -83,7 +83,7 @@ main {
 header {
   text-align: center;
   .masthead {
-    background-color: $theme;
+    background-color: $theme-color;
     color: $light-color;
     padding: 7.5vh 0;
     max-width: 100%;
@@ -195,7 +195,7 @@ footer {
 blockquote {
   margin-left: 0;
   padding-left: 2rem;
-  border-left: 0.5rem solid rgba($theme, 0.1);
+  border-left: 0.5rem solid rgba($theme-color, 0.1);
   font-style: italic;
 }
 
@@ -292,7 +292,7 @@ img {
       color: #fff;
     }
     .masthead {
-      background-color: darken($theme, 5%);
+      background-color: rgba($theme-color, 0.8);
     }
   }
   a,

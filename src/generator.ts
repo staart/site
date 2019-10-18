@@ -78,7 +78,10 @@ export const getCss = async () => {
       );
     }
   }))
-    .replace("$theme: #0e632c", `$theme: ${config.themeColor || "#0e632c"};`)
+    .replace(
+      "$theme-color: #0e632c",
+      `$theme-color: ${config.themeColor || "#0e632c"};`
+    )
     .replace(
       "$text-color: #001b01",
       `$text-color: ${config.textColor || "#001b01"};`

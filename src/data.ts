@@ -18,8 +18,8 @@ export const getSiteMeta = async (
   return ucFirst(configKey);
 };
 
-const getNavbar = async () => {
-  const files = await listRootFiles();
+export const getNavbar = async (files?: string[]) => {
+  if (!files) files = await listRootFiles();
   let data = "";
   for await (const file of files) {
     const md = await readContentFile(file);

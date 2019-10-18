@@ -3,12 +3,15 @@ import {
   getDistPath,
   getTemplatePath,
   getStylePath,
-  getHomePath
+  getHomePath,
+  getContentPath,
+  listContentFiles,
+  readContentFile
 } from "./files";
 import { cached } from "./cache";
 import { join } from "path";
 import { compile } from "handlebars";
-import { getData, render } from "./data";
+import { getData, render, getNavbar } from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
 import { removeHeading } from "./parse";
@@ -42,6 +45,18 @@ export const getHomeContent = async () => {
   throw new Error("Homepage not found");
 };
 
+export const getSitemapContent = async () => {
+  const result = await cached<string>("sitemap", async () => {
+    try {
+      return (await readFile(
+        join(await getContentPath(), "sitemap.md")
+      )).toString();
+    } catch (error) {}
+  });
+  if (result) return result;
+  return `# Sitemap`;
+};
+
 const renderScss = (styles: string) =>
   new Promise((resolve, reject) => {
     scss({ data: styles }, (error, result) => {
@@ -65,16 +80,30 @@ export const getCss = async () => {
 
 export const generate = async () => {
   ensureDir(await getDistPath());
+  const config = await getConfig();
+  if (!config.noHome) await generatePage("index.html", await getHomeContent());
+  if (!config.noSitemap) await generateSitemap();
+};
 
-  // Generate index.html
+const generateSitemap = async () => {
+  let content =
+    (await getSitemapContent()) +
+    "\n\n" +
+    (await getNavbar(await listContentFiles()));
+  await generatePage("sitemap.html", content);
+};
+
+const generatePage = async (path: string, content: string) => {
   const template = compile(await getTemplate());
-  const homeContent = await getHomeContent();
   const config = await getConfig();
   const data: { [index: string]: any } = {
     ...(await getData()),
-    content: config.keepHomeHeading
-      ? homeContent
-      : await removeHeading(homeContent)
+    content:
+      path === "index.html"
+        ? config.keepHomeHeading
+          ? content
+          : await removeHeading(content)
+        : content
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")
@@ -83,7 +112,7 @@ export const generate = async () => {
   data.css = await getCss();
   const result = template(data);
   await writeFile(
-    join(await getDistPath(), "index.html"),
+    join(await getDistPath(), path),
     minify(result, {
       collapseWhitespace: true,
       processScripts: ["application/ld+json"],

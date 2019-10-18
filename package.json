@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.46",
+  "version": "0.9.47",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",
@@ -14,6 +14,7 @@
     "generate": "node dist/index.js",
     "build": "npm run compile && npm run generate",
     "increment-package": "node setup/increment.js",
+    "serve": "live-server public --quiet",
     "prettier-all": "prettier '{src,setup}/**/*.{ts,js,json}' --write",
     "watch-build": "onchange '{src}/**/*.ts' -- yarn build",
     "watch-prettier": "onchange '{src}/**/*.{ts,json}' -- prettier --write {{changed}}",

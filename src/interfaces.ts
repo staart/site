@@ -15,6 +15,8 @@ export interface StaartSiteConfig {
   ignoreReplaceDescription?: boolean;
   ignoreReplaceAuthor?: boolean;
   ignoreReplaceYear?: boolean;
+  noHome?: boolean;
+  noSitemap?: boolean;
   [index: string]: any;
 }
 

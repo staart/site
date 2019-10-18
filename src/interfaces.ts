@@ -19,6 +19,7 @@ export interface StaartSiteConfig {
   ignoreReplaceYear?: boolean;
   noHome?: boolean;
   noSitemap?: boolean;
+  noContentList?: boolean;
   [index: string]: any;
 }
 

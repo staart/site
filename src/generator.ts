@@ -1,14 +1,15 @@
-import { ensureDir, readFile, writeFile } from "fs-extra";
+import { ensureDir, readFile, writeFile, ensureFile } from "fs-extra";
 import {
   getDistPath,
   getTemplatePath,
   getStylePath,
   getHomePath,
   getContentPath,
-  listContentFiles
+  listContentFiles,
+  readContentFile
 } from "./files";
 import { cached } from "./cache";
-import { join } from "path";
+import { join, parse } from "path";
 import { compile } from "handlebars";
 import { getData, render, getNavbar } from "./data";
 import { minify } from "html-minifier";
@@ -83,6 +84,21 @@ export const generate = async () => {
   const config = await getConfig();
   if (!config.noHome) await generatePage("index.html", await getHomeContent());
   if (!config.noSitemap) await generateSitemap();
+  const files = (await listContentFiles()).filter(
+    file => !["index.md", "sitemap.md"].includes(file)
+  );
+  for await (const file of files) {
+    let content = await readContentFile(file);
+    if (parse(file).name === "index" && !config.noContentList) {
+      const deepFiles = (await listContentFiles(join(file, "..")))
+        .filter(f => f !== "index.md")
+        .map(f => join(file, "..", f));
+      if (deepFiles.length) {
+        content += "\n\n" + (await getNavbar(deepFiles));
+      }
+    }
+    await generatePage(file.replace(".md", ".html"), content);
+  }
 };
 
 const generateSitemap = async () => {
@@ -124,6 +140,7 @@ const generatePage = async (path: string, content: string) => {
   }
   data.css = await getCss();
   const result = template(data);
+  await ensureFile(join(await getDistPath(), path));
   await writeFile(
     join(await getDistPath(), path),
     minify(result, {

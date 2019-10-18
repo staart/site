@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.47",
+  "version": "0.9.48",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",
@@ -40,7 +40,8 @@
     "minimist": "^1.2.0",
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.0",
-    "signale": "^1.4.0"
+    "signale": "^1.4.0",
+    "sitemap": "^5.0.0"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",

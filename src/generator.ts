@@ -5,8 +5,7 @@ import {
   getStylePath,
   getHomePath,
   getContentPath,
-  listContentFiles,
-  readContentFile
+  listContentFiles
 } from "./files";
 import { cached } from "./cache";
 import { join } from "path";
@@ -16,6 +15,7 @@ import { minify } from "html-minifier";
 import { render as scss } from "sass";
 import { removeHeading } from "./parse";
 import { getConfig } from "./config";
+import { SitemapStream, streamToPromise } from "sitemap";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -86,11 +86,21 @@ export const generate = async () => {
 };
 
 const generateSitemap = async () => {
-  let content =
-    (await getSitemapContent()) +
-    "\n\n" +
-    (await getNavbar(await listContentFiles()));
+  const files = await listContentFiles();
+  let content = (await getSitemapContent()) + "\n\n" + (await getNavbar(files));
   await generatePage("sitemap.html", content);
+  const config = await getConfig();
+  const sitemap = new SitemapStream({
+    hostname: config.hostname || "http://localhost:8080"
+  });
+  files.forEach(file => {
+    sitemap.write(file.replace(".md", ".html"));
+  });
+  sitemap.end();
+  await writeFile(
+    join(await getDistPath(), "sitemap.xml"),
+    await streamToPromise(sitemap)
+  );
 };
 
 const generatePage = async (path: string, content: string) => {

@@ -9,6 +9,7 @@ export interface StaartSiteConfig {
   templatePath?: string;
   stylePath?: string;
   homePath?: string;
+  hostname?: string;
   contentFileExt?: string[];
   keepHomeHeading?: boolean;
   ignoreReplaceTitle?: boolean;

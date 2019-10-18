@@ -17,7 +17,6 @@ import { render as scss } from "sass";
 import { removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
-import color from "color";
 import { StaartSiteConfig } from "./interfaces";
 
 export const getTemplate = async () => {
@@ -67,49 +66,43 @@ const renderScss = (styles: string) =>
       resolve(result.css.toString());
     });
   });
-export const getCss = async () => {
+
+const addTheme = async (css: string) => {
   const config = await getConfig();
-  return (await cached<string>("css", async () => {
-    try {
-      return await renderScss(
-        (await readFile(await getStylePath())).toString()
-      );
-    } catch (error) {
-      return await renderScss(
-        (await readFile(join(__dirname, "..", "src", "style.scss"))).toString()
-      );
-    }
-  }))
-    .replace(
-      "#149040",
-      color(config.linkColor || "#0e632c")
-        .lighten(0.75)
-        .rgb()
-        .string()
-    )
-    .replace(
-      "#1ed35e",
-      color(config.linkColor || "#0e632c")
-        .lighten(1.5)
-        .rgb()
-        .string()
-    )
+  return css
     .replace(
       "$theme-color: #0e632c",
-      `$theme-color: ${config.themeColor || "#0e632c"};`
+      `$theme-color: ${config.themeColor || "#0e632c"}`
     )
     .replace(
-      "$text-color: #001b01",
-      `$text-color: ${config.textColor || "#001b01"};`
+      "$text-color: #e3fde4",
+      `$text-color: ${config.textColor || "#e3fde4"}`
     )
     .replace(
-      "$link-color: #0e632c",
-      `$link-color: ${config.linkColor || "#0e632c"};`
+      "$link-color: #0e632a",
+      `$link-color: ${config.linkColor || config.themeColor || "#0e632a"}`
     )
     .replace(
       "$light-color: #fff",
-      `$light-color: ${config.lightColor || "#fff"};`
+      `$light-color: ${config.lightColor || "#fff"}`
     );
+};
+export const getCss = async () => {
+  return await cached<string>("css", async () => {
+    try {
+      return await renderScss(
+        await addTheme((await readFile(await getStylePath())).toString())
+      );
+    } catch (error) {
+      return await renderScss(
+        await addTheme(
+          (await readFile(
+            join(__dirname, "..", "src", "style.scss")
+          )).toString()
+        )
+      );
+    }
+  });
 };
 
 export const generate = async (customConfig?: StaartSiteConfig) => {

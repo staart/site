@@ -1,6 +1,6 @@
 $theme-color: #0e632c;
 $text-color: #001b01;
-$link-color: #0e632c;
+$link-color: #0e632a;
 $light-color: #fff;
 
 @font-face {
@@ -299,10 +299,10 @@ img {
   h2,
   cite,
   footer {
-    color: #149040;
+    color: lighten($link-color, 10%);
   }
   footer a {
-    color: #1ed35e;
+    color: lighten($link-color, 25%);
   }
   code {
     background: #ab2323;

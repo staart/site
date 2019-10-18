@@ -18,6 +18,7 @@ import { removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import color from "color";
+import { StaartSiteConfig } from "./interfaces";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -111,9 +112,9 @@ export const getCss = async () => {
     );
 };
 
-export const generate = async () => {
+export const generate = async (customConfig?: StaartSiteConfig) => {
   ensureDir(await getDistPath());
-  const config = await getConfig();
+  const config = await getConfig(customConfig);
   if (!config.noHome) await generatePage("index.html", await getHomeContent());
   if (!config.noSitemap) await generateSitemap();
   const files = (await listContentFiles()).filter(

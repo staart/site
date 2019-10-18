@@ -1,3 +1,1 @@
-import { generate } from "./generator";
-
-export default generate;
+export { generate } from "./generator";

@@ -6,9 +6,11 @@ import gitUrlParse from "git-url-parse";
 import { cached } from "./cache";
 const explorer = cosmiconfig("staart");
 
-export const getConfig = async () => {
+let customConfig: StaartSiteConfig | undefined = undefined;
+export const getConfig = async (userConfig?: StaartSiteConfig) => {
+  if (userConfig) customConfig = userConfig;
   const config = await cached<StaartSiteConfig>("config", _getConfig);
-  if (config) return config;
+  if (config) return { ...config, ...customConfig } as StaartSiteConfig;
   throw new Error("Config not found");
 };
 

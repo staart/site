@@ -10,6 +10,7 @@ export interface StaartSiteConfig {
   stylePath?: string;
   homePath?: string;
   hostname?: string;
+  navbar?: string[];
   contentFileExt?: string[];
   keepHomeHeading?: boolean;
   ignoreReplaceTitle?: boolean;

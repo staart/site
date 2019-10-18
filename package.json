@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "0.9.48",
+  "version": "0.9.49",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "repository": "git@github.com:staart/site",

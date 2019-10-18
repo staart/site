@@ -87,9 +87,12 @@ export const generate = async () => {
 
 const generateSitemap = async () => {
   const files = await listContentFiles();
-  let content = (await getSitemapContent()) + "\n\n" + (await getNavbar(files));
-  await generatePage("sitemap.html", content);
   const config = await getConfig();
+  let content =
+    (await getSitemapContent()) +
+    "\n\n" +
+    (config.navbar || (await getNavbar(files)));
+  await generatePage("sitemap.html", content);
   const sitemap = new SitemapStream({
     hostname: config.hostname || "http://localhost:8080"
   });

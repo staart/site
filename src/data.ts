@@ -20,6 +20,7 @@ export const getSiteMeta = async (
 
 export const getNavbar = async (files?: string[]) => {
   if (!files) files = await listRootFiles();
+  files = files.sort((a, b) => a.localeCompare(b));
   let data = "";
   for await (const file of files) {
     const md = await readContentFile(file);

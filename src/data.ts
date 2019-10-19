@@ -40,6 +40,8 @@ export const getData = async () => {
   const result = await cached<{ [index: string]: any }>("data", async () => {
     const config = await getConfig();
     config.data = config.data || {};
+    if (config._gitRepo)
+      config.data.githubUrl = `[open source](https://${config._gitRepo.resource}/${config._gitRepo.full_name})`;
     config.data.rootFiles = await getNavbar();
     config.data.navBar = await getNavbar(config.navbar);
     if (!config.ignoreReplaceTitle)

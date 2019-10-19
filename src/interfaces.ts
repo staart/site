@@ -24,6 +24,7 @@ export interface StaartSiteConfig {
   textColor?: string;
   linkColor?: string;
   lightColor?: string;
+  noLastModified?: boolean;
   [index: string]: any;
 }
 

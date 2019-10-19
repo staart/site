@@ -18,6 +18,7 @@ import { removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
+import { getLastCommit, getGitHubRepoUrl } from "./github";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -146,8 +147,28 @@ const generateSitemap = async () => {
 };
 
 const generatePage = async (path: string, content: string) => {
-  const template = compile(await getTemplate());
   const config = await getConfig();
+  const lastCommit = await getLastCommit(path);
+  const githubUrl = await getGitHubRepoUrl();
+  if (!config.noLastModified && lastCommit)
+    content += `\n\n<p class="post-footer">This page was last modified in <a href="${
+      lastCommit.html_url
+    }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${
+      lastCommit.author.html_url
+    }" target="_blank">${
+      lastCommit.commit.author.name
+    }</a> on <time datetime="${lastCommit.commit.author.date}">${new Date(
+      lastCommit.commit.author.date
+    ).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    })}</time>. <a href="${
+      githubUrl
+        ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
+        : ""
+    }"  target="_blank">Edit on GitHub</a></p>`;
+  const template = compile(await getTemplate());
   const data: { [index: string]: any } = {
     ...(await getData()),
     content:

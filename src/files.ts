@@ -72,6 +72,15 @@ export const listRootFiles = async () => {
   return result;
 };
 
+export const listDirs = async () => {
+  const contentPath = await getContentPath();
+  return Array.from(
+    new Set((await recursiveReadDir(contentPath)).map(f => parse(f).dir))
+  )
+    .filter(d => d !== contentPath)
+    .map(d => d.replace(`${contentPath}/`, ""));
+};
+
 export const listContentFiles = async (
   dir?: string,
   filterContentFiles = true,

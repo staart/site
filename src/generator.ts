@@ -6,7 +6,8 @@ import {
   getHomePath,
   getContentPath,
   listContentFiles,
-  readContentFile
+  readContentFile,
+  listDirs
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -126,6 +127,35 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
     }
     await generatePage(file.replace(".md", ".html"), content);
   }
+  if (!config.noShieldSchema) {
+    const schema = {
+      schemaVersion: 1,
+      message: "",
+      label: config.shieldSchemaLabel || "docs",
+      color: config.shieldSchemaColor || "blueviolet"
+    };
+    await ensureDir(join(await getDistPath(), "shield-schema"));
+    const nArticles = (await listContentFiles()).length;
+    schema.message = `${nArticles} article${nArticles !== 1 ? "s" : ""}`;
+    await writeFile(
+      join(await getDistPath(), "shield-schema", "site.json"),
+      JSON.stringify(schema)
+    );
+    const directories = await listDirs();
+    for await (const directory of directories) {
+      await ensureDir(join(await getDistPath(), "shield-schema"));
+      const nArticles = (await listContentFiles(directory)).length;
+      schema.message = `${nArticles} article${nArticles !== 1 ? "s" : ""}`;
+      await writeFile(
+        join(
+          await getDistPath(),
+          "shield-schema",
+          `${directory.replace(/\//g, "_")}.json`
+        ),
+        JSON.stringify(schema)
+      );
+    }
+  }
 };
 
 const generateSitemap = async () => {
@@ -148,26 +178,28 @@ const generateSitemap = async () => {
 
 const generatePage = async (path: string, content: string) => {
   const config = await getConfig();
-  const lastCommit = await getLastCommit(path);
-  const githubUrl = await getGitHubRepoUrl();
-  if (!config.noLastModified && lastCommit)
-    content += `\n\n<p class="post-footer">This page was last modified in <a href="${
-      lastCommit.html_url
-    }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${
-      lastCommit.author.html_url
-    }" target="_blank">${
-      lastCommit.commit.author.name
-    }</a> on <time datetime="${lastCommit.commit.author.date}">${new Date(
-      lastCommit.commit.author.date
-    ).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    })}</time>. <a href="${
-      githubUrl
-        ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
-        : ""
-    }"  target="_blank">Edit on GitHub</a></p>`;
+  if (!config.noLastModified) {
+    const lastCommit = await getLastCommit(path);
+    const githubUrl = await getGitHubRepoUrl();
+    if (lastCommit)
+      content += `\n\n<p class="post-footer">This page was last modified in <a href="${
+        lastCommit.html_url
+      }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${
+        lastCommit.author.html_url
+      }" target="_blank">${
+        lastCommit.commit.author.name
+      }</a> on <time datetime="${lastCommit.commit.author.date}">${new Date(
+        lastCommit.commit.author.date
+      ).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      })}</time>. <a href="${
+        githubUrl
+          ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
+          : ""
+      }"  target="_blank">Edit on GitHub</a></p>`;
+  }
   const template = compile(await getTemplate());
   const data: { [index: string]: any } = {
     ...(await getData()),

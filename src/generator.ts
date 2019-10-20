@@ -1,4 +1,11 @@
-import { ensureDir, readFile, writeFile, ensureFile, copyFile } from "fs-extra";
+import {
+  ensureDir,
+  readFile,
+  writeFile,
+  ensureFile,
+  copyFile,
+  copy
+} from "fs-extra";
 import {
   getDistPath,
   getTemplatePath,
@@ -20,6 +27,7 @@ import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
 import { getLastCommit, getGitHubRepoUrl } from "./github";
+import recursiveReadDir = require("recursive-readdir");
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -107,6 +115,14 @@ export const getCss = async () => {
   });
 };
 
+const copyAssets = async () => {
+  const assetsPath = join(await getDistPath(), "assets");
+  await ensureDir(assetsPath);
+  try {
+    await copy(join(await getContentPath(), "..", "assets"), assetsPath);
+  } catch (error) {}
+};
+
 export const generate = async (customConfig?: StaartSiteConfig) => {
   ensureDir(await getDistPath());
   const config = await getConfig(customConfig);
@@ -167,6 +183,7 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
       );
     }
   }
+  await copyAssets();
 };
 
 const generateSitemap = async () => {

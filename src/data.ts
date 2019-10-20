@@ -1,8 +1,10 @@
 import { getConfig, readPackage } from "./config";
 import { compile } from "handlebars";
 import { renderMd, getTitle } from "./parse";
-import { listRootFiles, readContentFile } from "./files";
+import { listRootFiles, readContentFile, getContentPath } from "./files";
 import { cached } from "./cache";
+import recursiveReadDir = require("recursive-readdir");
+import { join } from "path";
 
 const ucFirst = (string: string) =>
   `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
@@ -52,7 +54,16 @@ export const getData = async () => {
       config.data.author = (await getSiteMeta("author")).split(" <")[0];
     if (!config.ignoreReplaceYear)
       config.data.year = new Date().getFullYear().toString();
-    return { ...config, ...config.data };
+    let assets = {};
+    try {
+      const listOfFiles = (await recursiveReadDir(
+        join(await getContentPath(), "..", "assets")
+      )).map(f => f.replace(/\//g, "_"));
+      listOfFiles.forEach(file => {
+        config.data[file] = true;
+      });
+    } catch (error) {}
+    return { ...config, ...config.data, ...assets };
   });
   if (result) return result;
   throw new Error("Could not generate data");

@@ -31,21 +31,26 @@ export const getLastCommit = async (
     }
   | undefined
 > => {
-  const config = await getConfig();
-  if (config._gitRepo && config._gitRepo.source === "github.com")
-    return (await axios.get(
-      `https://api.github.com/repos/${
-        config._gitRepo.full_name
-      }/commits?path=${await getContentPath()}/${file.replace(".html", ".md")}`,
-      {
-        headers: {
-          "User-Agent": "Staart Site <github.com/staart/site>",
-          ...(process.env.GITHUB_TOKEN
-            ? {
-                Authorization: `token ${process.env.GITHUB_TOKEN}`
-              }
-            : {})
+  try {
+    const config = await getConfig();
+    if (config._gitRepo && config._gitRepo.source === "github.com")
+      return (await axios.get(
+        `https://api.github.com/repos/${
+          config._gitRepo.full_name
+        }/commits?path=${await getContentPath()}/${file.replace(
+          ".html",
+          ".md"
+        )}`,
+        {
+          headers: {
+            "User-Agent": "Staart Site <github.com/staart/site>",
+            ...(process.env.GITHUB_TOKEN
+              ? {
+                  Authorization: `token ${process.env.GITHUB_TOKEN}`
+                }
+              : {})
+          }
         }
-      }
-    )).data[0];
+      )).data[0];
+  } catch (error) {}
 };

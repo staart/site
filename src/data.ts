@@ -54,13 +54,13 @@ export const getData = async () => {
       config.data.author = (await getSiteMeta("author")).split(" <")[0];
     if (!config.ignoreReplaceYear)
       config.data.year = new Date().getFullYear().toString();
-    let assets = {};
+    let assets: any = {};
     try {
       const listOfFiles = (await recursiveReadDir(
         join(await getContentPath(), "..", "assets")
-      )).map(f => f.replace(/\//g, "_"));
+      )).map(f => f.replace(/\//g, "_").replace(/\./g, "_"));
       listOfFiles.forEach(file => {
-        config.data[file] = true;
+        assets[file] = true;
       });
     } catch (error) {}
     return { ...config, ...config.data, ...assets };

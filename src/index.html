@@ -8,6 +8,9 @@
     <link rel="canonical" href="{{ canonical }}" />
     {{/if}}
     <style>{{{css}}}</style>
+    {{#unless noSyntaxHighlighting}}
+      <link rel="stylesheet" href="/assets/prism.css" />
+    {{/unless}}
     {{#if description}}
     <meta name="description" content="{{ description }}" />
     {{/if}} {{#if keywords}}
@@ -54,6 +57,9 @@
       gtag("js", new Date());
       gtag("config", "{{googleAnalytics}}");
     </script>{{/if}}
+    {{#unless noSyntaxHighlighting}}
+      <script src="/assets/prism.js"></script>
+    {{/unless}}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

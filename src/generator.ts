@@ -1,4 +1,4 @@
-import { ensureDir, readFile, writeFile, ensureFile } from "fs-extra";
+import { ensureDir, readFile, writeFile, ensureFile, copyFile } from "fs-extra";
 import {
   getDistPath,
   getTemplatePath,
@@ -153,6 +153,17 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
           `${directory.replace(/\//g, "_")}.json`
         ),
         JSON.stringify(schema)
+      );
+    }
+    await ensureDir(join(await getDistPath(), "assets"));
+    if (!config.noSyntaxHighlighting) {
+      await copyFile(
+        join(__dirname, "..", "src", "prism.js"),
+        join(await getDistPath(), "assets", "prism.js")
+      );
+      await copyFile(
+        join(__dirname, "..", "src", "prism.css"),
+        join(await getDistPath(), "assets", "prism.css")
       );
     }
   }

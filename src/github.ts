@@ -1,6 +1,7 @@
 import { getConfig } from "./config";
 import axios from "axios";
 import { getContentPath } from "./files";
+import { sleep } from "./util";
 
 export const getGitHubRepoUrl = async () => {
   const config = await getConfig();
@@ -33,6 +34,7 @@ export const getLastCommit = async (
 > => {
   try {
     const config = await getConfig();
+    if (!config.noDelayWithoutToken) await sleep(1000);
     if (config._gitRepo && config._gitRepo.source === "github.com")
       return (await axios.get(
         `https://api.github.com/repos/${

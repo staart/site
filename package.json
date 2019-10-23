@@ -54,7 +54,7 @@
     "@types/html-minifier": "^3.5.3",
     "@types/marked": "^0.6.5",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.11.2",
     "@types/recursive-readdir": "^2.2.0",
     "@types/sass": "^1.16.0",
     "@types/signale": "^1.2.1",

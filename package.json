@@ -45,7 +45,7 @@
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.1",
     "signale": "^1.4.0",
-    "sitemap": "^5.0.0"
+    "sitemap": "^5.0.1"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",

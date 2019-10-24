@@ -98,7 +98,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@^12.11.5", "@types/node@^12.7.11":
+"@types/node@*", "@types/node@^12.11.5":
   version "12.11.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.5.tgz#6c3c8dc84988aff11fd2a63d7b5fbf39eaaab7b1"
   integrity sha512-LC8ALj/24PhByn39nr5jnTvpE7MujK8y7LQmV74kHYF5iQ0odCPkMH4IZNZw+cobKfSXqaC8GgegcbIsQpffdA==
@@ -4334,16 +4334,16 @@ signale@^1.3.0, signale@^1.4.0:
     figures "^2.0.0"
     pkg-conf "^2.1.0"
 
-sitemap@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-5.0.0.tgz#a3cae1a6fb201d7e3760dc394aef1002fa3d384e"
-  integrity sha512-2SC3b/BDl6WLa6qoTCE0i73nhhMm34HIeymd/mYdhAHdXqg2ltgIQY+afdKWFYMvGEsJ6D8T2lKPW0VEgEToPA==
+sitemap@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-5.0.1.tgz#4c70906f949df171701a0a48ef3f0e7bb28fcd65"
+  integrity sha512-2pg1i9ow9nCOkbzWIsoiiRtoZtT/3LCzyLO6BjsfRWoEjT1kgkEbhou0B3EyEeIC1dipaXIAH7DFFlQofAKi7g==
   dependencies:
-    "@types/node" "^12.7.11"
+    "@types/node" "^12.11.5"
     "@types/sax" "^1.2.0"
     arg "^4.1.1"
     sax "^1.2.4"
-    xmlbuilder "^13.0.0"
+    xmlbuilder "^13.0.2"
 
 slash@^1.0.0:
   version "1.0.0"
@@ -5086,7 +5086,7 @@ xdg-basedir@^3.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
   integrity sha1-SWsswQnsqNus/i3HK2A8F8WHCtQ=
 
-xmlbuilder@^13.0.0:
+xmlbuilder@^13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-13.0.2.tgz#02ae33614b6a047d1c32b5389c1fdacb2bce47a7"
   integrity sha512-Eux0i2QdDYKbdbA6AM6xE4m6ZTZr4G4xF9kahI2ukSEMCzwce2eX9WlTI5J3s+NU7hpasFsr8hWIONae7LluAQ==

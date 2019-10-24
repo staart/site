@@ -41,7 +41,7 @@
     "live-server": "^1.2.1",
     "marked": "^0.7.0",
     "minimist": "^1.2.0",
-    "node-cache": "^4.2.1",
+    "node-cache": "^5.0.0",
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.1",
     "signale": "^1.4.0",

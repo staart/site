@@ -18,6 +18,9 @@
     {{/if}} {{#if keywords}}
     <meta name="keywords" content="{{ keywords }}" />
     {{/if}}
+    {{#unless noGenerator}}
+      <meta name="generator" content="@staart/site{{#if staartVersion}} {{ staartVersion }}{{/if}}" />
+    {{/unless}}
   </head>
   <body>
     <a href="#content" class="skip-link">Skip to main content</a>

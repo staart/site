@@ -29,15 +29,16 @@ const _getConfig = async () => {
   const searchResult = await explorer.search();
   const config: StaartSiteConfig = searchResult ? searchResult.config : {};
   let gitRepoUrl = config.repo;
+  let staartVersion: string | undefined = undefined;
   if (searchResult && searchResult.filepath) {
     const packagePath = join(searchResult.filepath, "..", "package.json");
     try {
       const pkg = await readJSON(packagePath);
       gitRepoUrl = gitRepoUrl || pkg.repository;
+      staartVersion = pkg.dependencies["@staart/site"];
     } catch (error) {}
   }
-  if (gitRepoUrl) {
-    config._gitRepo = gitUrlParse(gitRepoUrl);
-  }
+  config.staartVersion = staartVersion;
+  if (gitRepoUrl) config._gitRepo = gitUrlParse(gitRepoUrl);
   return config;
 };

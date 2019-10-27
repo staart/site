@@ -27,6 +27,7 @@ export interface StaartSiteConfig {
   linkColor?: string;
   lightColor?: string;
   noLastModified?: boolean;
+  noGenerator?: boolean;
   noSyntaxHighlighting?: boolean;
   noShieldSchema?: boolean;
   shieldSchemaLabel?: string;

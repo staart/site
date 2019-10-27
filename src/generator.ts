@@ -19,10 +19,10 @@ import {
 import { cached } from "./cache";
 import { join, parse } from "path";
 import { compile } from "handlebars";
-import { getData, render, getNavbar } from "./data";
+import { getData, render, getNavbar, getSiteMeta } from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
-import { removeHeading } from "./parse";
+import { removeHeading, getTitle } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
@@ -240,7 +240,14 @@ const generatePage = async (path: string, content: string) => {
         ? config.keepHomeHeading
           ? content
           : await removeHeading(content)
-        : content
+        : content,
+    metaTitle:
+      path === "index.html"
+        ? (await getSiteMeta("title", "name")) || "Staart Site"
+        : `${await getTitle(content)} · ${(await getSiteMeta(
+            "title",
+            "name"
+          )) || "Staart Site"}`
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

@@ -46,7 +46,7 @@ export const getData = async () => {
       config.data.githubUrl = `[open source](https://${config._gitRepo.resource}/${config._gitRepo.full_name})`;
     config.data.rootFiles = await getNavbar();
     config.data.navBar = await getNavbar(config.navbar);
-    config.data.footerNavBar = await getNavbar(config.footerNavbar);
+    config.data.footerNavBar = await getNavbar(config.footerNavbar || []);
     if (!config.ignoreReplaceTitle)
       config.data.title = await getSiteMeta("title", "name");
     if (!config.ignoreReplaceDescription)

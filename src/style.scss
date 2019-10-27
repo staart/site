@@ -173,7 +173,7 @@ h3 {
 }
 
 h3 {
-  color: #555;
+  color: rgba($text-color, 0.7);
   font-size: 85%;
 }
 
@@ -326,6 +326,9 @@ img {
   cite,
   footer {
     color: lighten($link-color, 10%);
+  }
+  h3 {
+    color: rgba(255, 255, 255, 0.6);
   }
   footer a, footer button {
     color: lighten($link-color, 25%);

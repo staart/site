@@ -211,7 +211,7 @@ footer {
 blockquote {
   margin-left: 0;
   padding-left: 2rem;
-  border-left: 0.5rem solid rgba($theme-color, 0.1);
+  border-left: 0.5rem solid $theme-color;
   font-style: italic;
 }
 

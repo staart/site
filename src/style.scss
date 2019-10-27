@@ -276,9 +276,14 @@ img {
     font-size: 1rem;
   }
   header nav > div {
-    a {
-      width: 50%;
-      margin: 0;
+    overflow-x: auto;
+  }
+  header nav ul {
+    display: block;
+    white-space: nowrap;
+    li {
+      display: inline-block;
+      margin-right: 1.25rem;
     }
   }
 }

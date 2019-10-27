@@ -237,7 +237,7 @@ pre {
 }
 
 .post-footer {
-  opacity: 0.75;
+  color: rgba($text-color, 0.75);
   font-size: 80%;
 }
 
@@ -313,11 +313,14 @@ img {
   footer {
     color: lighten($link-color, 10%);
   }
-  footer a {
+  footer a, footer button {
     color: lighten($link-color, 25%);
   }
   code {
     background: #ab2323;
     color: #fff;
+  }
+  .post-footer {
+    color: rgba($light-color, 0.75);
   }
 }

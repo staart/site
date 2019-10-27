@@ -35,7 +35,13 @@ Alternately, you can add the package as a `devDependency`:
 npm install @staart/site --save-dev
 ```
 
-And then use the `generate` function:
+Then, run the `site` command to generate your static site:
+
+```bash
+npm run site
+```
+
+Or programmatically use the `generate` function:
 
 ```ts
 import { generate } from "@staart/site";
@@ -47,7 +53,7 @@ generate({ /* options */ })
 
 ## 🛠️ Configuration
 
-You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)-compatible configuration file, like `staart.config.js`.
+You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)-compatible configuration file, like `staart.config.js` or the `staart` key in `package.json`. You can also supply these options as an object parameter to the `generate` function.
 
 | Option | Description | Default |
 | ------ | ----------- | ------- |
@@ -55,6 +61,7 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `repo` | URL to git repository | `repository` key in `package.json` |
 | `contentDir` | Folder with markdown content | `./content` |
 | `distDir` | Output directory | `./public` |
+| `assetsDir` | Static assets directory | `./assets` |
 | `templatePath` | HTML template file path | `./index.html` |
 | `stylePath` | Scss stylesheet path | `style.scss` |
 | `homePath` | Markdown file path for homepage | `README.md` |
@@ -73,6 +80,7 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `noHome` | Don't generate `index.html` | `false` |
 | `noSitemap` | Don't generate sitemaps | `false` |
 | `noContentList` | Don't add content lists | `false` |
+| `noDelayWithoutToken` | Don't delay GitHub API requests | `false` |
 
 Staart Site also uses the `repository` and `author` fields for copyright/last modified information, but you can overwrite them using the configuration above.
 

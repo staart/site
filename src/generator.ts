@@ -116,10 +116,14 @@ export const getCss = async () => {
 };
 
 const copyAssets = async () => {
+  const config = await getConfig();
   const assetsPath = join(await getDistPath(), "assets");
   await ensureDir(assetsPath);
   try {
-    await copy(join(await getContentPath(), "..", "assets"), assetsPath);
+    await copy(
+      join(await getContentPath(), "..", config.assetsDir || "assets"),
+      assetsPath
+    );
   } catch (error) {}
 };
 

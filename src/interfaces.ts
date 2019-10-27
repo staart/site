@@ -6,6 +6,7 @@ export interface StaartSiteConfig {
   _gitRepo?: GitUrl;
   contentDir?: string;
   distDir?: string;
+  assetsDir?: string;
   templatePath?: string;
   stylePath?: string;
   homePath?: string;

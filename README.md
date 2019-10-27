@@ -77,6 +77,7 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `linkColor` | Hyperlink color | `#0e632c` |
 | `lightColor` | Light text color | `#ffffff` |
 | `navbar` | Array of filenames for navbar | Root files/folders in `contentDir` |
+| `footerNavbar` | Array of filenames for footer | `[]` |
 | `contentFileExt` | File extension for content files | `md` |
 | `keepHomeHeading` | Show `h1` heading on homepage | `false` |
 | `ignoreReplaceTitle` | Don't update `<title>` from `title` | `false` |

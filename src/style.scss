@@ -155,7 +155,8 @@ a {
 }
 
 header a + a,
-footer span + span {
+footer span + span,
+footer ul + span {
   margin-left: 1.5rem;
 }
 
@@ -177,7 +178,9 @@ h3 {
 }
 
 footer {
+  text-align: center;
   margin-bottom: 5vh;
+  line-height: 2.5;
   a {
     color: inherit;
   }
@@ -191,6 +194,17 @@ footer {
     border: 0;
     padding: 0;
     color: inherit;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    li {
+      display: inline-block;
+      padding: 0;
+      margin: 0 0 0 1.5rem;
+    }
   }
 }
 

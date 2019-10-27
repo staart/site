@@ -43,13 +43,12 @@
     </header>
     <main id="content">{{{ content }}}</main>
     <footer>
-      <div>
-          <span>&copy; {{ year }}{{#if author}} {{{ author }}}{{/if}}</span>
-          <span><a href="/sitemap.html">Sitemap</a></span>
-          {{#if agastyaApiKey}}<span><button onclick="window.agastya.open()">Accessibility</button></span>{{/if}}
-          <span>This site is 
-          {{#if githubUrl}}{{{ githubUrl }}}, {{/if}} built with <a href="https://staart.js.org/site" target="_blank" rel="noopener">Staart Site</a></span>
-      </div>
+        <span>&copy; {{ year }}{{#if author}} {{{ author }}}{{/if}}</span>
+        <span><a href="/sitemap.html">Sitemap</a></span>
+        {{#if agastyaApiKey}}<span><button onclick="window.agastya.open()">Accessibility</button></span>{{/if}}
+        {{{ footerNavBar }}}
+        <span>This site is 
+        {{#if githubUrl}}{{{ githubUrl }}}, {{/if}} built with <a href="https://staart.js.org/site" target="_blank" rel="noopener">Staart Site</a></span>
     </footer>
     {{#if agastyaApiKey}}<script src="https://platform-beta.oswaldlabs.com/v1/agastya/load/{{agastyaApiKey}}"></script>
     <script>

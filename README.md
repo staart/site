@@ -87,6 +87,12 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `noSitemap` | Don't generate sitemaps | `false` |
 | `noContentList` | Don't add content lists | `false` |
 | `noDelayWithoutToken` | Don't delay GitHub API requests | `false` |
+| `noLastModified` | Don't add last modified commit info | `false` |
+| `noGenerator` | Don't add meta generator tag | `false` |
+| `noSyntaxHighlighting` | Disable code syntax highlighting | `false` |
+| `noShieldSchema` | Don't generate Shields schema | `false` |
+| `shieldSchemaLabel` | Label text for Shields schema | `docs` |
+| `shieldSchemaColor` | Badge color in Shields schema | `blueviolet` |
 
 Staart Site also uses the `repository` and `author` fields for copyright/last modified information, but you can overwrite them using the configuration above.
 

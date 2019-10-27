@@ -15,13 +15,13 @@ export const getLastCommit = async (
   | {
       html_url: string;
       sha: string;
-      author: {
+      author?: {
         login: string;
         name: string;
         avatar_url: string;
         html_url: string;
       };
-      commit: {
+      commit?: {
         message: string;
         author: {
           name: string;

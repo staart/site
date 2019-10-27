@@ -213,7 +213,7 @@ const generatePage = async (path: string, content: string) => {
   if (!config.noLastModified) {
     const lastCommit = await getLastCommit(path);
     const githubUrl = await getGitHubRepoUrl();
-    if (lastCommit)
+    if (lastCommit && lastCommit.author && lastCommit.commit)
       content += `\n\n<p class="post-footer">This page was last modified in <a href="${
         lastCommit.html_url
       }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${

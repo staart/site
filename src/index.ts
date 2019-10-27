@@ -11,6 +11,8 @@ const args = minimist(process.argv.slice(2), {
 });
 
 const staartSite = async () => {
+  if (!process.env.GITHUB_TOKEN)
+    info("No GitHub token: API calls rate limited to 1/sec");
   return await generate();
 };
 

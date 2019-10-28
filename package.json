@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "module": "dist/module.js",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -47,6 +47,7 @@
     "sass": "^1.23.1",
     "signale": "^1.4.0",
     "sitemap": "^5.0.1",
+    "truncate": "^2.1.0",
     "yaml": "^1.7.2"
   },
   "devDependencies": {

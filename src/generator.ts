@@ -31,6 +31,7 @@ import { parse as yaml } from "yaml";
 import frontMatter from "front-matter";
 import removeMarkdown from "remove-markdown";
 import { FrontMatter } from "./interfaces";
+import truncate from "truncate";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -300,14 +301,17 @@ const generatePage = async (path: string, content: string) => {
             "name"
           )) || "Staart Site"}`,
     ...attributes,
-    description:
+    description: truncate(
       path === "index.html"
         ? await getSiteMeta("description")
         : attributes.description
         ? attributes.description
-        : removeMarkdown(frontMatter(content).body)
-            .replace((await getTitle(content, false)) || "Staart Site", "")
-            .substring(0, 200)
+        : removeMarkdown(frontMatter(content).body).replace(
+            (await getTitle(content, false)) || "Staart Site",
+            ""
+          ),
+      200
+    )
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

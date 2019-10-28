@@ -27,7 +27,7 @@ import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
 import { getLastCommit, getGitHubRepoUrl } from "./github";
-import recursiveReadDir = require("recursive-readdir");
+import { parse as yaml } from "yaml";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -67,6 +67,18 @@ export const getSitemapContent = async () => {
   });
   if (result) return result;
   return `# Sitemap`;
+};
+
+export const getRedirectsContent: string[] = async () => {
+  const result = await cached<string>("redirects", async () => {
+    try {
+      return (await readFile(
+        join(await getContentPath(), "..", "redirects.yml")
+      )).toString();
+    } catch (error) {}
+  });
+  if (result) return parse(result);
+  return {};
 };
 
 const renderScss = (styles: string) =>

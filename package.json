@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "module": "dist/module.js",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -45,7 +45,8 @@
     "recursive-readdir": "^2.2.2",
     "sass": "^1.23.1",
     "signale": "^1.4.0",
-    "sitemap": "^5.0.1"
+    "sitemap": "^5.0.1",
+    "yaml": "^1.7.2"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",
@@ -58,6 +59,7 @@
     "@types/recursive-readdir": "^2.2.0",
     "@types/sass": "^1.16.0",
     "@types/signale": "^1.2.1",
+    "@types/yaml": "^1.2.0",
     "gh-release": "^3.5.0",
     "gitmoji-changelog": "^1.1.0",
     "husky": "^3.0.9",

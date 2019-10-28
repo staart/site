@@ -38,7 +38,8 @@ export interface StaartSiteConfig {
 }
 
 export interface FrontMatter {
-  title?: string;
-  emoji?: string;
-  seoImage?: string;
+  title: string;
+  emoji: string;
+  seoImage: string;
+  [index: string]: string;
 }

@@ -28,6 +28,8 @@ import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
 import { getLastCommit, getGitHubRepoUrl } from "./github";
 import { parse as yaml } from "yaml";
+import frontMatter from "front-matter";
+import { FrontMatter } from "./interfaces";
 
 export const getTemplate = async () => {
   const result = await cached<string>("template", async () => {
@@ -280,6 +282,7 @@ const generatePage = async (path: string, content: string) => {
       }"  target="_blank">Edit on GitHub</a></p>`;
   }
   const template = compile(await getTemplate());
+  const attributes = frontMatter<FrontMatter>(content).attributes;
   const data: { [index: string]: any } = {
     ...(await getData()),
     content:
@@ -294,7 +297,8 @@ const generatePage = async (path: string, content: string) => {
         : `${await getTitle(content)} · ${(await getSiteMeta(
             "title",
             "name"
-          )) || "Staart Site"}`
+          )) || "Staart Site"}`,
+    ...attributes
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

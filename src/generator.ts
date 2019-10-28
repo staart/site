@@ -305,10 +305,9 @@ const generatePage = async (path: string, content: string) => {
         ? await getSiteMeta("description")
         : attributes.description
         ? attributes.description
-        : removeMarkdown(content).replace(
-            (await getTitle(content)) || "Staart Site",
-            ""
-          )
+        : removeMarkdown(frontMatter(content).body)
+            .replace((await getTitle(content, false)) || "Staart Site", "")
+            .substring(0, 200)
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

@@ -17,7 +17,7 @@ export const removeHeading = async (md: string) =>
     .filter(line => !line.startsWith("# "))
     .join("\n");
 
-export const getTitle = async (md: string) => {
+export const getTitle = async (md: string, keepEmoji = true) => {
   const data = marked.lexer(md);
   let title: string | undefined;
   data.forEach(item => {
@@ -25,6 +25,7 @@ export const getTitle = async (md: string) => {
   });
   const attributes = frontMatter<FrontMatter>(md).attributes;
   if (attributes.title) title = attributes.title;
-  if (title && attributes.emoji) title = `${attributes.emoji} ${title}`;
+  if (title && attributes.emoji && keepEmoji)
+    title = `${attributes.emoji} ${title}`;
   return title;
 };

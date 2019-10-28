@@ -99,6 +99,9 @@ Staart Site also uses the `repository` and `author` fields for copyright/last mo
 
 ## 🏗️ Built with Staart Site
 
+- [Accessibility Guidelines](https://accessibilityguidelines.com)
+- [O15Y](https://o15y.com)
+- [Staart.js.org](https://staart.js.org)
 - **[Add your Staart Site](https://github.com/staart/site/edit/master/README.md)**
 
 

@@ -55,6 +55,10 @@ generate({ /* options */ })
 
 - [Getting started](https://staart.js.org/site/getting-started.html)
 - [Configuration](https://staart.js.org/site/configuration.html)
+- [Creating themes](https://staart.js.org/site/creating-themes.html)
+- [Redirects](https://staart.js.org/site/redirects.html)
+- [Shields.io schema](https://staart.js.org/site/shields-schema.html)
+- [Static files](https://staart.js.org/site/static-files.html)
 - [Updating Staart Site](https://staart.js.org/site/update.html)
 
 ## 🛠️ Configuration

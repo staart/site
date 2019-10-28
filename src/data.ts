@@ -6,9 +6,6 @@ import { cached } from "./cache";
 import recursiveReadDir = require("recursive-readdir");
 import { join } from "path";
 
-const ucFirst = (string: string) =>
-  `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
-
 export const getSiteMeta = async (
   configKey: string,
   pkgKey?: string
@@ -17,7 +14,7 @@ export const getSiteMeta = async (
   if (config[configKey]) return config[configKey];
   const pkg = await readPackage();
   if (pkg && pkg[pkgKey || configKey]) return pkg[pkgKey || configKey];
-  return ucFirst(configKey);
+  return "";
 };
 
 export const getNavbar = async (files?: string[]) => {

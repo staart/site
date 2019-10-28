@@ -69,16 +69,18 @@ export const getSitemapContent = async () => {
   return `# Sitemap`;
 };
 
-export const getRedirectsContent: string[] = async () => {
+export const getRedirectsContent = async (): Promise<string[]> => {
   const result = await cached<string>("redirects", async () => {
     try {
+      const config = await getConfig();
       return (await readFile(
-        join(await getContentPath(), "..", "redirects.yml")
+        config.redirectsPath ||
+          join(await getContentPath(), "..", "redirects.yml")
       )).toString();
     } catch (error) {}
   });
-  if (result) return parse(result);
-  return {};
+  if (result) return yaml(result);
+  return [];
 };
 
 const renderScss = (styles: string) =>
@@ -218,6 +220,39 @@ const generateSitemap = async () => {
     join(await getDistPath(), "sitemap.xml"),
     await streamToPromise(sitemap)
   );
+  const redirects = await getRedirectsContent();
+  for await (const rule of redirects) {
+    const paths = rule.split(" ");
+    if (paths.length < 2) break;
+    const fromPath = paths[0].endsWith(".html") ? paths[0] : `${paths[0]}.html`;
+    const toPath = paths[1];
+    await ensureFile(join(await getDistPath(), fromPath));
+    await writeFile(
+      join(await getDistPath(), fromPath),
+      minify(
+        `
+        <!doctype html>
+        <html>
+          <head>
+            <meta http-equiv="refresh" content="0; URL='${toPath}'">
+          </head>
+          <body>
+            <script>
+              window.location = "${toPath}";
+            </script>
+            <!-- redirect rule -->
+            <h1><a href="${toPath}">Click here if you are not redirected</a></h1>
+          </body>
+        </html>
+      `,
+        {
+          collapseWhitespace: true,
+          processScripts: ["application/ld+json"],
+          minifyCSS: true
+        }
+      )
+    );
+  }
 };
 
 const generatePage = async (path: string, content: string) => {

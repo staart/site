@@ -10,6 +10,7 @@ export interface StaartSiteConfig {
   templatePath?: string;
   stylePath?: string;
   homePath?: string;
+  redirectsPath?: string;
   hostname?: string;
   navbar?: string[];
   footerNavbar?: string[];

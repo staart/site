@@ -29,6 +29,7 @@ import { StaartSiteConfig } from "./interfaces";
 import { getLastCommit, getGitHubRepoUrl } from "./github";
 import { parse as yaml } from "yaml";
 import frontMatter from "front-matter";
+import removeMarkdown from "remove-markdown";
 import { FrontMatter } from "./interfaces";
 
 export const getTemplate = async () => {
@@ -298,7 +299,16 @@ const generatePage = async (path: string, content: string) => {
             "title",
             "name"
           )) || "Staart Site"}`,
-    ...attributes
+    ...attributes,
+    description:
+      path === "index.html"
+        ? await getSiteMeta("description")
+        : attributes.description
+        ? attributes.description
+        : removeMarkdown(content).replace(
+            (await getTitle(content)) || "Staart Site",
+            ""
+          )
   };
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")

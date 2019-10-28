@@ -41,5 +41,6 @@ export interface FrontMatter {
   title: string;
   emoji: string;
   seoImage: string;
+  description: string;
   [index: string]: string;
 }

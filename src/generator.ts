@@ -158,7 +158,7 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
     const nArticles = (await listContentFiles()).length;
     schema.message = `${nArticles} article${nArticles !== 1 ? "s" : ""}`;
     await writeFile(
-      join(await getDistPath(), "shield-schema", "site.json"),
+      join(await getDistPath(), "shield-schema", "all.json"),
       JSON.stringify(schema)
     );
     const directories = await listDirs();

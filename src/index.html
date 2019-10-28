@@ -9,7 +9,7 @@
     {{#if canonical}}
     <link rel="canonical" href="{{ canonical }}" />
     {{/if}}
-    <style>{{{css}}}</style>
+    <style>{{{ css }}}</style>
     {{#unless noSyntaxHighlighting}}
       <link rel="stylesheet" href="/assets/prism.css" />
     {{/unless}}
@@ -21,6 +21,9 @@
     {{#unless noGenerator}}
       <meta name="generator" content="@staart/site{{#if staartVersion}} {{ staartVersion }}{{/if}}" />
     {{/unless}}
+    {{#if googleSiteVerification}}
+      <meta name="google-site-verification" content="{{ googleSiteVerification }}" />
+    {{/if}}
   </head>
   <body>
     <a href="#content" class="skip-link">Skip to main content</a>

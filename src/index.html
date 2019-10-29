@@ -38,6 +38,8 @@
     {{#if seoImage }}<meta name="twitter:image:src" content="{{{ seoImage }}}">{{/if}}
     {{#if canonical }}<meta property="og:url" content="{{{ canonical }}}">{{/if}}
     {{#if seoImage }}<meta property="og:image" content="{{{ seoImage }}}">{{/if}}
+    {{#if seoImageWidth }}<meta property="og:image:width" content="{{{ seoImageWidth }}}">{{/if}}
+    {{#if seoImageHeight }}<meta property="og:image:height" content="{{{ seoImageHeight }}}">{{/if}}
     {{#if description }}<meta property="og:description" content="{{ description }}">{{/if}}
     {{#if title }}<meta property="og:site_name" content="{{ title }}">{{/if}}
     {{#if publishedTime }}<meta property="article:published_time" content="{{ publishedTime }}">{{/if}}

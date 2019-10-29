@@ -261,8 +261,8 @@ const generateSitemap = async () => {
 
 const generatePage = async (path: string, content: string) => {
   const config = await getConfig();
+  const lastCommit = await getLastCommit(path);
   if (!config.noLastModified) {
-    const lastCommit = await getLastCommit(path);
     const githubUrl = await getGitHubRepoUrl();
     if (lastCommit && lastCommit.author && lastCommit.commit)
       content += `\n\n<p class="post-footer">This page was last modified in <a href="${
@@ -313,6 +313,19 @@ const generatePage = async (path: string, content: string) => {
       200
     )
   };
+  try {
+    if (
+      lastCommit &&
+      lastCommit.firstCommit &&
+      lastCommit.firstCommit.commit &&
+      lastCommit.firstCommit.author
+    ) {
+      data.publishedTime = lastCommit.firstCommit.commit.author.date;
+    }
+    if (lastCommit && lastCommit.commit && lastCommit.author) {
+      data.modifiedTime = lastCommit.commit.author.date;
+    }
+  } catch (error) {}
   for await (const key of Object.keys(data)) {
     if (typeof data[key] === "string")
       data[key] = await render(data[key], key !== "content");

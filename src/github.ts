@@ -9,34 +9,33 @@ export const getGitHubRepoUrl = async () => {
     return `https://${config._gitRepo.source}${config._gitRepo.pathname}`;
 };
 
+interface Commit {
+  html_url: string;
+  sha: string;
+  author?: {
+    login: string;
+    name: string;
+    avatar_url: string;
+    html_url: string;
+  };
+  commit?: {
+    message: string;
+    author: {
+      name: string;
+      email: string;
+      date: string;
+    };
+  };
+  firstCommit: Commit;
+}
 export const getLastCommit = async (
   file: string
-): Promise<
-  | {
-      html_url: string;
-      sha: string;
-      author?: {
-        login: string;
-        name: string;
-        avatar_url: string;
-        html_url: string;
-      };
-      commit?: {
-        message: string;
-        author: {
-          name: string;
-          email: string;
-          date: string;
-        };
-      };
-    }
-  | undefined
-> => {
+): Promise<Commit | undefined> => {
   try {
     const config = await getConfig();
     if (!config.noDelayWithoutToken) await sleep(1000);
-    if (config._gitRepo && config._gitRepo.source === "github.com")
-      return (await axios.get(
+    if (config._gitRepo && config._gitRepo.source === "github.com") {
+      const data = (await axios.get(
         `https://api.github.com/repos/${
           config._gitRepo.full_name
         }/commits?path=${await getContentPath()}/${file.replace(
@@ -53,6 +52,9 @@ export const getLastCommit = async (
               : {})
           }
         }
-      )).data[0];
+      )).data;
+      if (data.length)
+        return { ...data[0], firstCommit: data[data.length - 1] };
+    }
   } catch (error) {}
 };

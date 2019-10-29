@@ -327,7 +327,10 @@ const generatePage = async (path: string, content: string) => {
     }
   } catch (error) {}
   for await (const key of Object.keys(data)) {
-    if (typeof data[key] === "string")
+    if (
+      typeof data[key] === "string" &&
+      !["seoImage", "githubUrl", "canonical"].includes(key)
+    )
       data[key] = await render(data[key], key !== "content");
   }
   data.css = await getCss();

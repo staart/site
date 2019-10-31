@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "module": "dist/module.js",
   "main": "dist/index.js",
   "bin": "./dist/index.js",

@@ -204,6 +204,10 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
         join(await getDistPath(), "assets", "prism.css")
       );
     }
+    await copyFile(
+      join(__dirname, "..", "src", "staart.js"),
+      join(await getDistPath(), "assets", "staart.js")
+    );
   }
   await copyAssets();
 };

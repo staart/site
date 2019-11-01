@@ -107,7 +107,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@^12.11.5", "@types/node@^12.12.3":
+"@types/node@*", "@types/node@^12.12.3":
   version "12.12.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.3.tgz#ebfe83507ac506bc3486314a8aa395be66af8d23"
   integrity sha512-opgSsy+cEF9N8MgaVPnWVtdJ3o4mV2aMHvDq7thkQUFt0EuOHJon4rQpJfhjmNHB+ikl0Cd6WhWIErOyQ+f7tw==
@@ -4389,12 +4389,12 @@ simple-git@^1.113.0:
   dependencies:
     debug "^4.0.1"
 
-sitemap@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-5.0.1.tgz#4c70906f949df171701a0a48ef3f0e7bb28fcd65"
-  integrity sha512-2pg1i9ow9nCOkbzWIsoiiRtoZtT/3LCzyLO6BjsfRWoEjT1kgkEbhou0B3EyEeIC1dipaXIAH7DFFlQofAKi7g==
+sitemap@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-5.1.0.tgz#60c88915e20f8cd0dcd5906dac8f2ec4c0d8de68"
+  integrity sha512-RAOCHYPbALEaIlqlGs46LZ9RFfh+61YYjexMqri4h+gsW6y0MLZ+WB4eJCopVP9WCWsng6z9JSPHqcKtjoydLw==
   dependencies:
-    "@types/node" "^12.11.5"
+    "@types/node" "^12.12.3"
     "@types/sax" "^1.2.0"
     arg "^4.1.1"
     sax "^1.2.4"

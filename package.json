@@ -64,7 +64,7 @@
     "@types/signale": "^1.2.1",
     "@types/yaml": "^1.2.0",
     "gh-release": "^3.5.0",
-    "gitmoji-changelog": "^1.1.0",
+    "gitmoji-changelog": "^2.0.0",
     "husky": "^3.0.9",
     "onchange": "^6.1.0",
     "prettier": "^1.18.2",

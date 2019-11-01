@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@blakeembrey/deque/-/deque-1.0.5.tgz#f4fa17fc5ee18317ec01a763d355782c7b395eaf"
   integrity sha512-6xnwtvp9DY1EINIKdTfvfeAtCYw4OqBZJhtiqkT3ivjnEfa25VQ3TsKvaFfKm8MyGIEfE95qLe+bNEt3nB0Ylg==
 
-"@gitmoji-changelog/core@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/core/-/core-1.1.0.tgz#6920f5a68bb562f97f3b0d58690516ea68cf874d"
-  integrity sha512-OG73iSzTOR8o8lsLG4dBhV37IF9jAlvat0lT+6U2ycWvrvv2L0e91tXA0mo18C8HtZEwUvuEL50kfKeyNCVTaQ==
+"@gitmoji-changelog/core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/core/-/core-2.0.0.tgz#fe8b7163bbaf880c44bb00d5e880776af7336d8e"
+  integrity sha512-M4veG5ZxIEYrDsVq6pc7O4NSUoJbkyzzTzsdu9PLDmLBvOB6eGk9rQ5o6/KIbOeX18Av0sjjQWKzAkAYj1xyMQ==
   dependencies:
     concat-stream "^1.6.2"
     fast-levenshtein "^2.0.6"
@@ -51,14 +51,16 @@
     split-lines "^2.0.0"
     through2 "^2.0.3"
 
-"@gitmoji-changelog/markdown@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/markdown/-/markdown-1.1.0.tgz#45426cb1274092c9f9b42c71c16025d4fbee6917"
-  integrity sha512-vnM8br1US6580GnZuNeUqL/LPvSgu2Tj4Ww4ErhoBWT8zkzmJFnv3ICznCEgLcAnFSmb7QX0xhLcgRTDBWMBig==
+"@gitmoji-changelog/markdown@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/markdown/-/markdown-2.0.0.tgz#a81f5d8b9a3bf5a4205ba0553a889c2f0def6f5e"
+  integrity sha512-6sBL7VicobFFTGF5MoZgjlDqmkUdvyKC2EzDlUOeBhTWyEOL99wcC6/GB2y7mTPkMFgU3h2ge6JtNkmr0sH/Ug==
   dependencies:
-    handlebars "^4.0.12"
+    git-semver-tags "^2.0.0"
+    handlebars "^4.0.14"
     immutadot "^1.0.0"
     lodash "^4.17.11"
+    semver "^5.6.0"
 
 "@types/clean-css@*":
   version "4.2.1"
@@ -1060,6 +1062,13 @@ debug@^3.1.0, debug@^3.2.6:
   dependencies:
     ms "^2.1.1"
 
+debug@^4.0.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
+  dependencies:
+    ms "^2.1.1"
+
 decamelize-keys@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/decamelize-keys/-/decamelize-keys-1.1.0.tgz#d171a87933252807eb3cb61dc1c1445d078df2d9"
@@ -1750,15 +1759,21 @@ github-url-to-object@^3.0.0:
   dependencies:
     is-url "^1.1.0"
 
-gitmoji-changelog@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gitmoji-changelog/-/gitmoji-changelog-1.1.0.tgz#1b722f993e0e9c37eaf3a752759a34450891aa17"
-  integrity sha512-V7egzHq5w0KgxSiGKunlU/FjN/bV18K0KpZRxEuSbgrnXeKLLbBB4gwP54sP1ESPdFloz7MT/G4d0JXgsngf6w==
+gitmoji-changelog@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gitmoji-changelog/-/gitmoji-changelog-2.0.0.tgz#812b6b2663b44049011b21d5c2fc2e09a43d51d7"
+  integrity sha512-N0fDuuIEE1/8CwChy1nvaEHezCybxkMg/OW4eJVwwePem1vGBlfyn+YrmUejjenPNQPVZ20+en4pQVj8JbAF+Q==
   dependencies:
-    "@gitmoji-changelog/core" "^1.1.0"
-    "@gitmoji-changelog/markdown" "^1.1.0"
+    "@gitmoji-changelog/core" "^2.0.0"
+    "@gitmoji-changelog/markdown" "^2.0.0"
+    hosted-git-info "^3.0.2"
+    immutadot "^1.0.0"
+    inquirer "^6.3.1"
     libnpm "^1.0.0"
+    lodash "^4.17.11"
+    semver "^5.6.0"
     semver-compare "^1.0.0"
+    simple-git "^1.113.0"
     yargs "^12.0.1"
 
 glob-parent@^3.1.0:
@@ -1817,7 +1832,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.2.tgz#6f0952605d0140c1cfdb138ed005775b92d67b02"
   integrity sha512-IItsdsea19BoLC7ELy13q1iJFNmd7ofZH5+X/pJr90/nRoPEX0DJo1dHDbgtYWOhJhcCgMDTOw84RZ72q6lB+Q==
 
-handlebars@^4.0.12, handlebars@^4.5.1:
+handlebars@^4.0.14, handlebars@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.5.1.tgz#8a01c382c180272260d07f2d1aa3ae745715c7ba"
   integrity sha512-C29UoFzHe9yM61lOsIlCE5/mQVGrnIOrOq7maQl76L7tYPCgC1og0Ajt6uWnX4ZTxBPnjw+CUvawphwCfJgUnA==
@@ -1908,6 +1923,13 @@ hosted-git-info@^2.1.4, hosted-git-info@^2.7.1:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.5.tgz#759cfcf2c4d156ade59b0b2dfabddc42a6b9c70c"
   integrity sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg==
+
+hosted-git-info@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-3.0.2.tgz#8b7e3bd114b59b51786f8bade0f39ddc80275a97"
+  integrity sha512-ezZMWtHXm7Eb7Rq4Mwnx2vs79WUx2QmRg3+ZqeGroKzfDO+EprOcgRPYghsOP9JuYBfK18VojmRTGCg8Ma+ktw==
+  dependencies:
+    lru-cache "^5.1.1"
 
 html-minifier@^4.0.0:
   version "4.0.0"
@@ -2109,7 +2131,7 @@ ini@^1.3.2, ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
-inquirer@^6.2.0:
+inquirer@^6.2.0, inquirer@^6.3.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.5.2.tgz#ad50942375d036d327ff528c08bd5fab089928ca"
   integrity sha512-cntlB5ghuB0iuO65Ovoi8ogLHiWGs/5yNrtUcKjFhSSiVeAIVpD7koaSU9RM8mpXw5YDi9RdYXGQMaOURB7ycQ==
@@ -4359,6 +4381,13 @@ signale@^1.3.0, signale@^1.4.0:
     chalk "^2.3.2"
     figures "^2.0.0"
     pkg-conf "^2.1.0"
+
+simple-git@^1.113.0:
+  version "1.126.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.126.0.tgz#0c345372275139c8433b8277f4b3e155092aa434"
+  integrity sha512-47mqHxgZnN8XRa9HbpWprzUv3Ooqz9RY/LSZgvA7jCkW8jcwLahMz7LKugY91KZehfG0sCVPtgXiU72hd6b1Bw==
+  dependencies:
+    debug "^4.0.1"
 
 sitemap@^5.0.1:
   version "5.0.1"

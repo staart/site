@@ -26,6 +26,6 @@ export const getTitle = async (md: string, keepEmoji = true) => {
   const attributes = frontMatter<FrontMatter>(md).attributes;
   if (attributes.title) title = attributes.title;
   if (title && attributes.emoji && keepEmoji)
-    title = `${attributes.emoji} ${title}`;
+    title = `<span aria-hidden="true">${attributes.emoji}</span> ${title}`;
   return title;
 };

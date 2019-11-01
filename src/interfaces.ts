@@ -9,6 +9,7 @@ export interface StaartSiteConfig {
   assetsDir?: string;
   templatePath?: string;
   stylePath?: string;
+  scriptPath?: string;
   homePath?: string;
   redirectsPath?: string;
   hostname?: string;

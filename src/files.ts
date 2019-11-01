@@ -30,6 +30,13 @@ export const getStylePath = async () => {
     : join(await getContentPath(), "..", "style.scss");
 };
 
+export const getScriptPath = async () => {
+  const config = await getConfig();
+  return config.scriptPath
+    ? join(".", config.scriptPath)
+    : join(__dirname, "..", "src", "staart.js");
+};
+
 const safeReadFile = async (file: string) => {
   try {
     const contents = await readFile(file);

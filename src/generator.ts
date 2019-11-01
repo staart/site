@@ -14,7 +14,8 @@ import {
   getContentPath,
   listContentFiles,
   readContentFile,
-  listDirs
+  listDirs,
+  getScriptPath
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -130,6 +131,12 @@ export const getCss = async () => {
         )
       );
     }
+  });
+};
+
+export const getScript = async () => {
+  return await cached<string>("script", async () => {
+    return (await readFile(await getScriptPath())).toString();
   });
 };
 
@@ -338,6 +345,7 @@ const generatePage = async (path: string, content: string) => {
       data[key] = await render(data[key], key !== "content");
   }
   data.css = await getCss();
+  data.script = await getScript();
   const result = template(data);
   await ensureFile(join(await getDistPath(), path));
   await writeFile(

@@ -3,6 +3,8 @@ import { join, parse } from "path";
 import { getConfig } from "./config";
 import recursiveReadDir from "recursive-readdir";
 import { cached } from "./cache";
+import { FrontMatter } from "./interfaces";
+import frontMatter from "front-matter";
 
 export const getContentPath = async () => {
   const config = await getConfig();
@@ -73,8 +75,10 @@ export const listRootFiles = async () => {
   );
   const result = [];
   for await (const file of files) {
-    if (await safeReadFile(join(await getContentPath(), file)))
-      result.push(file);
+    const content =
+      (await safeReadFile(join(await getContentPath(), file))) || "";
+    const attributes = frontMatter<FrontMatter>(content).attributes;
+    if (content && !attributes.draft) result.push(file);
   }
   return result;
 };
@@ -104,7 +108,16 @@ export const listContentFiles = async (
         .map(ext => `.${ext}`)
         .includes(parse(name).ext)
     );
+  let finalFiles: string[] = [];
+  for await (const file of files) {
+    const content =
+      (await safeReadFile(join(await getContentPath(), file))) || "";
+    const attributes = frontMatter<FrontMatter>(content).attributes;
+    if (content && !attributes.draft) {
+      finalFiles.push(file);
+    }
+  }
   if (removeContentPath)
-    files = files.map(file => file.replace(`${contentPath}/`, ""));
-  return files;
+    finalFiles = finalFiles.map(file => file.replace(`${contentPath}/`, ""));
+  return finalFiles;
 };

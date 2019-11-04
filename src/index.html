@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ metaTitle }}</title>
     <meta name="viewport" content="width=device-width" />
-    {{#if "assets_icon-dark_png"}}<link rel="icon" type="image/png" href="/assets/icon-dark.png" />{{/if}}
-    {{#if "assets_icon-dark_svg"}}<link rel="icon" type="image/svg+xml" href="/assets/icon-dark.svg" />{{/if}}
+    {{#if assets_icon-dark_png}}<link rel="icon" type="image/png" href="/assets/icon-dark.png" />{{/if}}
+    {{#if assets_icon-dark_svg}}<link rel="icon" type="image/svg+xml" href="/assets/icon-dark.svg" />{{/if}}
     {{#if canonical}}
     <link rel="canonical" href="{{{ canonical }}}" />
     {{/if}}
@@ -52,9 +52,9 @@
     <header>
       <div class="masthead">
         <a href="/" class="logo">
-          {{#if "assets_icon-white_svg"}}
+          {{#if assets_icon-white_svg}}
             <img class="icon" alt="" src="/assets/icon-white.svg" />
-          {{else if "assets_icon-white_png"}}
+          {{else if assets_icon-white_png}}
             <img class="icon" alt="" src="/assets/icon-white.png" />
           {{/if}}
           <h1>{{ title }}</h1>
@@ -99,7 +99,7 @@
         "@type": "WebSite",
         "name": "{{ title }}"
         {{#if canonical}},"url": "{{{ canonical }}}"{{/if}}
-        {{#if "assets_icon-dark_png"}},"logo": "{{{ canonical }}}/assets/logo-dark.png"{{/if}}
+        {{#if assets_icon-dark_png}},"logo": "{{{ canonical }}}/assets/logo-dark.png"{{/if}}
       }
     </script>
   </body>

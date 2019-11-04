@@ -77,8 +77,10 @@ export const listRootFiles = async () => {
   for await (const file of files) {
     const content =
       (await safeReadFile(join(await getContentPath(), file))) || "";
-    const attributes = frontMatter<FrontMatter>(content).attributes;
-    if (content && !attributes.draft) result.push(file);
+    if (content) {
+      const attributes = frontMatter<FrontMatter>(content).attributes;
+      if (content && !attributes.draft) result.push(file);
+    }
   }
   return result;
 };
@@ -110,10 +112,10 @@ export const listContentFiles = async (
     );
   let finalFiles: string[] = [];
   for await (const file of files) {
-    const content =
-      (await safeReadFile(join(await getContentPath(), file))) || "";
+    const content = await safeReadFile(file);
+    if (!content) return [];
     const attributes = frontMatter<FrontMatter>(content).attributes;
-    if (content && !attributes.draft) {
+    if (!attributes.draft) {
       finalFiles.push(file);
     }
   }

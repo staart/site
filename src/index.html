@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <part meta />
+    {{>meta}}
     <style>{{{ css }}}</style>
     {{#unless noSyntaxHighlighting}}
       <link rel="stylesheet" href="/assets/prism.css" />
     {{/unless}}
   </head>
   <body>
-    <part body />
-    <part scripts />
+    {{>body}}
+    {{>scripts}}
   </body>
 </html>

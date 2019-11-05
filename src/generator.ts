@@ -51,7 +51,10 @@ export const getTemplate = async () => {
     }
   });
   if (!result) throw new Error("Template not found");
-  result = await addTemplatePart(result);
+  while (true) {
+    result = await addTemplatePart(result);
+    if (!result.includes("<part ")) break;
+  }
   return result;
 };
 

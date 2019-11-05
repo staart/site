@@ -50,8 +50,8 @@ export const getTemplate = async () => {
   const templateParts = await getTemplatePartsList();
   for await (const templatePart of templateParts) {
     result = result.replace(
-      new RegExp(`<!--part:${templatePart}-->`, "g"),
-      "Anand"
+      new RegExp(`<part ${templatePart.replace(".html", "")} />`, "g"),
+      (await getTemplatePart(templatePart.replace(".html", ""))) || ""
     );
   }
   return result;

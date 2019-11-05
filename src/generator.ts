@@ -20,7 +20,13 @@ import {
 import { cached } from "./cache";
 import { join, parse } from "path";
 import { compile } from "handlebars";
-import { getData, render, getNavbar, getSiteMeta } from "./data";
+import {
+  getData,
+  render,
+  getNavbar,
+  getSiteMeta,
+  registerPartials
+} from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
 import { removeHeading, getTitle } from "./parse";
@@ -296,6 +302,7 @@ const generatePage = async (path: string, content: string) => {
   }
   const template = compile(await getTemplate());
   const attributes = frontMatter<FrontMatter>(content).attributes;
+  await registerPartials();
   const data: { [index: string]: any } = {
     ...(await getData()),
     content:
@@ -307,7 +314,7 @@ const generatePage = async (path: string, content: string) => {
     metaTitle:
       path === "index.html"
         ? (await getSiteMeta("title", "name")) || "Staart Site"
-        : `${await getTitle(content)} · ${(await getSiteMeta(
+        : `${await getTitle(content, false)} · ${(await getSiteMeta(
             "title",
             "name"
           )) || "Staart Site"}`,

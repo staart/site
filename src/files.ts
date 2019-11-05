@@ -153,6 +153,6 @@ export const getTemplatePartsList = async () => {
     const defaultTemplateFiles = await readdir(defaultTemplatesPartDir);
     return Array.from(
       new Set([...templatePartsFiles, ...defaultTemplateFiles])
-    );
+    ).map(i => i.replace(".html", ""));
   });
 };

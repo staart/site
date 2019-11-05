@@ -1,5 +1,5 @@
 import { getConfig, readPackage } from "./config";
-import { compile } from "handlebars";
+import { compile, registerPartial } from "handlebars";
 import { renderMd, getTitle } from "./parse";
 import {
   listRootFiles,
@@ -73,7 +73,22 @@ export const getData = async () => {
   throw new Error("Could not generate data");
 };
 
+export const registerPartials = async () => {
+  const templateParts = await getTemplatePartsList();
+  // First register partials which don't depend on other partials
+  for await (const templatePart of templateParts) {
+    const content = (await getTemplatePart(templatePart)) || "";
+    if (!content.includes("{{>")) registerPartial(templatePart, content);
+  }
+  // Then register partials
+  for await (const templatePart of templateParts) {
+    const content = (await getTemplatePart(templatePart)) || "";
+    if (content.includes("{{>")) registerPartial(templatePart, content);
+  }
+};
+
 export const renderHb = async (content: string) => {
+  await registerPartials();
   const template = compile(
     content.replace(new RegExp("/*{{css}}*/", "g"), "{{css}}")
   );

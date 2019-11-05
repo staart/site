@@ -15,7 +15,9 @@ import {
   listContentFiles,
   readContentFile,
   listDirs,
-  getScriptPath
+  getScriptPath,
+  getTemplatePartsList,
+  getTemplatePart
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -35,7 +37,7 @@ import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
 
 export const getTemplate = async () => {
-  const result = await cached<string>("template", async () => {
+  let result = await cached<string>("template", async () => {
     try {
       return (await readFile(await getTemplatePath())).toString();
     } catch (error) {
@@ -44,8 +46,15 @@ export const getTemplate = async () => {
       )).toString();
     }
   });
-  if (result) return result;
-  throw new Error("Template not found");
+  if (!result) throw new Error("Template not found");
+  const templateParts = await getTemplatePartsList();
+  for await (const templatePart of templateParts) {
+    result = result.replace(
+      new RegExp(`<!--part:${templatePart}-->`, "g"),
+      "Anand"
+    );
+  }
+  return result;
 };
 
 export const getHomeContent = async () => {

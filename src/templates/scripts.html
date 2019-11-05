@@ -1,0 +1,26 @@
+{{#if agastyaApiKey}}<script src="https://platform-beta.oswaldlabs.com/v1/agastya/load/{{agastyaApiKey}}"></script>
+<script>
+  window.a11ySettings = window.a11ySettings || {};
+  window.a11ySettings.variables = window.a11ySettings.variables || {};
+  window.a11ySettings.variables.displayNone = true;
+</script>{{/if}}
+{{#if googleAnalytics}}<script async src="https://www.googletagmanager.com/gtag/js?id={{googleAnalytics}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "{{googleAnalytics}}");
+</script>{{/if}}
+{{#unless noSyntaxHighlighting}}
+  <script src="/assets/prism.js"></script>
+{{/unless}}
+<script>{{{ script }}}</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ title }}"
+    {{#if canonical}},"url": "{{{ canonical }}}"{{/if}}
+    {{#if assets_icon-dark_png}},"logo": "{{{ canonical }}}/assets/logo-dark.png"{{/if}}
+  }
+</script>

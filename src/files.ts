@@ -39,6 +39,13 @@ export const getScriptPath = async () => {
     : join(__dirname, "..", "src", "staart.js");
 };
 
+export const getTemplatesDirPath = async () => {
+  const config = await getConfig();
+  return config.templatePartsDir
+    ? join(".", config.templatePartsDir)
+    : join(__dirname, "..", "src", "templates");
+};
+
 const safeReadFile = async (file: string) => {
   try {
     const contents = await readFile(file);
@@ -122,4 +129,26 @@ export const listContentFiles = async (
   if (removeContentPath)
     finalFiles = finalFiles.map(file => file.replace(`${contentPath}/`, ""));
   return finalFiles;
+};
+
+export const getTemplatePart = async (name: string) => {
+  const templatePart = await safeReadFile(
+    join(await getTemplatesDirPath(), `${name}.html`)
+  );
+  if (templatePart) return templatePart;
+  return await getDefaultTemplatePart(name);
+};
+
+export const getDefaultTemplatePart = async (name: string) => {
+  return await safeReadFile(
+    join(__dirname, "..", "src", "templates", `${name}.html`)
+  );
+};
+
+export const getTemplatePartsList = async () => {
+  const templatePartsDir = await getTemplatesDirPath();
+  const defaultTemplatesPartDir = join(__dirname, "..", "src", "templates");
+  const templatePartsFiles = await readdir(templatePartsDir);
+  const defaultTemplateFiles = await readdir(defaultTemplatesPartDir);
+  return Array.from(new Set([...templatePartsFiles, ...defaultTemplateFiles]));
 };

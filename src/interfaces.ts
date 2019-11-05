@@ -7,6 +7,7 @@ export interface StaartSiteConfig {
   contentDir?: string;
   distDir?: string;
   assetsDir?: string;
+  templatePartsDir?: string;
   templatePath?: string;
   stylePath?: string;
   scriptPath?: string;

@@ -20,13 +20,7 @@ import {
 import { cached } from "./cache";
 import { join, parse } from "path";
 import { compile } from "handlebars";
-import {
-  getData,
-  render,
-  getNavbar,
-  getSiteMeta,
-  addTemplatePart
-} from "./data";
+import { getData, render, getNavbar, getSiteMeta } from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
 import { removeHeading, getTitle } from "./parse";
@@ -51,10 +45,6 @@ export const getTemplate = async () => {
     }
   });
   if (!result) throw new Error("Template not found");
-  while (true) {
-    result = await addTemplatePart(result);
-    if (!result.includes("<part ")) break;
-  }
   return result;
 };
 

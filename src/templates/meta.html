@@ -1,0 +1,41 @@
+<meta name="charset" content="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ metaTitle }}</title>
+<meta name="viewport" content="width=device-width" />
+{{#if assets_icon-dark_png}}<link rel="icon" type="image/png" href="/assets/icon-dark.png" />{{/if}}
+{{#if assets_icon-dark_svg}}<link rel="icon" type="image/svg+xml" href="/assets/icon-dark.svg" />{{/if}}
+{{#if canonical}}
+<link rel="canonical" href="{{{ canonical }}}" />
+{{/if}}
+{{#if description}}
+<meta name="description" content="{{ description }}" />
+{{/if}} {{#if keywords}}
+<meta name="keywords" content="{{ keywords }}" />
+{{/if}}
+{{#unless noGenerator}}
+  <meta name="generator" content="@staart/site{{#if staartVersion}} {{ staartVersion }}{{/if}}" />
+{{/unless}}
+{{#if googleSiteVerification}}
+  <meta name="google-site-verification" content="{{ googleSiteVerification }}" />
+{{/if}}
+<title>{{ metaTitle }}</title>
+<meta itemprop="name" content="{{ metaTitle }}">
+<meta name="twitter:title" content="{{ metaTitle }}">
+<meta property="og:title" content="{{ metaTitle }}">
+{{#if description }}<meta name="description" content="{{ description }}">{{/if}}
+{{#if description }}<meta itemprop="description" content="{{ description }}">{{/if}}
+{{#if seoImage }}<meta itemprop="image" content="{{{ seoImage }}}">{{/if}}
+{{#if twitterPublisher }}<meta name="twitter:site" content="@{{ twitterPublisher }}">{{/if}}
+{{#if description }}<meta name="twitter:description" content="{{ description }}">{{/if}}
+{{#if twitterCreator }}<meta name="twitter:creator" content="@{{ twitterCreator }}">{{/if}}
+{{#if seoImage }}<meta name="twitter:image:src" content="{{{ seoImage }}}">{{/if}}
+{{#if canonical }}<meta property="og:url" content="{{{ canonical }}}">{{/if}}
+{{#if seoImage }}<meta property="og:image" content="{{{ seoImage }}}">{{/if}}
+{{#if seoImageWidth }}<meta property="og:image:width" content="{{{ seoImageWidth }}}">{{/if}}
+{{#if seoImageHeight }}<meta property="og:image:height" content="{{{ seoImageHeight }}}">{{/if}}
+{{#if description }}<meta property="og:description" content="{{ description }}">{{/if}}
+{{#if title }}<meta property="og:site_name" content="{{ title }}">{{/if}}
+{{#if publishedTime }}<meta property="article:published_time" content="{{ publishedTime }}">{{/if}}
+{{#if modifiedTime }}<meta property="article:modified_time" content="{{ modifiedTime }}">{{/if}}
+{{#if keywords }}<meta property="article:tag" content="{{ keywords }}">{{/if}}
+{{#if facebookId }}<meta property="fb:admins" content="{{ facebookId }}">{{/if}}

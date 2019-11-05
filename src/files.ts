@@ -146,9 +146,13 @@ export const getDefaultTemplatePart = async (name: string) => {
 };
 
 export const getTemplatePartsList = async () => {
-  const templatePartsDir = await getTemplatesDirPath();
-  const defaultTemplatesPartDir = join(__dirname, "..", "src", "templates");
-  const templatePartsFiles = await readdir(templatePartsDir);
-  const defaultTemplateFiles = await readdir(defaultTemplatesPartDir);
-  return Array.from(new Set([...templatePartsFiles, ...defaultTemplateFiles]));
+  return await cached<string[]>("template-parts", async () => {
+    const templatePartsDir = await getTemplatesDirPath();
+    const defaultTemplatesPartDir = join(__dirname, "..", "src", "templates");
+    const templatePartsFiles = await readdir(templatePartsDir);
+    const defaultTemplateFiles = await readdir(defaultTemplatesPartDir);
+    return Array.from(
+      new Set([...templatePartsFiles, ...defaultTemplateFiles])
+    );
+  });
 };

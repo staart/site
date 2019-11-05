@@ -1,7 +1,13 @@
 import { getConfig, readPackage } from "./config";
 import { compile } from "handlebars";
 import { renderMd, getTitle } from "./parse";
-import { listRootFiles, readContentFile, getContentPath } from "./files";
+import {
+  listRootFiles,
+  readContentFile,
+  getContentPath,
+  getTemplatePartsList,
+  getTemplatePart
+} from "./files";
 import { cached } from "./cache";
 import recursiveReadDir = require("recursive-readdir");
 import { join } from "path";
@@ -76,4 +82,18 @@ export const renderHb = async (content: string) => {
 
 export const render = async (content: string, avoidParagraphs = false) => {
   return renderMd(await renderHb(content), avoidParagraphs);
+};
+
+export const addTemplatePart = async (template: string) => {
+  const templateParts = await getTemplatePartsList();
+  for await (const templatePart of templateParts) {
+    let content =
+      (await getTemplatePart(templatePart.replace(".html", ""))) || "";
+    if (content.includes("<part ")) content = await addTemplatePart(content);
+    template = template.replace(
+      new RegExp(`<part ${templatePart.replace(".html", "")} />`, "g"),
+      content
+    );
+  }
+  return template;
 };

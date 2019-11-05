@@ -15,14 +15,18 @@ import {
   listContentFiles,
   readContentFile,
   listDirs,
-  getScriptPath,
-  getTemplatePartsList,
-  getTemplatePart
+  getScriptPath
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
 import { compile } from "handlebars";
-import { getData, render, getNavbar, getSiteMeta } from "./data";
+import {
+  getData,
+  render,
+  getNavbar,
+  getSiteMeta,
+  addTemplatePart
+} from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
 import { removeHeading, getTitle } from "./parse";
@@ -47,13 +51,7 @@ export const getTemplate = async () => {
     }
   });
   if (!result) throw new Error("Template not found");
-  const templateParts = await getTemplatePartsList();
-  for await (const templatePart of templateParts) {
-    result = result.replace(
-      new RegExp(`<part ${templatePart.replace(".html", "")} />`, "g"),
-      (await getTemplatePart(templatePart.replace(".html", ""))) || ""
-    );
-  }
+  result = await addTemplatePart(result);
   return result;
 };
 

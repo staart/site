@@ -361,7 +361,7 @@ const generatePage = async (path: string, content: string) => {
     join(await getDistPath(), path),
     minify(result, {
       collapseWhitespace: true,
-      processScripts: ["application/ld+json"],
+      processScripts: ["application/ld+json", "text/javascript"],
       minifyCSS: true
     })
   );

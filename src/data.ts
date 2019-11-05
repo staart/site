@@ -84,16 +84,19 @@ export const render = async (content: string, avoidParagraphs = false) => {
   return renderMd(await renderHb(content), avoidParagraphs);
 };
 
-export const addTemplatePart = async (template: string) => {
+export const addTemplatePart = async (template: string, myPath?: string) => {
   const templateParts = await getTemplatePartsList();
   for await (const templatePart of templateParts) {
-    let content =
-      (await getTemplatePart(templatePart.replace(".html", ""))) || "";
-    if (content.includes("<part ")) content = await addTemplatePart(content);
-    template = template.replace(
-      new RegExp(`<part ${templatePart.replace(".html", "")} />`, "g"),
-      content
-    );
+    if (templatePart !== myPath) {
+      let content =
+        (await getTemplatePart(templatePart.replace(".html", ""))) || "";
+      if (content.includes("<part "))
+        content = await addTemplatePart(content, templatePart);
+      template = template.replace(
+        new RegExp(`<part ${templatePart.replace(".html", "")} />`, "g"),
+        content
+      );
+    }
   }
   return template;
 };

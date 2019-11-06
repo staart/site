@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "1.7.13",
+  "version": "1.7.14",
   "module": "dist/module.js",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -32,7 +32,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "concurrently": "^5.0.0",
-    "cosmiconfig": "^5.2.1",
+    "cosmiconfig": "^6.0.0",
     "front-matter": "^3.0.2",
     "fs-extra": "^8.1.0",
     "git-url-parse": "^11.1.2",
@@ -51,7 +51,6 @@
     "yaml": "^1.7.2"
   },
   "devDependencies": {
-    "@types/cosmiconfig": "^5.0.3",
     "@types/fs-extra": "^8.0.1",
     "@types/git-url-parse": "^9.0.0",
     "@types/html-minifier": "^3.5.3",

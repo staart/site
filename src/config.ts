@@ -1,4 +1,4 @@
-import cosmiconfig from "cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
 import { StaartSiteConfig } from "./interfaces";
 import { join } from "path";
 import { readJSON } from "fs-extra";

@@ -96,6 +96,7 @@ You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/da
 | `noGenerator` | Don't add meta generator tag | `false` |
 | `noSyntaxHighlighting` | Disable code syntax highlighting | `false` |
 | `noShieldSchema` | Don't generate Shields schema | `false` |
+| `noFontCdn` | Don't add Google Fonts CDN | `false` |
 | `shieldSchemaLabel` | Label text for Shields schema | `docs` |
 | `shieldSchemaColor` | Badge color in Shields schema | `blueviolet` |
 

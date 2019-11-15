@@ -44,7 +44,7 @@ if (args.version) {
     file: args.file,
     wait: args.wait,
     mount: args.mount,
-    logLevel: args.logLevel
+    logLevel: args.logLevel || 0
   });
 } else {
   const startTime = new Date().getTime();

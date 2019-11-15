@@ -285,6 +285,30 @@ img {
   }
 }
 
+.external-link::after {
+  content: "";
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  background-image: url("https://static.oswaldlabs.com/e80rj23-external.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-left: 0.25em;
+  margin-right: 0.1em;
+  opacity: 0.5;
+}
+.external-link span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .dark {
   body {
     background-color: #000;
@@ -317,5 +341,8 @@ img {
   }
   .post-footer {
     color: rgba($light-color, 0.75);
+  }
+  .external-link::after {
+    background-image: url("https://static.oswaldlabs.com/e80rj23-external.light.svg");
   }
 }

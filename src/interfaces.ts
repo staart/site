@@ -34,6 +34,8 @@ export interface StaartSiteConfig {
   noGenerator?: boolean;
   noSyntaxHighlighting?: boolean;
   noShieldSchema?: boolean;
+  noBreadcrumbd?: boolean;
+  noFontCdn?: boolean;
   shieldSchemaLabel?: string;
   shieldSchemaColor?: string;
   [index: string]: any;

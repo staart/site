@@ -5,6 +5,7 @@ import recursiveReadDir from "recursive-readdir";
 import { cached } from "./cache";
 import { FrontMatter } from "./interfaces";
 import frontMatter from "front-matter";
+import { getTitle } from "./parse";
 
 export const getContentPath = async () => {
   const config = await getConfig();
@@ -155,4 +156,68 @@ export const getTemplatePartsList = async () => {
       new Set([...templatePartsFiles, ...defaultTemplateFiles])
     ).map(i => i.replace(".html", ""));
   });
+};
+
+export const getBreadcrumbs = async (file: string) => {
+  const crumbs = ["index.md"];
+  const parts = file.replace(".html", ".md").split("/");
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (part === "index.md") continue;
+    let link = `${parts.slice(0, i + 1).join("/")}`;
+    if (!link.endsWith(".md")) link = `${link}/index.md`;
+    crumbs.push(link);
+  }
+  const breadcrumbs = [];
+  for await (const crumb of crumbs) {
+    try {
+      if (crumb === "index.md") continue;
+      const content = await readContentFile(crumb);
+      const title = await getTitle(content, false);
+      breadcrumbs.push(
+        `<a href="/${crumb.replace(".md", ".html")}">${title}</a>`
+      );
+    } catch (error) {}
+  }
+  if (!breadcrumbs.length || breadcrumbs.length === 1) return;
+  return `<nav class="breadcrumbs">${breadcrumbs.join("")}</nav>`;
+};
+
+export const getBreadcrumbsSchema = async (file: string) => {
+  const crumbs = ["index.md"];
+  const parts = file.replace(".html", ".md").split("/");
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (part === "index.md") continue;
+    let link = `${parts.slice(0, i + 1).join("/")}`;
+    if (!link.endsWith(".md")) link = `${link}/index.md`;
+    crumbs.push(link);
+  }
+  const breadcrumbs = [];
+  let position = 1;
+  for await (const crumb of crumbs) {
+    try {
+      const content = await readContentFile(crumb);
+      const title = await getTitle(content, false);
+      breadcrumbs.push(`{
+        "@type": "ListItem",
+        "position": ${position},
+        "item": {
+          "@id": "/${crumb.replace(".md", ".html")}",
+          "name": "${title}"
+        }
+      }`);
+      position++;
+    } catch (error) {}
+  }
+  return `
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        ${breadcrumbs.join(",\n")}
+      ]
+    }
+  </script>`;
 };

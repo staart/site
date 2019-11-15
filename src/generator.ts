@@ -15,7 +15,9 @@ import {
   listContentFiles,
   readContentFile,
   listDirs,
-  getScriptPath
+  getScriptPath,
+  getBreadcrumbs,
+  getBreadcrumbsSchema
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -45,9 +47,9 @@ export const getTemplate = async () => {
     try {
       return (await readFile(await getTemplatePath())).toString();
     } catch (error) {
-      return (await readFile(
-        join(__dirname, "..", "src", "index.html")
-      )).toString();
+      return (
+        await readFile(join(__dirname, "..", "src", "index.html"))
+      ).toString();
     }
   });
   if (!result) throw new Error("Template not found");
@@ -59,9 +61,9 @@ export const getHomeContent = async () => {
     try {
       return (await readFile(await getHomePath())).toString();
     } catch (error) {
-      return (await readFile(
-        join(__dirname, "..", "src", "index.md")
-      )).toString();
+      return (
+        await readFile(join(__dirname, "..", "src", "index.md"))
+      ).toString();
     }
   });
   if (result) return result;
@@ -71,9 +73,9 @@ export const getHomeContent = async () => {
 export const getSitemapContent = async () => {
   const result = await cached<string>("sitemap", async () => {
     try {
-      return (await readFile(
-        join(await getContentPath(), "sitemap.md")
-      )).toString();
+      return (
+        await readFile(join(await getContentPath(), "sitemap.md"))
+      ).toString();
     } catch (error) {}
   });
   if (result) return result;
@@ -84,10 +86,12 @@ export const getRedirectsContent = async (): Promise<string[]> => {
   const result = await cached<string>("redirects", async () => {
     try {
       const config = await getConfig();
-      return (await readFile(
-        config.redirectsPath ||
-          join(await getContentPath(), "..", "redirects.yml")
-      )).toString();
+      return (
+        await readFile(
+          config.redirectsPath ||
+            join(await getContentPath(), "..", "redirects.yml")
+        )
+      ).toString();
     } catch (error) {}
   });
   if (result) return yaml(result);
@@ -131,9 +135,9 @@ export const getCss = async () => {
     } catch (error) {
       return await renderScss(
         await addTheme(
-          (await readFile(
-            join(__dirname, "..", "src", "style.scss")
-          )).toString()
+          (
+            await readFile(join(__dirname, "..", "src", "style.scss"))
+          ).toString()
         )
       );
     }
@@ -300,6 +304,8 @@ const generatePage = async (path: string, content: string) => {
           : ""
       }"  target="_blank">Edit on GitHub</a></p>`;
   }
+  const breadcrumbs = (await getBreadcrumbs(path)) || "";
+  const breadcrumbsSchema = (await getBreadcrumbsSchema(path)) || "";
   const template = compile(await getTemplate());
   const attributes = frontMatter<FrontMatter>(content).attributes;
   await registerPartials();
@@ -310,7 +316,11 @@ const generatePage = async (path: string, content: string) => {
         ? config.keepHomeHeading
           ? content
           : await removeHeading(content)
-        : content,
+        : breadcrumbs +
+          "\n\n" +
+          frontMatter(content).body +
+          "\n\n" +
+          breadcrumbsSchema,
     metaTitle:
       path === "index.html"
         ? (await getSiteMeta("title", "name")) || "Staart Site"

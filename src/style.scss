@@ -270,6 +270,21 @@ img {
   margin-top: 3rem;
 }
 
+.breadcrumbs {
+  font-size: 80%;
+  margin: -2vh 0 -1.5rem 0;
+  a {
+    &:last-child {
+      display: none;
+    }
+    &::after {
+      content: "›";
+      margin: 0 0.75rem;
+      pointer-events: none;
+    }
+  }
+}
+
 .dark {
   body {
     background-color: #000;

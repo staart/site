@@ -60,9 +60,11 @@ export const getData = async () => {
       config.data.year = new Date().getFullYear().toString();
     let assets: any = {};
     try {
-      const listOfFiles = (await recursiveReadDir(
-        join(await getContentPath(), "..", config.assetsDir || "assets")
-      )).map(f => f.replace(/\//g, "_").replace(/\./g, "_"));
+      const listOfFiles = (
+        await recursiveReadDir(
+          join(await getContentPath(), "..", config.assetsDir || "assets")
+        )
+      ).map(f => f.replace(/\//g, "_").replace(/\./g, "_"));
       listOfFiles.forEach(file => {
         assets[file] = true;
       });

@@ -35,24 +35,26 @@ export const getLastCommit = async (
     const config = await getConfig();
     if (!config.noDelayWithoutToken) await sleep(1000);
     if (config._gitRepo && config._gitRepo.source === "github.com") {
-      const data = (await axios.get(
-        `https://api.github.com/repos/${
-          config._gitRepo.full_name
-        }/commits?path=${await getContentPath()}/${file.replace(
-          ".html",
-          ".md"
-        )}`,
-        {
-          headers: {
-            "User-Agent": "Staart Site <github.com/staart/site>",
-            ...(process.env.GITHUB_TOKEN
-              ? {
-                  Authorization: `token ${process.env.GITHUB_TOKEN}`
-                }
-              : {})
+      const data = (
+        await axios.get(
+          `https://api.github.com/repos/${
+            config._gitRepo.full_name
+          }/commits?path=${await getContentPath()}/${file.replace(
+            ".html",
+            ".md"
+          )}`,
+          {
+            headers: {
+              "User-Agent": "Staart Site <github.com/staart/site>",
+              ...(process.env.GITHUB_TOKEN
+                ? {
+                    Authorization: `token ${process.env.GITHUB_TOKEN}`
+                  }
+                : {})
+            }
           }
-        }
-      )).data;
+        )
+      ).data;
       if (data.length)
         return { ...data[0], firstCommit: data[data.length - 1] };
     }

@@ -5,6 +5,7 @@ import { generate } from "./generator";
 import { readJsonSync } from "fs-extra";
 import { join } from "path";
 import minimist from "minimist";
+import liveServer from "live-server";
 
 const args = minimist(process.argv.slice(2), {
   boolean: ["v", "version", "d", "dev", "h", "help"]
@@ -33,6 +34,18 @@ if (args.version) {
     $ @staart/site -v
 `);
   process.exit(0);
+} else if (args.serve) {
+  liveServer.start({
+    root: args.root || "public",
+    port: args.port,
+    host: args.host,
+    open: args.open,
+    ignore: args.ignore,
+    file: args.file,
+    wait: args.wait,
+    mount: args.mount,
+    logLevel: args.logLevel
+  });
 } else {
   const startTime = new Date().getTime();
   staartSite()

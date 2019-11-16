@@ -221,3 +221,44 @@ export const getBreadcrumbsSchema = async (file: string) => {
     }
   </script>`;
 };
+
+export const getNextPrevious = async (
+  type: "next" | "previous",
+  current: string
+) => {
+  const files = await listContentFiles();
+  try {
+    const index = files.indexOf(current.replace(".html", ".md"));
+    const newIndex = type === "next" ? index + 1 : index - 1;
+    return files[newIndex];
+  } catch (error) {}
+  return "";
+};
+
+export const getNextPreviousNav = async (file: string) => {
+  const next = await getNextPrevious("next", file);
+  let previous = await getNextPrevious("previous", file);
+  if (next === previous) previous = "";
+  return `<nav class="next-prev">${
+    previous
+      ? `<a href="/${previous.replace(
+          ".md",
+          ".html"
+        )}" class="prev">${await getTitle(
+          await readContentFile(previous),
+          false
+        )}</a>`
+      : ""
+  }${
+    next
+      ? `<a href="/${next.replace(
+          ".md",
+          ".html"
+        )}" class="next">${await getTitle(
+          await readContentFile(next),
+          false
+        )}</a>`
+      : ""
+  }
+  </nav>`;
+};

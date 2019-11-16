@@ -17,7 +17,8 @@ import {
   listDirs,
   getScriptPath,
   getBreadcrumbs,
-  getBreadcrumbsSchema
+  getBreadcrumbsSchema,
+  getNextPreviousNav
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -307,6 +308,7 @@ const generatePage = async (path: string, content: string) => {
   const breadcrumbs = (await getBreadcrumbs(path)) || "";
   const breadcrumbsSchema = (await getBreadcrumbsSchema(path)) || "";
   const template = compile(await getTemplate());
+  const nextPrevious = await getNextPreviousNav(path);
   const attributes = frontMatter<FrontMatter>(content).attributes;
   await registerPartials();
   const data: { [index: string]: any } = {
@@ -319,6 +321,8 @@ const generatePage = async (path: string, content: string) => {
         : breadcrumbs +
           "\n\n" +
           frontMatter(content).body +
+          "\n\n" +
+          nextPrevious +
           "\n\n" +
           breadcrumbsSchema,
     metaTitle:

@@ -313,6 +313,22 @@ img {
   border: 0;
 }
 
+.next-prev {
+  display: flex;
+  margin-top: 4rem;
+  margin-bottom: -2rem;
+  justify-content: space-between;
+  align-items: flex-end;
+  .next::after {
+    content: "›";
+    margin-left: 1rem;
+  }
+  .prev::before {
+    content: "‹";
+    margin-right: 1rem;
+  }
+}
+
 .dark {
   body {
     background-color: #000;

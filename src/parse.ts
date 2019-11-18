@@ -36,7 +36,7 @@ export const getTags = async () => {
   const config = await getConfig();
   const tagsSlug = config.tagsName || "tags";
   const allTags: {
-    [index: string]: string[];
+    [index: string]: Set<string>;
   } = {};
   const files = await listContentFiles();
   for await (const file of files) {
@@ -52,23 +52,29 @@ export const getTags = async () => {
       attributes.tags.forEach(tag => {
         if (typeof tag === "object") {
           Object.keys(tag).forEach(key => {
-            allTags[key] = allTags[key] || [];
-            allTags[key].push(tag[key]);
+            allTags[key] = allTags[key] || new Set();
+            allTags[key].add(tag[key]);
           });
         } else {
-          allTags[tagsSlug] = allTags[tagsSlug] || [];
-          allTags[tagsSlug].push(tag);
+          allTags[tagsSlug] = allTags[tagsSlug] || new Set();
+          allTags[tagsSlug].add(tag);
         }
       });
   }
-  return allTags;
+  const finalTags: {
+    [index: string]: string[];
+  } = {};
+  Object.keys(allTags).forEach(key => {
+    finalTags[key] = Array.from(allTags[key]);
+  });
+  return finalTags;
 };
 
 export const getFilesForTag = async (key: string, value: string) => {
   const files = await listContentFiles();
   const config = await getConfig();
   const tagsSlug = config.tagsName || "tags";
-  const result: string[] = [];
+  const result: Set<string> = new Set();
   for await (const file of files) {
     let has = false;
     const attributes = frontMatter(await readContentFile(file)).attributes as {
@@ -89,7 +95,7 @@ export const getFilesForTag = async (key: string, value: string) => {
           if (key === tagsSlug && value === tag) has = true;
         }
       });
-    if (has) result.push(file);
+    if (has) result.add(file);
   }
-  return result;
+  return Array.from(result);
 };

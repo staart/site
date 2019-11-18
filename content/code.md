@@ -2,7 +2,7 @@
 tags:
   - articles
   - programming
-  - city: new-delhi
+  - city: new-york
 ---
 
 # Code

@@ -280,6 +280,7 @@ const generateSitemap = async () => {
     );
   }
   const tags = await getTags();
+  console.log("Tags are", tags);
   for await (const key of Object.keys(tags)) {
     const values = tags[key];
     for await (const value of values) {

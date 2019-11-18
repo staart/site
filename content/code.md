@@ -1,3 +1,10 @@
+---
+tags:
+  - articles
+  - programming
+  - city: new-delhi
+---
+
 # Code
 
 This page shows and example of how code looks.

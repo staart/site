@@ -32,7 +32,7 @@ import {
 } from "./data";
 import { minify } from "html-minifier";
 import { render as scss } from "sass";
-import { removeHeading, getTitle } from "./parse";
+import { removeHeading, getTitle, getTags, getFilesForTag } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { StaartSiteConfig } from "./interfaces";
@@ -278,6 +278,14 @@ const generateSitemap = async () => {
         }
       )
     );
+  }
+  const tags = await getTags();
+  for await (const key of Object.keys(tags)) {
+    const values = tags[key];
+    for await (const value of values) {
+      const files = await getFilesForTag(key, value);
+      console.log("Files for", key, value, files);
+    }
   }
 };
 

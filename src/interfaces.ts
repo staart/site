@@ -12,6 +12,7 @@ export interface StaartSiteConfig {
   stylePath?: string;
   scriptPath?: string;
   homePath?: string;
+  tagsName?: string;
   redirectsPath?: string;
   hostname?: string;
   navbar?: string[];

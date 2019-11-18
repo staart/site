@@ -1,4 +1,5 @@
 {
   "title": "Staart Site",
-  "author": "[O15Y](https://o15y.com)"
+  "author": "[O15Y](https://o15y.com)",
+  "noDelayWithoutToken": "true"
 }

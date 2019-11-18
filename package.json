@@ -44,7 +44,7 @@
     "node-cache": "^5.0.1",
     "recursive-readdir": "^2.2.2",
     "remove-markdown": "^0.3.0",
-    "sass": "^1.23.3",
+    "sass": "^1.23.6",
     "signale": "^1.4.0",
     "sitemap": "^5.1.0",
     "truncate": "^2.1.0",

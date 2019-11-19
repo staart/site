@@ -42,6 +42,7 @@ import frontMatter from "front-matter";
 import removeMarkdown from "remove-markdown";
 import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
+import { unslugify } from "./util";
 
 export const getTemplate = async () => {
   let result = await cached<string>("template", async () => {
@@ -171,6 +172,51 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
   const files = (await listContentFiles()).filter(
     file => !["index.md", "sitemap.md"].includes(file)
   );
+  const allTags = await getTags();
+  const tags: typeof allTags = {};
+  Object.keys(allTags).forEach(tag => {
+    tags[tag] = allTags[tag];
+  });
+  for await (const key of Object.keys(tags)) {
+    const values = tags[key];
+    let content = "";
+    const valueLinks: string[] = [];
+    for await (const value of values) {
+      let title = "";
+      try {
+        title =
+          (await getTitle(await readContentFile(`tags/${key}/${value}.md`))) ||
+          unslugify(value);
+      } catch (error) {
+        title = unslugify(value);
+      }
+      valueLinks.push(`[${title}](/${key}/${value}.html)`);
+    }
+    const filesList = await getNavbar(valueLinks);
+    try {
+      const fileContent = await readContentFile(`tags/${key}/index.md`);
+      content = fileContent + "\n\n" + filesList;
+    } catch (error) {
+      content = `# ${unslugify(key)}
+
+${filesList}`;
+    }
+    await generatePage(`${key}/index.html`, content);
+    for await (const value of values) {
+      let content = "";
+      const files = await getFilesForTag(key, value);
+      const filesList = await getNavbar(files);
+      try {
+        const fileContent = await readContentFile(`tags/${key}/${value}.md`);
+        content = fileContent + "\n\n" + filesList;
+      } catch (error) {
+        content = `# ${unslugify(value)}
+
+${filesList}`;
+      }
+      await generatePage(`${key}/${value}.html`, content);
+    }
+  }
   for await (const file of files) {
     let content = await readContentFile(file);
     if (parse(file).name === "index" && !config.noContentList) {
@@ -181,7 +227,9 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
         content += "\n\n" + (await getNavbar(deepFiles));
       }
     }
-    await generatePage(file.replace(".md", ".html"), content);
+    if (!parse(file).dir.startsWith("tags/")) {
+      await generatePage(file.replace(".md", ".html"), content);
+    }
   }
   if (!config.noShieldSchema) {
     const schema = {
@@ -278,15 +326,6 @@ const generateSitemap = async () => {
         }
       )
     );
-  }
-  const tags = await getTags();
-  console.log("Tags are", tags);
-  for await (const key of Object.keys(tags)) {
-    const values = tags[key];
-    for await (const value of values) {
-      const files = await getFilesForTag(key, value);
-      console.log("Files for", key, value, files);
-    }
   }
 };
 

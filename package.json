@@ -36,7 +36,7 @@
     "front-matter": "^3.0.2",
     "fs-extra": "^8.1.0",
     "git-url-parse": "^11.1.2",
-    "handlebars": "^4.5.2",
+    "handlebars": "^4.5.3",
     "html-minifier": "^4.0.0",
     "live-server": "^1.2.1",
     "marked": "^0.7.0",

@@ -19,19 +19,27 @@ h4 {
   line-height: 1.2;
 }
 
-main,
-div {
+main#content,
+div.container {
   max-width: 720px;
   margin: auto;
   padding: 0 1.5rem;
 }
 
-main {
+main#content {
   margin: 7.5vh auto;
   font-size: 1.5rem;
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+  
+  li {
+    padding-left: 0.5rem;
+  }
 }
 
-header {
+header#masthead {
   text-align: center;
   .masthead {
     background-color: $theme-color;
@@ -82,14 +90,6 @@ header {
   }
 }
 
-li + li {
-  margin-top: 0.5rem;
-}
-
-li {
-  padding-left: 0.5rem;
-}
-
 a,
 h2,
 cite,
@@ -105,9 +105,9 @@ a {
   }
 }
 
-header a + a,
-footer span + span,
-footer ul + span {
+header#masthead a + a,
+footer#colophon span + span,
+footer#colophon ul + span {
   margin-left: 1.5rem;
 }
 
@@ -128,7 +128,7 @@ h3 {
   font-size: 85%;
 }
 
-footer {
+footer#colophon {
   text-align: center;
   margin-bottom: 5vh;
   line-height: 2.5;
@@ -234,20 +234,20 @@ img {
 }
 
 @media (max-width: 500px) {
-  main,
-  div {
+  main#content,
+  div.container {
     font-size: 1.25rem;
   }
-  header h1 {
+  header#masthead h1 {
     font-size: 2rem;
   }
-  footer div {
+  footer#colophon div.container {
     font-size: 1rem;
   }
-  header nav > div {
+  header#masthead nav > div.container {
     overflow-x: auto;
   }
-  header nav ul {
+  header#masthead nav ul {
     display: block;
     white-space: nowrap;
     li {
@@ -337,7 +337,7 @@ img {
     background-color: #000;
     color: rgba(255, 255, 255, 0.9);
   }
-  header {
+  header#masthead {
     nav {
       background-color: rgba(255, 255, 255, 0.075);
       color: #fff;
@@ -349,13 +349,13 @@ img {
   a,
   h2,
   cite,
-  footer {
+  footer#colophon {
     color: lighten($link-color, 10%);
   }
   h3 {
     color: rgba(255, 255, 255, 0.6);
   }
-  footer a, footer button {
+  footer#colophon a, footer#colophon button {
     color: lighten($link-color, 25%);
   }
   code {

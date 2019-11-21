@@ -1,12 +1,17 @@
 {{#if description }}<meta name="description" content="{{ description }}">{{/if}}
 {{#if description }}<meta itemprop="description" content="{{ description }}">{{/if}}
-{{#if seoImage }}<meta itemprop="image" content="{{{ seoImage }}}">{{/if}}
 {{#if twitterPublisher }}<meta name="twitter:site" content="@{{ twitterPublisher }}">{{/if}}
 {{#if description }}<meta name="twitter:description" content="{{ description }}">{{/if}}
 {{#if twitterCreator }}<meta name="twitter:creator" content="@{{ twitterCreator }}">{{/if}}
-{{#if seoImage }}<meta name="twitter:image:src" content="{{{ seoImage }}}">{{/if}}
 {{#if canonical }}<meta property="og:url" content="{{{ canonical }}}">{{/if}}
+
+{{#if seoImage }}<meta name="twitter:image:src" content="{{{ seoImage }}}">{{/if}}
+{{#if seoImage }}<meta itemprop="image" content="{{{ seoImage }}}">{{/if}}
 {{#if seoImage }}<meta property="og:image" content="{{{ seoImage }}}">{{/if}}
+{{#if assets_smo_png}}<meta name="twitter:image:src" content="/assets/smo.png">{{/if}}
+{{#if assets_smo_png}}<meta itemprop="image" content="/assets/smo.png">{{/if}}
+{{#if assets_smo_png}}<meta property="og:image" content="/assets/smo.png">{{/if}}
+
 {{#if seoImageWidth }}<meta property="og:image:width" content="{{{ seoImageWidth }}}">{{/if}}
 {{#if seoImageHeight }}<meta property="og:image:height" content="{{{ seoImageHeight }}}">{{/if}}
 {{#if description }}<meta property="og:description" content="{{ description }}">{{/if}}

@@ -24,3 +24,6 @@
     {{#if assets_icon-dark_png}},"logo": "{{{ canonical }}}/assets/icon-dark.png"{{/if}}
   }
 </script>
+{{#each scripts}}
+<script src="{{ this }}"></script>
+{{/each}}

@@ -23,3 +23,6 @@
 <meta name="twitter:title" content="{{ metaTitle }}">
 <meta property="og:title" content="{{ metaTitle }}">
 {{>seo}}
+{{#each stylesheets}}
+<link rel="stylesheet" href="{{ this }}" />
+{{/each}}

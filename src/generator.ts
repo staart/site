@@ -331,27 +331,30 @@ const generateSitemap = async () => {
 
 const generatePage = async (path: string, content: string) => {
   const config = await getConfig();
-  const lastCommit = await getLastCommit(path);
-  if (!config.noLastModified) {
-    const githubUrl = await getGitHubRepoUrl();
-    if (lastCommit && lastCommit.author && lastCommit.commit)
-      content += `\n\n<p class="post-footer">This page was last modified in <a href="${
-        lastCommit.html_url
-      }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${
-        lastCommit.author.html_url
-      }" target="_blank">${
-        lastCommit.commit.author.name
-      }</a> on <time datetime="${lastCommit.commit.author.date}">${new Date(
-        lastCommit.commit.author.date
-      ).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      })}</time>. <a href="${
-        githubUrl
-          ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
-          : ""
-      }"  target="_blank">Edit on GitHub</a></p>`;
+  let lastCommit;
+  if (process.env.NODE_ENV === "production") {
+    lastCommit = await getLastCommit(path);
+    if (!config.noLastModified) {
+      const githubUrl = await getGitHubRepoUrl();
+      if (lastCommit && lastCommit.author && lastCommit.commit)
+        content += `\n\n<p class="post-footer">This page was last modified in <a href="${
+          lastCommit.html_url
+        }" target="_blank">${lastCommit.sha.substr(0, 6)}</a> by <a href="${
+          lastCommit.author.html_url
+        }" target="_blank">${
+          lastCommit.commit.author.name
+        }</a> on <time datetime="${lastCommit.commit.author.date}">${new Date(
+          lastCommit.commit.author.date
+        ).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        })}</time>. <a href="${
+          githubUrl
+            ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
+            : ""
+        }"  target="_blank">Edit on GitHub</a></p>`;
+    }
   }
   const breadcrumbs = (await getBreadcrumbs(path)) || "";
   const breadcrumbsSchema = (await getBreadcrumbsSchema(path)) || "";
@@ -393,19 +396,21 @@ const generatePage = async (path: string, content: string) => {
       200
     )
   };
-  try {
-    if (
-      lastCommit &&
-      lastCommit.firstCommit &&
-      lastCommit.firstCommit.commit &&
-      lastCommit.firstCommit.author
-    ) {
-      data.publishedTime = lastCommit.firstCommit.commit.author.date;
-    }
-    if (lastCommit && lastCommit.commit && lastCommit.author) {
-      data.modifiedTime = lastCommit.commit.author.date;
-    }
-  } catch (error) {}
+  if (process.env.NODE_ENV) {
+    try {
+      if (
+        lastCommit &&
+        lastCommit.firstCommit &&
+        lastCommit.firstCommit.commit &&
+        lastCommit.firstCommit.author
+      ) {
+        data.publishedTime = lastCommit.firstCommit.commit.author.date;
+      }
+      if (lastCommit && lastCommit.commit && lastCommit.author) {
+        data.modifiedTime = lastCommit.commit.author.date;
+      }
+    } catch (error) {}
+  }
   for await (const key of Object.keys(data)) {
     if (
       typeof data[key] === "string" &&

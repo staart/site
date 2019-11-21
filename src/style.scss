@@ -303,7 +303,10 @@ img {
   opacity: 0.5;
 }
 .external-link span:last-child {
-  position: absolute;
+  position: fixed;
+  z-index: -1;
+  left: -10%;
+  top: -10%;
   width: 1px;
   height: 1px;
   padding: 0;

@@ -23,7 +23,8 @@ export const getSiteMeta = async (
   return "";
 };
 
-export const getNavbar = async (files?: string[]) => {
+export const getNavbar = async (files?: string[], addSearch = false) => {
+  const config = await getConfig();
   if (!files)
     files = (await listRootFiles())
       .sort((a, b) => a.localeCompare(b))
@@ -38,6 +39,8 @@ export const getNavbar = async (files?: string[]) => {
       data += `- [${title}](/${file.replace(".md", ".html")})\n`;
     }
   }
+  if (addSearch && config.algoliaApiKey)
+    data += `<li class="search-li"><label for="docsSearch" class="sr-only">Search</label><input placeholder="Search docs..." type="search" class="docs-search" id="docsSearch"></li>`;
   return data;
 };
 
@@ -48,7 +51,7 @@ export const getData = async () => {
     if (config._gitRepo)
       config.data.githubUrl = `[open source](https://${config._gitRepo.resource}/${config._gitRepo.full_name})`;
     config.data.rootFiles = await getNavbar();
-    config.data.navBar = await getNavbar(config.navbar);
+    config.data.navBar = await getNavbar(config.navbar, true);
     config.data.footerNavBar = await getNavbar(config.footerNavbar || []);
     if (!config.ignoreReplaceTitle)
       config.data.title = await getSiteMeta("title", "name");

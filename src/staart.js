@@ -74,3 +74,23 @@ for (let i = 0; allLinks.length > i; i++) {
     link.innerHTML = link.innerHTML + "<span> (opens in new window)</span>";
   }
 }
+
+var docsSearch = document.querySelector("input.docs-search");
+if (docsSearch) {
+  function updateDocsSearch(has) {
+    try {
+      var parent = docsSearch.parentElement.parentElement.parentElement;
+      if (has) {
+        parent.classList.add("has-focus");
+      } else {
+        parent.classList.remove("has-focus");
+      }
+    } catch (error) {}
+  }
+  docsSearch.addEventListener("focus", function() {
+    updateDocsSearch(true);
+  });
+  docsSearch.addEventListener("blur", function() {
+    updateDocsSearch(false);
+  });
+}

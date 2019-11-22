@@ -42,6 +42,7 @@ main#content {
 
 header#masthead {
   text-align: center;
+
   .masthead {
     background-color: $theme-color;
     color: $light-color;
@@ -66,10 +67,55 @@ header#masthead {
       padding: 1rem 0;
       display: block;
     }
+    .search-li {
+      display: flex;
+    }
+    input.docs-search {
+      color: $text-color;
+      background-color: transparent;
+      font: inherit;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      appearance: none;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTI3IDEyMGwtNyA3aC02TDgwIDkzYy05IDUtMTggOS0yOSA5YTUxIDUxIDAgMTE0Mi0yMmwzNCAzNHY2ek01MSA4M2EzMiAzMiAwIDEwMC02NSAzMiAzMiAwIDAwMCA2NXoiIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==");
+      border: none;
+      height: 100%;
+      background-position: center center;
+      background-size: auto 40%;
+      background-repeat: no-repeat;
+      width: 5rem;
+      &::placeholder {
+        color: transparent;
+      }
+    }
+    .has-focus {
+      justify-content: start;
+      li:not(:last-child) {
+        display: none;
+      }
+      .search-li {
+        flex: 1 0 0;
+        span {
+          display: block;
+          width: 100%;
+        }
+        input.docs-search {
+          padding: 1rem;
+        }
+      }
+      input.docs-search {
+        width: 100%;
+        background-size: 0% 0% !important;
+        &::placeholder {
+          color: $text-color;
+        }
+      }
+    }
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
+      flex: 1 0 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -254,9 +300,17 @@ img {
   header#masthead nav ul {
     display: block;
     white-space: nowrap;
-    li {
+    input.docs-search {
+      background-size: contain;
+    }
+    li, .search-li {
       display: inline-block;
       margin-right: 1.25rem;
+    }
+    &.has-focus {
+      li, .search-li {
+        margin-right: 0;
+      }
     }
   }
 }

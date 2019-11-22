@@ -12,6 +12,10 @@
   <nav>
     <div class="container">
       {{{ navBar }}}
+      {{#if algoliaApiKey}}
+        <label for="docsSearch" class="sr-only">Search</label>
+        <input type="search" class="docs-search" id="docsSearch">
+      {{/if}}
     </div>
   </nav>
 </header>

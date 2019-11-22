@@ -27,3 +27,13 @@
 {{#each scripts}}
 <script src="{{ this }}"></script>
 {{/each}}
+{{#if algoliaApiKey}}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript">
+    docsearch({
+      apiKey: "{{ algoliaApiKey }}",
+      indexName: "{{ algoliaIndex }}",
+      inputSelector: "#docsSearch",
+    });
+  </script>
+{{/if}}

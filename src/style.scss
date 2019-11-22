@@ -306,7 +306,7 @@ img {
   margin-right: 0.1em;
   opacity: 0.5;
 }
-.external-link span:last-child {
+.external-link span:last-child, .sr-only {
   position: fixed;
   z-index: -1;
   left: -10%;

@@ -6,6 +6,7 @@ import { cached } from "./cache";
 import { FrontMatter } from "./interfaces";
 import frontMatter from "front-matter";
 import { getTitle } from "./parse";
+import { getSiteContent } from "./content";
 
 export const getContentPath = async () => {
   const config = await getConfig();
@@ -223,29 +224,34 @@ export const getBreadcrumbsSchema = async (file: string) => {
 };
 
 export const getNextPrevious = async (
-  type: "next" | "previous",
+  type: "next" | "prev",
   current: string
 ) => {
-  const files = await listContentFiles();
-  try {
-    const index = files.indexOf(current.replace(".html", ".md"));
-    const newIndex = type === "next" ? index + 1 : index - 1;
-    return files[newIndex];
-  } catch (error) {}
-  return "";
+  return cached<string>(`next-prev-${type}-${current}`, async () => {
+    const allContent = await getSiteContent();
+    const currentFile = allContent.filter(f => f.htmlPath === current);
+    if (!currentFile.length) return "";
+    if (type === "next") {
+      const next = currentFile[0].next;
+      if (next) return next || "";
+    } else {
+      const prev = currentFile[0].prev;
+      if (prev) return prev || "";
+    }
+    return "";
+  });
 };
 
 export const getNextPreviousNav = async (file: string) => {
   const next = await getNextPrevious("next", file);
-  let previous = await getNextPrevious("previous", file);
-  if (next === previous) previous = "";
+  const prev = await getNextPrevious("prev", file);
   return `<nav class="next-prev">${
-    previous
-      ? `<a href="/${previous.replace(
+    prev
+      ? `<a href="/${prev.replace(
           ".md",
           ".html"
         )}" class="prev">${await getTitle(
-          await readContentFile(previous),
+          await readContentFile(prev),
           false
         )}</a>`
       : ""

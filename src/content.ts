@@ -21,8 +21,8 @@ interface IFile {
   attributes: FrontMatter;
   fullTitle: string;
   breadcrumbs: string[];
-  prev?: IFile;
-  next?: IFile;
+  prev?: string;
+  next?: string;
 }
 
 const getExcerpt = (content: string) => {
@@ -87,12 +87,6 @@ const getFileInfo = async (file: string): Promise<IFile> => {
   // });
 };
 
-const safeInfo = (info: IFile) => {
-  delete info.prev;
-  delete info.next;
-  return info;
-};
-
 export const getSiteContent = async () => {
   return cached<IFile[]>("all-content", async () => {
     const content: IFile[] = [];
@@ -110,10 +104,10 @@ export const getSiteContent = async () => {
       .sort((a, b) => a.localeCompare(b))
       .map(file => file.replace(INIT_ZEROS, ""));
     for await (const file of sorted) content.push(await getFileInfo(file));
-    for (let i = 1; i < content.length; i++) {
-      content[i].prev = safeInfo(content[i - 1]);
-      if (i !== content.length - 1) content[i].next = safeInfo(content[i + 1]);
-    }
+    for (let k = 0; k < content.length; k++)
+      if (k !== 0) content[k].prev = { ...content[k - 1] }.file;
+    for (let j = 0; j < content.length; j++)
+      if (j < content.length - 1) content[j].next = { ...content[j + 1] }.file;
     return content;
   });
 };

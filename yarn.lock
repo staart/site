@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@blakeembrey/deque/-/deque-1.0.5.tgz#f4fa17fc5ee18317ec01a763d355782c7b395eaf"
   integrity sha512-6xnwtvp9DY1EINIKdTfvfeAtCYw4OqBZJhtiqkT3ivjnEfa25VQ3TsKvaFfKm8MyGIEfE95qLe+bNEt3nB0Ylg==
 
-"@gitmoji-changelog/core@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/core/-/core-2.0.0.tgz#fe8b7163bbaf880c44bb00d5e880776af7336d8e"
-  integrity sha512-M4veG5ZxIEYrDsVq6pc7O4NSUoJbkyzzTzsdu9PLDmLBvOB6eGk9rQ5o6/KIbOeX18Av0sjjQWKzAkAYj1xyMQ==
+"@gitmoji-changelog/core@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/core/-/core-2.0.1.tgz#2ecc86c254528b7f7cbe0f889e85505a8f8067dd"
+  integrity sha512-v9LrGpcFaYTVLutzZB8NrCYiTmckxEYswxvFqZ3YxwgSPx5TabA5a+kU0IJ6fpu31tOAFCejaTUjwlyUhV+Atw==
   dependencies:
     concat-stream "^1.6.2"
     fast-levenshtein "^2.0.6"
@@ -51,10 +51,10 @@
     split-lines "^2.0.0"
     through2 "^2.0.3"
 
-"@gitmoji-changelog/markdown@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/markdown/-/markdown-2.0.0.tgz#a81f5d8b9a3bf5a4205ba0553a889c2f0def6f5e"
-  integrity sha512-6sBL7VicobFFTGF5MoZgjlDqmkUdvyKC2EzDlUOeBhTWyEOL99wcC6/GB2y7mTPkMFgU3h2ge6JtNkmr0sH/Ug==
+"@gitmoji-changelog/markdown@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@gitmoji-changelog/markdown/-/markdown-2.0.1.tgz#02853f91c3591fc06bba0b6773d48d66ed2f3174"
+  integrity sha512-P9QWSpwqfmXumF68CeGFvc3wM5vy4hGtfXD2E6Mjo+u2Gs+78n5DjrjwlKTV6wA9DWlOfKJg+YxFb4syQh+WHw==
   dependencies:
     git-semver-tags "^2.0.0"
     handlebars "^4.0.14"
@@ -1773,13 +1773,13 @@ github-url-to-object@^3.0.0:
   dependencies:
     is-url "^1.1.0"
 
-gitmoji-changelog@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/gitmoji-changelog/-/gitmoji-changelog-2.0.0.tgz#812b6b2663b44049011b21d5c2fc2e09a43d51d7"
-  integrity sha512-N0fDuuIEE1/8CwChy1nvaEHezCybxkMg/OW4eJVwwePem1vGBlfyn+YrmUejjenPNQPVZ20+en4pQVj8JbAF+Q==
+gitmoji-changelog@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/gitmoji-changelog/-/gitmoji-changelog-2.0.1.tgz#f2d12ee9dce19648fe4fc437779a5db97c57908b"
+  integrity sha512-w6fLIuHtsLOpCYGfVFFqMfkI0Uil+QB+NsmEt+9VobEgjqchUkJ8x5+2J01uDy2Irjhgf5F6rxNP2ertoke/Jw==
   dependencies:
-    "@gitmoji-changelog/core" "^2.0.0"
-    "@gitmoji-changelog/markdown" "^2.0.0"
+    "@gitmoji-changelog/core" "^2.0.1"
+    "@gitmoji-changelog/markdown" "^2.0.1"
     hosted-git-info "^3.0.2"
     immutadot "^1.0.0"
     inquirer "^6.3.1"

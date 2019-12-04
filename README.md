@@ -61,52 +61,12 @@ generate({ /* options */ })
 - [Static files](https://staart.js.org/site/static-files.html)
 - [Updating Staart Site](https://staart.js.org/site/update.html)
 
-## 🛠️ Configuration
-
-You can create a `.staartrc` file or another [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)-compatible configuration file, like `staart.config.js` or the `staart` key in `package.json`. You can also supply these options as an object parameter to the `generate` function.
-
-| Option | Description | Default |
-| ------ | ----------- | ------- |
-| `title` | Name of the site | `Staart Site` |
-| `repo` | URL to git repository | `repository` key in `package.json` |
-| `contentDir` | Folder with markdown content | `./content` |
-| `distDir` | Output directory | `./public` |
-| `assetsDir` | Static assets directory | `./assets` |
-| `templatePath` | HTML template file path | `./index.html` |
-| `stylePath` | Scss stylesheet path | `style.scss` |
-| `homePath` | Markdown file path for homepage | `README.md` |
-| `hostname` | Base URL for sitemap | `http://localhost:8080` |
-| `themeColor` | Main theme color | `#0e632c` |
-| `textColor` | Dark text color | `#001b01` |
-| `linkColor` | Hyperlink color | `#0e632c` |
-| `lightColor` | Light text color | `#ffffff` |
-| `navbar` | Array of filenames for navbar | Root files/folders in `contentDir` |
-| `footerNavbar` | Array of filenames for footer | `[]` |
-| `contentFileExt` | File extension for content files | `md` |
-| `keepHomeHeading` | Show `h1` heading on homepage | `false` |
-| `ignoreReplaceTitle` | Don't update `<title>` from `title` | `false` |
-| `ignoreReplaceDescription` | Don't update meta description | `false` |
-| `ignoreReplaceAuthor` | Don't update footer author | `false` |
-| `ignoreReplaceYear` | Don't update copyright year | `false` |
-| `noHome` | Don't generate `index.html` | `false` |
-| `noSitemap` | Don't generate sitemaps | `false` |
-| `noContentList` | Don't add content lists | `false` |
-| `noDelayWithoutToken` | Don't delay GitHub API requests | `false` |
-| `noLastModified` | Don't add last modified commit info | `false` |
-| `noGenerator` | Don't add meta generator tag | `false` |
-| `noSyntaxHighlighting` | Disable code syntax highlighting | `false` |
-| `noShieldSchema` | Don't generate Shields schema | `false` |
-| `noFontCdn` | Don't add Google Fonts CDN | `false` |
-| `shieldSchemaLabel` | Label text for Shields schema | `docs` |
-| `shieldSchemaColor` | Badge color in Shields schema | `blueviolet` |
-
-Staart Site also uses the `repository` and `author` fields for copyright/last modified information, but you can overwrite them using the configuration above.
-
 ## 🏗️ Built with Staart Site
 
 - [Accessibility Guidelines](https://accessibilityguidelines.com)
 - [O15Y](https://o15y.com)
 - [Staart.js.org](https://staart.js.org)
+- [Uppload](https://uppload.js.org)
 - **[Add your Staart Site](https://github.com/staart/site/edit/master/README.md)**
 
 

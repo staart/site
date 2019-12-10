@@ -94,3 +94,13 @@ if (docsSearch) {
     updateDocsSearch(false);
   });
 }
+
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (error) {
+    return true;
+  }
+}
+
+if (inIframe()) document.body.classList.add("iframed");

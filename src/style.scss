@@ -427,3 +427,11 @@ img {
     background-image: url("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTc2IDUxMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQ0OCAyNzl2MTg1YzAgMjctMjEgNDgtNDggNDhINDhjLTI3IDAtNDgtMjEtNDgtNDhWMTEyYzAtMjcgMjEtNDggNDgtNDhoMjQ4YTI0IDI0IDAgMDExNyA3bDE2IDE2YzE1IDE1IDQgNDEtMTcgNDFINjR2MzIwaDMyMFYyOTVjMC02IDMtMTIgNy0xN2wxNi0xNmMxNS0xNSA0MS00IDQxIDE3ek01NzYgMzdjMC0yMC0xNy0zNy0zNy0zN0gzODBjLTE1IDAtMjggMTMtMjggMjh2MThjMCAxNiAxMyAyOCAyOSAyOGw2Ny0yLTI0OSAyNDdjLTkgOS05IDI1IDAgMzRsMjQgMjRjOSA5IDI1IDkgMzQgMGwyNDctMjQ5LTIgNjdjMCAxNiAxMiAyOSAyOCAyOWgxOGMxNSAwIDI4LTEzIDI4LTI4VjM3eiIvPjwvc3ZnPg==");
   }
 }
+
+.iframed {
+  header#masthead,
+  footer#colophon,
+  nav.next-prev {
+    display: none;
+  }
+}

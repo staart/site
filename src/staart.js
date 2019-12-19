@@ -1,10 +1,3 @@
-if (
-  (window.matchMedia("(prefers-color-scheme: dark)") ||
-    localStorage.getItem("theme") === "dark") &&
-  localStorage.getItem("theme") !== "light"
-)
-  document.documentElement.classList.add("dark");
-
 function updateStorage() {
   localStorage.setItem(
     "theme",

@@ -7,6 +7,7 @@ import { FrontMatter } from "./interfaces";
 import frontMatter from "front-matter";
 import { getTitle } from "./parse";
 import { getSiteContent } from "./content";
+import { filePathtoUrl } from "./helpers";
 
 export const getContentPath = async () => {
   const config = await getConfig();
@@ -176,9 +177,7 @@ export const getBreadcrumbs = async (file: string) => {
       if (crumb === "index.md") continue;
       const content = await readContentFile(crumb);
       const title = await getTitle(content, false);
-      breadcrumbs.push(
-        `<a href="/${crumb.replace(".md", ".html")}">${title}</a>`
-      );
+      breadcrumbs.push(`<a href="/${await filePathtoUrl(crumb)}">${title}</a>`);
     } catch (error) {}
   }
   if (!breadcrumbs.length || breadcrumbs.length === 1) return;
@@ -205,7 +204,7 @@ export const getBreadcrumbsSchema = async (file: string) => {
         "@type": "ListItem",
         "position": ${position},
         "item": {
-          "@id": "/${crumb.replace(".md", ".html")}",
+          "@id": "/${await filePathtoUrl(crumb)}",
           "name": "${title}"
         }
       }`);
@@ -248,20 +247,14 @@ export const getNextPreviousNav = async (file: string) => {
   const prev = await getNextPrevious("prev", file);
   return `<nav class="next-prev">${
     prev
-      ? `<a href="/${prev.replace(
-          ".md",
-          ".html"
-        )}" class="prev">${await getTitle(
+      ? `<a href="/${await filePathtoUrl(prev)}" class="prev">${await getTitle(
           await readContentFile(prev),
           false
         )}</a>`
       : ""
   }${
     next
-      ? `<a href="/${next.replace(
-          ".md",
-          ".html"
-        )}" class="next">${await getTitle(
+      ? `<a href="/${await filePathtoUrl(next)}" class="next">${await getTitle(
           await readContentFile(next),
           false
         )}</a>`

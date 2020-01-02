@@ -44,6 +44,7 @@ import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
 import { unslugify } from "./util";
 import { getAboutAuthor, listAuthorFiles } from "./content";
+import { filePathtoUrl } from "./helpers";
 
 export const getTemplate = async () => {
   let result = await cached<string>("template", async () => {
@@ -191,7 +192,9 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
       } catch (error) {
         title = unslugify(value);
       }
-      valueLinks.push(`[${title}](/${key}/${value}.html)`);
+      valueLinks.push(
+        `[${title}](${await filePathtoUrl(`/${key}/${value}.md`)})`
+      );
     }
     const filesList = await getNavbar(valueLinks);
     try {
@@ -229,7 +232,7 @@ ${filesList}`;
       }
     }
     if (!parse(file).dir.startsWith("tags/")) {
-      await generatePage(file.replace(".md", ".html"), content);
+      await generatePage(await filePathtoUrl(file), content);
     }
   }
   if (!config.noShieldSchema) {
@@ -279,8 +282,8 @@ ${filesList}`;
   const userFiles = await listContentFiles("@");
   for await (const file of userFiles) {
     await copyFile(
-      join(await getDistPath(), `@/${file.replace(".md", ".html")}`),
-      join(await getDistPath(), `@${file.replace(".md", ".html")}`)
+      join(await getDistPath(), `@/${await filePathtoUrl(file)}`),
+      join(await getDistPath(), `@${await filePathtoUrl(file)}`)
     );
   }
   await copyAssets();
@@ -294,9 +297,9 @@ const generateSitemap = async () => {
   const sitemap = new SitemapStream({
     hostname: config.hostname || "http://localhost:8080"
   });
-  files.forEach(file => {
-    sitemap.write(file.replace(".md", ".html"));
-  });
+  for await (const file of files) {
+    sitemap.write(await filePathtoUrl(file));
+  }
   sitemap.end();
   await writeFile(
     join(await getDistPath(), "sitemap.xml"),

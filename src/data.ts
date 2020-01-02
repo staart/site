@@ -11,6 +11,7 @@ import {
 import { cached } from "./cache";
 import recursiveReadDir = require("recursive-readdir");
 import { join } from "path";
+import { filePathtoUrl } from "./helpers";
 
 export const getSiteMeta = async (
   configKey: string,
@@ -36,7 +37,7 @@ export const getNavbar = async (files?: string[], addSearch = false) => {
     } else {
       const md = await readContentFile(file);
       const title = await getTitle(md);
-      data += `- [${title}](/${file.replace(".md", ".html")})\n`;
+      data += `- [${title}](/${await filePathtoUrl(file)})\n`;
     }
   }
   if (addSearch && config.algoliaApiKey)

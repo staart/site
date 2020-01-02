@@ -11,6 +11,7 @@ import { cached } from "./cache";
 import { parse } from "path";
 import icons from "./icons";
 import { getNavbar } from "./data";
+import { filePathtoUrl } from "./helpers";
 
 const INIT_ZEROS = "00000000";
 
@@ -75,7 +76,7 @@ const getFileInfo = async (file: string): Promise<IFile> => {
     ? `${title} ${siteTitleSeparator} ${siteTitle}`
     : siteTitle;
   const breadcrumbs = await getBreadcrumbsList(file);
-  const htmlPath = file.replace(".md", ".html");
+  const htmlPath = await filePathtoUrl(file);
   return {
     file,
     htmlPath,
@@ -189,9 +190,9 @@ export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
       .join("")}</nav>`;
   return `<div class="byline">
   ${await getAuthorImage(aboutAuthor.attributes)}
-  <address class="author"><a rel="author" href="/@${author}.html">${
-    aboutAuthor.name
-  }</a></address>
+  <address class="author"><a rel="author" href="${await filePathtoUrl(
+    `/@${author}.md`
+  )}">${aboutAuthor.name}</a></address>
   <p>${aboutAuthor.about}</p>
   <nav class="byline-social">${Object.keys(icons)
     .map(i => linkify(aboutAuthor.attributes, i))

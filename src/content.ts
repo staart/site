@@ -130,14 +130,15 @@ export const getAboutAuthor = async (author?: string) => {
       const content = await readContentFile(`@/${author}.md`);
       const name = (await getTitle(content)) || "";
       const fm = frontMatter(content);
-      const about = await removeHeading(fm.body);
+      const about = getExcerpt(await removeHeading(fm.body));
       const attributes = fm.attributes;
       return { name, about, attributes };
     } catch (error) {}
   });
   if (!aboutAuthor) return "";
   return `<div class="byline">
-  <address class="author">By <a rel="author" href="/@${author}">${
+  <img alt="" src="https://unavatar.now.sh/twitter/kikobeats">
+  <address class="author"><a rel="author" href="/@${author}.html">${
     aboutAuthor.name
   }</a></address>
   <p>${aboutAuthor.about}</p>

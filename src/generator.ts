@@ -43,6 +43,7 @@ import removeMarkdown from "remove-markdown";
 import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
 import { unslugify } from "./util";
+import { getAboutAuthor } from "./content";
 
 export const getTemplate = async () => {
   let result = await cached<string>("template", async () => {
@@ -361,6 +362,9 @@ const generatePage = async (path: string, content: string) => {
   const template = compile(await getTemplate());
   const nextPrevious = await getNextPreviousNav(path);
   const attributes = frontMatter<FrontMatter>(content).attributes;
+  attributes.postAuthor = attributes.author;
+  delete attributes.author;
+  const aboutAuthor = await getAboutAuthor(attributes.postAuthor);
   await registerPartials();
   const data: { [index: string]: any } = {
     ...(await getData()),
@@ -373,6 +377,7 @@ const generatePage = async (path: string, content: string) => {
           "\n\n" +
           frontMatter(content).body +
           "\n\n" +
+          (!config.noAboutAuthor ? aboutAuthor + "\n\n" : "") +
           nextPrevious +
           "\n\n" +
           breadcrumbsSchema,

@@ -3,7 +3,7 @@ import marked from "marked";
 import truncate from "truncate";
 import { listContentFiles, readContentFile } from "./files";
 import { FrontMatter } from "./interfaces";
-import { getTitle } from "./parse";
+import { getTitle, removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { cached } from "./cache";
 import { parse } from "path";
@@ -110,4 +110,39 @@ export const getSiteContent = async () => {
       if (j < content.length - 1) content[j].next = { ...content[j + 1] }.file;
     return content;
   });
+};
+
+const linkify = (attributes: { [index: string]: string }, key: string) =>
+  attributes[key]
+    ? `<a aria-label="${key}" href="https://${key}.com/${attributes[key]}">${key}</a>\n`
+    : "";
+
+export const getAboutAuthor = async (author?: string) => {
+  if (!author) return "";
+  const aboutAuthor = await cached<{
+    name: string;
+    about: string;
+    attributes: {
+      facebook: string;
+    };
+  }>(`author-${author}`, async () => {
+    try {
+      const content = await readContentFile(`@/${author}.md`);
+      const name = (await getTitle(content)) || "";
+      const fm = frontMatter(content);
+      const about = await removeHeading(fm.body);
+      const attributes = fm.attributes;
+      return { name, about, attributes };
+    } catch (error) {}
+  });
+  if (!aboutAuthor) return "";
+  return `<div class="byline">
+  <address class="author">By <a rel="author" href="/@${author}">${
+    aboutAuthor.name
+  }</a></address>
+  <p>${aboutAuthor.about}</p>
+  <nav>${["facebook", "twitter", "linkedin", "github"]
+    .map(i => linkify(aboutAuthor.attributes, i))
+    .join("")}</nav>
+</div>`;
 };

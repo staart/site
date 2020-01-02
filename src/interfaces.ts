@@ -36,6 +36,7 @@ export interface StaartSiteConfig {
   noSyntaxHighlighting?: boolean;
   noShieldSchema?: boolean;
   noBreadcrumbd?: boolean;
+  noAboutAuthor?: boolean;
   noFontCdn?: boolean;
   shieldSchemaLabel?: string;
   shieldSchemaColor?: string;

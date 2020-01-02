@@ -13,8 +13,8 @@ export interface StaartSiteConfig {
   scriptPath?: string;
   homePath?: string;
   tagsName?: string;
+  baseUrl?: string;
   redirectsPath?: string;
-  hostname?: string;
   navbar?: string[];
   footerNavbar?: string[];
   contentFileExt?: string[];
@@ -31,6 +31,7 @@ export interface StaartSiteConfig {
   textColor?: string;
   linkColor?: string;
   lightColor?: string;
+  fancyLinks?: boolean;
   noLastModified?: boolean;
   noGenerator?: boolean;
   noSyntaxHighlighting?: boolean;

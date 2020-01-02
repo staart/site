@@ -193,7 +193,7 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
         title = unslugify(value);
       }
       valueLinks.push(
-        `[${title}](${await filePathtoUrl(`/${key}/${value}.md`)})`
+        `[${title}](${await filePathtoUrl(`${key}/${value}.md`)})`
       );
     }
     const filesList = await getNavbar(valueLinks);
@@ -232,7 +232,7 @@ ${filesList}`;
       }
     }
     if (!parse(file).dir.startsWith("tags/")) {
-      await generatePage(await filePathtoUrl(file), content);
+      await generatePage(file.replace(".md", ".html"), content);
     }
   }
   if (!config.noShieldSchema) {
@@ -282,8 +282,8 @@ ${filesList}`;
   const userFiles = await listContentFiles("@");
   for await (const file of userFiles) {
     await copyFile(
-      join(await getDistPath(), `@/${await filePathtoUrl(file)}`),
-      join(await getDistPath(), `@${await filePathtoUrl(file)}`)
+      join(await getDistPath(), `@/${file.replace(".md", ".html")}`),
+      join(await getDistPath(), `@${file.replace(".md", ".html")}`)
     );
   }
   await copyAssets();
@@ -295,10 +295,12 @@ const generateSitemap = async () => {
   let content = (await getSitemapContent()) + "\n\n" + (await getNavbar(files));
   await generatePage("sitemap.html", content);
   const sitemap = new SitemapStream({
-    hostname: config.hostname || "http://localhost:8080"
+    hostname: config.baseUrl || "http://localhost:8080"
   });
   for await (const file of files) {
-    sitemap.write(await filePathtoUrl(file));
+    let newFile = file;
+    if (file.startsWith("@")) newFile = file.replace("@/", "@");
+    sitemap.write(newFile.replace(".md", ".html"));
   }
   sitemap.end();
   await writeFile(

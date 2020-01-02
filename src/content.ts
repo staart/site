@@ -191,7 +191,7 @@ export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
   return `<div class="byline">
   ${await getAuthorImage(aboutAuthor.attributes)}
   <address class="author"><a rel="author" href="${await filePathtoUrl(
-    `/@${author}.md`
+    `@${author}.md`
   )}">${aboutAuthor.name}</a></address>
   <p>${aboutAuthor.about}</p>
   <nav class="byline-social">${Object.keys(icons)

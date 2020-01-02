@@ -4,5 +4,7 @@
   "noDelayWithoutToken": "true",
   "algoliaApiKey": "e4fc84ee7abe50d5e67ce42f91235da4",
   "algoliaIndex": "staart",
-  "noIndex": true
+  "noIndex": true,
+  "fancyLinks": true,
+  "baseUrl": "https://example.com"
 }

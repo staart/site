@@ -37,7 +37,7 @@ export const getNavbar = async (files?: string[], addSearch = false) => {
     } else {
       const md = await readContentFile(file);
       const title = await getTitle(md);
-      data += `- [${title}](/${await filePathtoUrl(file)})\n`;
+      data += `- [${title}](${await filePathtoUrl(file)})\n`;
     }
   }
   if (addSearch && config.algoliaApiKey)

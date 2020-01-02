@@ -4,7 +4,8 @@ import {
   writeFile,
   ensureFile,
   copyFile,
-  copy
+  copy,
+  remove
 } from "fs-extra";
 import {
   getDistPath,
@@ -287,6 +288,7 @@ ${filesList}`;
         join(await getDistPath(), `@${file.replace(".md", ".html")}`)
       );
     }
+    await remove(join(await getDistPath(), "@"));
   } catch (error) {}
   await copyAssets();
 };

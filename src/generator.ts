@@ -43,7 +43,7 @@ import removeMarkdown from "remove-markdown";
 import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
 import { unslugify } from "./util";
-import { getAboutAuthor } from "./content";
+import { getAboutAuthor, listAuthorFiles } from "./content";
 
 export const getTemplate = async () => {
   let result = await cached<string>("template", async () => {
@@ -393,6 +393,11 @@ const generatePage = async (path: string, content: string) => {
             : frontMatter(content).body) +
           "\n\n" +
           (!config.noAboutAuthor ? aboutAuthor + "\n\n" : "") +
+          (path.startsWith("@")
+            ? await listAuthorFiles(
+                path.split("/")[path.split("/").length - 1].replace(".html", "")
+              )
+            : "") +
           nextPrevious +
           "\n\n" +
           (path.startsWith("@") ? "" : breadcrumbsSchema),

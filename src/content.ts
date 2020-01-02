@@ -10,6 +10,7 @@ import { getConfig } from "./config";
 import { cached } from "./cache";
 import { parse } from "path";
 import icons from "./icons";
+import { getNavbar } from "./data";
 
 const INIT_ZEROS = "00000000";
 
@@ -196,4 +197,12 @@ export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
     .map(i => linkify(aboutAuthor.attributes, i))
     .join("")}</nav>
 </div>`;
+};
+
+export const listAuthorFiles = async (author: string) => {
+  const content = await getSiteContent();
+  const files = content
+    .filter(file => file.attributes.author === author)
+    .map(file => file.file);
+  return await getNavbar(files);
 };

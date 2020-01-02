@@ -61,10 +61,12 @@ var allLinks = document.querySelectorAll("a");
 for (let i = 0; allLinks.length > i; i++) {
   var link = allLinks[i];
   if (isExternal(link.getAttribute("href"))) {
-    link.classList.add("external-link");
+    if (!link.classList.contains("no-external")) {
+      link.classList.add("external-link");
+      link.innerHTML = link.innerHTML + "<span> (opens in new window)</span>";
+    }
     link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-    link.innerHTML = link.innerHTML + "<span> (opens in new window)</span>";
+    link.setAttribute("rel", "noopener");
   }
 }
 

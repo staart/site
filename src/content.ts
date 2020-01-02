@@ -115,7 +115,9 @@ export const getSiteContent = async () => {
 
 const linkify = (attributes: { [index: string]: string }, key: string) =>
   attributes[key]
-    ? `<a aria-label="${key}" href="https://${key}.com/${attributes[key]}">
+    ? `<a href="https://${key}.com/${
+        attributes[key]
+      }" aria-label="${key}" class="no-external">
       ${(icons as { [index: string]: string })[key]}
     </a>\n`
     : "";

@@ -313,6 +313,10 @@ img {
       }
     }
   }
+  .byline {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
 }
 
 .theme-toggle {
@@ -426,6 +430,14 @@ img {
   .external-link::after {
     background-image: url("data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTc2IDUxMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQ0OCAyNzl2MTg1YzAgMjctMjEgNDgtNDggNDhINDhjLTI3IDAtNDgtMjEtNDgtNDhWMTEyYzAtMjcgMjEtNDggNDgtNDhoMjQ4YTI0IDI0IDAgMDExNyA3bDE2IDE2YzE1IDE1IDQgNDEtMTcgNDFINjR2MzIwaDMyMFYyOTVjMC02IDMtMTIgNy0xN2wxNi0xNmMxNS0xNSA0MS00IDQxIDE3ek01NzYgMzdjMC0yMC0xNy0zNy0zNy0zN0gzODBjLTE1IDAtMjggMTMtMjggMjh2MThjMCAxNiAxMyAyOCAyOSAyOGw2Ny0yLTI0OSAyNDdjLTkgOS05IDI1IDAgMzRsMjQgMjRjOSA5IDI1IDkgMzQgMGwyNDctMjQ5LTIgNjdjMCAxNiAxMiAyOSAyOCAyOWgxOGMxNSAwIDI4LTEzIDI4LTI4VjM3eiIvPjwvc3ZnPg==");
   }
+  .byline {
+    background-color: rgba(255, 255, 255, 0.05);
+    nav a svg {
+      g, path {
+        fill: #fff;
+      }
+    }
+  }
 }
 
 .iframed {
@@ -459,6 +471,18 @@ img {
       content: "";
       display: block;
       clear: both;
+    }
+  }
+  nav a {
+    margin-right: 0.5rem;
+    height: 1.25rem;
+    opacity: 0.5;
+    svg {
+      height: 1.5rem;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 0.75;
     }
   }
 }

@@ -1,9 +1,11 @@
 import frontMatter from "front-matter";
+import axios from "axios";
 import marked from "marked";
 import truncate from "truncate";
 import { listContentFiles, readContentFile } from "./files";
 import { FrontMatter } from "./interfaces";
 import { getTitle, removeHeading } from "./parse";
+import { pending } from "signale";
 import { getConfig } from "./config";
 import { cached } from "./cache";
 import { parse } from "path";
@@ -122,13 +124,52 @@ const linkify = (attributes: { [index: string]: string }, key: string) =>
     </a>\n`
     : "";
 
+const imageToDataUri = async (url: string) => {
+  const buffer = await axios.get(
+    `https://images.weserv.nl/?url=${encodeURIComponent(
+      url.replace("https://", "")
+    )}&w=100&h=100&fit=cover&mask=circle&mbg=white&quality=50&output=jpg&encoding=base64`
+  );
+  return buffer.data;
+};
+
+const getAuthorImage = async (attributes: { [index: string]: string }) => {
+  pending(`Fetching avatar from Unavatar`);
+  return await cached<string>(
+    `avatar-${JSON.stringify(attributes)}`,
+    async () => {
+      if (attributes.github)
+        return `<img alt="" src="${await imageToDataUri(
+          `https://unavatar.now.sh/github/${attributes.github}`
+        )}">`;
+      if (attributes.twitter)
+        return `<img alt="" src="${await imageToDataUri(
+          `https://unavatar.now.sh/twitter/${attributes.twitter}`
+        )}">`;
+      if (attributes.facebook)
+        return `<img alt="" src="${await imageToDataUri(
+          `https://unavatar.now.sh/facebook/${attributes.facebook}`
+        )}">`;
+      if (attributes.instagram)
+        return `<img alt="" src="${await imageToDataUri(
+          `https://unavatar.now.sh/instagram/${attributes.instagram}`
+        )}">`;
+      if (attributes.youtube)
+        return `<img alt="" src="${await imageToDataUri(
+          `https://unavatar.now.sh/youtube/${attributes.youtube}`
+        )}">`;
+      return "";
+    }
+  );
+};
+
 export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
   if (!author) return "";
   const aboutAuthor = await cached<{
     name: string;
     about: string;
     attributes: {
-      facebook: string;
+      [index: string]: string;
     };
   }>(`author-${author}`, async () => {
     try {
@@ -146,7 +187,7 @@ export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
       .map(i => linkify(aboutAuthor.attributes, i))
       .join("")}</nav>`;
   return `<div class="byline">
-  <img alt="" src="https://unavatar.now.sh/twitter/kikobeats">
+  ${await getAuthorImage(aboutAuthor.attributes)}
   <address class="author"><a rel="author" href="/@${author}.html">${
     aboutAuthor.name
   }</a></address>

@@ -7,6 +7,7 @@ import { getTitle, removeHeading } from "./parse";
 import { getConfig } from "./config";
 import { cached } from "./cache";
 import { parse } from "path";
+import icons from "./icons";
 
 const INIT_ZEROS = "00000000";
 
@@ -114,7 +115,9 @@ export const getSiteContent = async () => {
 
 const linkify = (attributes: { [index: string]: string }, key: string) =>
   attributes[key]
-    ? `<a aria-label="${key}" href="https://${key}.com/${attributes[key]}">${key}</a>\n`
+    ? `<a aria-label="${key}" href="https://${key}.com/${attributes[key]}">
+      ${(icons as { [index: string]: string })[key]}
+    </a>\n`
     : "";
 
 export const getAboutAuthor = async (author?: string) => {
@@ -142,7 +145,7 @@ export const getAboutAuthor = async (author?: string) => {
     aboutAuthor.name
   }</a></address>
   <p>${aboutAuthor.about}</p>
-  <nav>${["facebook", "twitter", "linkedin", "github"]
+  <nav>${Object.keys(icons)
     .map(i => linkify(aboutAuthor.attributes, i))
     .join("")}</nav>
 </div>`;

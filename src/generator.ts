@@ -279,13 +279,15 @@ ${filesList}`;
       join(await getDistPath(), "assets", "staart.js")
     );
   }
-  const userFiles = await listContentFiles("@");
-  for await (const file of userFiles) {
-    await copyFile(
-      join(await getDistPath(), `@/${file.replace(".md", ".html")}`),
-      join(await getDistPath(), `@${file.replace(".md", ".html")}`)
-    );
-  }
+  try {
+    const userFiles = await listContentFiles("@");
+    for await (const file of userFiles) {
+      await copyFile(
+        join(await getDistPath(), `@/${file.replace(".md", ".html")}`),
+        join(await getDistPath(), `@${file.replace(".md", ".html")}`)
+      );
+    }
+  } catch (error) {}
   await copyAssets();
 };
 

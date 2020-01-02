@@ -122,7 +122,7 @@ const linkify = (attributes: { [index: string]: string }, key: string) =>
     </a>\n`
     : "";
 
-export const getAboutAuthor = async (author?: string) => {
+export const getAboutAuthor = async (author?: string, onlyLinks = false) => {
   if (!author) return "";
   const aboutAuthor = await cached<{
     name: string;
@@ -141,13 +141,17 @@ export const getAboutAuthor = async (author?: string) => {
     } catch (error) {}
   });
   if (!aboutAuthor) return "";
+  if (onlyLinks)
+    return `<nav class="byline-social">${Object.keys(icons)
+      .map(i => linkify(aboutAuthor.attributes, i))
+      .join("")}</nav>`;
   return `<div class="byline">
   <img alt="" src="https://unavatar.now.sh/twitter/kikobeats">
   <address class="author"><a rel="author" href="/@${author}.html">${
     aboutAuthor.name
   }</a></address>
   <p>${aboutAuthor.about}</p>
-  <nav>${Object.keys(icons)
+  <nav class="byline-social">${Object.keys(icons)
     .map(i => linkify(aboutAuthor.attributes, i))
     .join("")}</nav>
 </div>`;

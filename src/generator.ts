@@ -276,6 +276,13 @@ ${filesList}`;
       join(await getDistPath(), "assets", "staart.js")
     );
   }
+  const userFiles = await listContentFiles("@");
+  for await (const file of userFiles) {
+    await copyFile(
+      join(await getDistPath(), `@/${file.replace(".md", ".html")}`),
+      join(await getDistPath(), `@${file.replace(".md", ".html")}`)
+    );
+  }
   await copyAssets();
 };
 
@@ -375,12 +382,20 @@ const generatePage = async (path: string, content: string) => {
           : await removeHeading(content)
         : breadcrumbs +
           "\n\n" +
-          frontMatter(content).body +
+          (path.startsWith("@")
+            ? frontMatter(content).body +
+              (await getAboutAuthor(
+                path
+                  .split("/")
+                  [path.split("/").length - 1].replace(".html", ""),
+                true
+              ))
+            : frontMatter(content).body) +
           "\n\n" +
           (!config.noAboutAuthor ? aboutAuthor + "\n\n" : "") +
           nextPrevious +
           "\n\n" +
-          breadcrumbsSchema,
+          (path.startsWith("@") ? "" : breadcrumbsSchema),
     metaTitle:
       path === "index.html"
         ? (await getSiteMeta("title", "name")) || "Staart Site"

@@ -473,16 +473,17 @@ img {
       clear: both;
     }
   }
-  nav a {
-    margin-right: 0.5rem;
-    height: 1.25rem;
-    opacity: 0.5;
-    svg {
-      height: 1.5rem;
-    }
-    &:hover {
-      text-decoration: none;
-      opacity: 0.75;
-    }
+}
+
+nav.byline-social a {
+  margin-right: 0.5rem;
+  height: 1.25rem;
+  opacity: 0.5;
+  svg {
+    height: 1.5rem;
+  }
+  &:hover {
+    text-decoration: none;
+    opacity: 0.75;
   }
 }

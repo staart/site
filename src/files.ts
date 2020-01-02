@@ -160,6 +160,7 @@ export const getTemplatePartsList = async () => {
 };
 
 export const getBreadcrumbs = async (file: string) => {
+  if (file.startsWith("@")) return;
   const crumbs = ["index.md"];
   const parts = file.replace(".html", ".md").split("/");
   for (let i = 0; i < parts.length; i++) {

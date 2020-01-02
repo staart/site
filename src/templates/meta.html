@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width" />
 {{#if assets_icon-dark_png}}<link rel="icon" type="image/png" href="/assets/icon-dark.png" />{{/if}}
 {{#if assets_icon-dark_svg}}<link rel="icon" type="image/svg+xml" href="/assets/icon-dark.svg" />{{/if}}
+{{#if noindex}}
+<meta name="robots" content="noindex">
+{{/if}}
 {{#if canonical}}
 <link rel="canonical" href="{{{ canonical }}}" />
 {{/if}}

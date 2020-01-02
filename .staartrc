@@ -3,5 +3,6 @@
   "author": "[O15Y](https://o15y.com)",
   "noDelayWithoutToken": "true",
   "algoliaApiKey": "e4fc84ee7abe50d5e67ce42f91235da4",
-  "algoliaIndex": "staart"
+  "algoliaIndex": "staart",
+  "noIndex": true
 }

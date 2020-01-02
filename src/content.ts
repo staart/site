@@ -117,14 +117,20 @@ export const getSiteContent = async () => {
   });
 };
 
-const linkify = (attributes: { [index: string]: string }, key: string) =>
-  attributes[key]
-    ? `<a href="https://${key}.com/${
+const linkify = (attributes: { [index: string]: string }, key: string) => {
+  const icon = (icons as {
+    [index: string]: { icon: string; generator?: (username: string) => string };
+  })[key];
+  icon.generator =
+    icon.generator || ((username: string) => `https://${key}.com/${username}`);
+  return attributes[key]
+    ? `<a href="${icon.generator(
         attributes[key]
-      }" aria-label="${key}" class="no-external">
-      ${(icons as { [index: string]: string })[key]}
+      )}" aria-label="${key}" class="no-external">
+      ${icon.icon}
     </a>\n`
     : "";
+};
 
 const imageToDataUri = async (url: string) => {
   const buffer = await axios.get(

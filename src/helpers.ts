@@ -7,5 +7,5 @@ export const filePathtoUrl = async (path: string) => {
     return `${config.baseUrl || ""}/${path
       .replace("index.md", "")
       .replace(".md", "")}`;
-  return path.replace(".md", ".html");
+  return "/" + path.replace(".md", ".html");
 };

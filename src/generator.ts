@@ -111,8 +111,8 @@ const addTheme = async (css: string) => {
       `$theme-color: ${config.themeColor || "#0e632c"}`
     )
     .replace(
-      "$text-color: #e3fde4",
-      `$text-color: ${config.textColor || "#e3fde4"}`
+      "$text-color: #001b01",
+      `$text-color: ${config.textColor || "#001b01"}`
     )
     .replace(
       "$link-color: #0e632a",

@@ -1,4 +1,5 @@
 import { getConfig } from "./config";
+import { render as scss } from "sass";
 
 export const filePathtoUrl = async (path: string) => {
   const config = await getConfig();
@@ -9,3 +10,11 @@ export const filePathtoUrl = async (path: string) => {
       .replace(".md", "")}`;
   return "/" + path.replace(".md", ".html");
 };
+
+export const renderScss = (styles: string) =>
+  new Promise((resolve, reject) => {
+    scss({ data: styles }, (error, result) => {
+      if (error) return reject(error);
+      resolve(result.css.toString());
+    });
+  });

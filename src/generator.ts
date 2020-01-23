@@ -29,10 +29,10 @@ import {
   render,
   getNavbar,
   getSiteMeta,
-  registerPartials
+  registerPartials,
+  getCustomCss
 } from "./data";
 import { minify } from "html-minifier";
-import { render as scss } from "sass";
 import { removeHeading, getTitle, getTags, getFilesForTag } from "./parse";
 import { getConfig } from "./config";
 import { SitemapStream, streamToPromise } from "sitemap";
@@ -45,7 +45,7 @@ import { FrontMatter } from "./interfaces";
 import truncate from "truncate";
 import { unslugify } from "./util";
 import { getAboutAuthor, listAuthorFiles } from "./content";
-import { filePathtoUrl } from "./helpers";
+import { filePathtoUrl, renderScss } from "./helpers";
 
 export const getTemplate = async () => {
   let result = await cached<string>("template", async () => {
@@ -102,14 +102,6 @@ export const getRedirectsContent = async (): Promise<string[]> => {
   if (result) return yaml(result);
   return [];
 };
-
-const renderScss = (styles: string) =>
-  new Promise((resolve, reject) => {
-    scss({ data: styles }, (error, result) => {
-      if (error) return reject(error);
-      resolve(result.css.toString());
-    });
-  });
 
 const addTheme = async (css: string) => {
   const config = await getConfig();
@@ -453,7 +445,7 @@ const generatePage = async (path: string, content: string) => {
       data[key] = await render(data[key], key !== "content");
   }
   if (!data.navBar) delete data.navBar;
-  data.css = await getCss();
+  data.css = (await getCss()) + (await getCustomCss());
   data.script = await getScript();
   const result = template(data);
   await ensureFile(join(await getDistPath(), path));

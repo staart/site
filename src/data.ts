@@ -11,7 +11,8 @@ import {
 import { cached } from "./cache";
 import recursiveReadDir = require("recursive-readdir");
 import { join } from "path";
-import { filePathtoUrl } from "./helpers";
+import { filePathtoUrl, renderScss } from "./helpers";
+import { readFile } from "fs-extra";
 
 export const getSiteMeta = async (
   configKey: string,
@@ -77,6 +78,20 @@ export const getData = async () => {
   });
   if (result) return result;
   throw new Error("Could not generate data");
+};
+
+export const getCustomCss = async () => {
+  const config = await getConfig();
+  try {
+    const stylesPath = join(
+      await getContentPath(),
+      "..",
+      config.customStylesPath || "styles.scss"
+    );
+    const customStyles = (await readFile(stylesPath)).toString();
+    return renderScss(customStyles);
+  } catch (error) {}
+  return "";
 };
 
 export const registerPartials = async () => {

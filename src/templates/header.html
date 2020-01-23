@@ -1,13 +1,15 @@
 <header id="masthead">
   <div class="masthead">
-    <a href="/" class="logo">
-      {{#if assets_icon-white_svg}}
-        <img class="icon" alt="" src="/assets/icon-white.svg" />
-      {{else if assets_icon-white_png}}
-        <img class="icon" alt="" src="/assets/icon-white.png" />
-      {{/if}}
-      <h1>{{ title }}</h1>
-    </a>
+    <div class="container">
+      <a href="/" class="logo">
+        {{#if assets_icon-white_svg}}
+          <img class="icon" alt="" src="/assets/icon-white.svg" />
+        {{else if assets_icon-white_png}}
+          <img class="icon" alt="" src="/assets/icon-white.png" />
+        {{/if}}
+        <h1>{{ title }}</h1>
+      </a>
+    </div>
   </div>
   <nav>
     <div class="container">

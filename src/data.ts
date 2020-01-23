@@ -63,6 +63,7 @@ export const getData = async () => {
       config.data.author = (await getSiteMeta("author")).split(" <")[0];
     if (!config.ignoreReplaceYear)
       config.data.year = new Date().getFullYear().toString();
+    config.data.headerTitle = config.headerTitle || config.data.title;
     let assets: any = {};
     try {
       const listOfFiles = (

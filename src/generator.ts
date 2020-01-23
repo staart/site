@@ -452,6 +452,7 @@ const generatePage = async (path: string, content: string) => {
     )
       data[key] = await render(data[key], key !== "content");
   }
+  if (!data.navBar) delete data.navBar;
   data.css = await getCss();
   data.script = await getScript();
   const result = template(data);

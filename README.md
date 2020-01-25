@@ -1,4 +1,5 @@
 [![Staart Site](https://raw.githubusercontent.com/staart/staart.js.org/master/assets/svg/site.svg?sanitize=true)](https://staart.js.org/site)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstaart%2Fsite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstaart%2Fsite?ref=badge_shield)
 
 Staart Site is a static site generator for helpdesk or documentation websites written in TypeScript. It creates beautiful, accessible, and ultra-lightweight websites that score 100/100 on Lightbox.
 
@@ -100,3 +101,6 @@ The development of Staart projects is supported by these wonderful companies. [F
 
 - Code: [MIT](https://github.com/staart/site/blob/master/LICENSE)
 - Logo and assets: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstaart%2Fsite.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstaart%2Fsite?ref=badge_large)

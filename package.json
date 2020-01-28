@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "concurrently": "^5.0.2",
+    "concurrently": "^5.1.0",
     "cosmiconfig": "^6.0.0",
     "front-matter": "^3.1.0",
     "fs-extra": "^8.1.0",

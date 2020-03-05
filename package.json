@@ -54,7 +54,7 @@
     "@types/fs-extra": "^8.1.0",
     "@types/git-url-parse": "^9.0.0",
     "@types/html-minifier": "^3.5.3",
-    "@types/marked": "^0.7.2",
+    "@types/marked": "^0.7.3",
     "@types/minimist": "^1.2.0",
     "@types/node": "^13.7.7",
     "@types/recursive-readdir": "^2.2.0",

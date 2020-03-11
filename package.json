@@ -48,7 +48,7 @@
     "signale": "^1.4.0",
     "sitemap": "^6.0.0",
     "truncate": "^2.1.0",
-    "yaml": "^1.8.0"
+    "yaml": "^1.8.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",

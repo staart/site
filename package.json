@@ -39,7 +39,7 @@
     "handlebars": "^4.7.3",
     "html-minifier": "^4.0.0",
     "live-server": "^1.2.1",
-    "marked": "^0.8.0",
+    "marked": "^0.8.1",
     "minimist": "^1.2.5",
     "node-cache": "^5.1.0",
     "recursive-readdir": "^2.2.2",

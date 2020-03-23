@@ -22,12 +22,8 @@
     "watch-build": "onchange '{src}/**/*.ts' -- yarn build",
     "watch-prettier": "onchange '{src}/**/*.{ts,json}' -- prettier --write {{changed}}",
     "changelog": "gitmoji-changelog",
-    "release": "gh-release"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn increment-package && yarn prettier-all && git add ."
-    }
+    "release": "gh-release",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -51,6 +47,7 @@
     "yaml": "^1.8.3"
   },
   "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
     "@types/fs-extra": "^8.1.0",
     "@types/git-url-parse": "^9.0.0",
     "@types/html-minifier": "^3.5.3",
@@ -64,9 +61,10 @@
     "@types/yaml": "^1.2.0",
     "gh-release": "^3.5.0",
     "gitmoji-changelog": "^2.1.0",
-    "husky": "^4.2.3",
     "onchange": "^6.1.0",
     "prettier": "^2.0.1",
+    "semantic-release": "^17.0.4",
+    "semantic-release-gitmoji": "^1.3.3",
     "typescript": "^3.8.3"
   }
 }

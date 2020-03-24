@@ -62,7 +62,7 @@
     "gh-release": "^3.5.0",
     "gitmoji-changelog": "^2.1.0",
     "onchange": "^6.1.0",
-    "prettier": "^2.0.1",
+    "prettier": "^2.0.2",
     "semantic-release": "^17.0.4",
     "semantic-release-gitmoji": "^1.3.3",
     "typescript": "^3.8.3"

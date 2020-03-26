@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     {{>meta}}
-    <style>{{{ css }}}</style>
-    {{#unless noSyntaxHighlighting}}
-      <link rel="stylesheet" href="/assets/prism.css" />
-    {{/unless}}
+    <style>
+      {{{ css }}}
+    </style>
     {{#unless noFontCdn}}
-      <link href="https://fonts.googleapis.com/css?family=Public+Sans:200,400,400i,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Public+Sans:200,400,400i,700&display=swap"
+      rel="stylesheet"
+    />
     {{/unless}}
   </head>
   <body>
-<!--important-->{{>body}}
-    {{>scripts}}
+    <!--important-->{{>body}} {{>scripts}}
   </body>
 </html>

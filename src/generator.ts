@@ -257,16 +257,6 @@ ${filesList}`;
       );
     }
     await ensureDir(join(await getDistPath(), "assets"));
-    if (!config.noSyntaxHighlighting) {
-      await copyFile(
-        join(__dirname, "..", "src", "prism.js"),
-        join(await getDistPath(), "assets", "prism.js")
-      );
-      await copyFile(
-        join(__dirname, "..", "src", "prism.css"),
-        join(await getDistPath(), "assets", "prism.css")
-      );
-    }
     await copyFile(
       join(__dirname, "..", "src", "staart.js"),
       join(await getDistPath(), "assets", "staart.js")

@@ -1,20 +1,33 @@
-{{#if agastyaApiKey}}<script src="https://platform-beta.oswaldlabs.com/v1/agastya/load/{{agastyaApiKey}}"></script>
+{{#if agastyaApiKey}}
+<script src="https://platform-beta.oswaldlabs.com/v1/agastya/load/{{agastyaApiKey}}"></script>
 <script>
   window.a11ySettings = window.a11ySettings || {};
   window.a11ySettings.variables = window.a11ySettings.variables || {};
   window.a11ySettings.variables.displayNone = true;
-</script>{{/if}}
-{{#if googleAnalytics}}<script async src="https://www.googletagmanager.com/gtag/js?id={{googleAnalytics}}"></script>
+</script>
+{{/if}} {{#if googleAnalytics}}
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id={{googleAnalytics}}"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() {
+    dataLayer.push(arguments);
+  }
   gtag("js", new Date());
   gtag("config", "{{googleAnalytics}}");
-</script>{{/if}}
-{{#unless noSyntaxHighlighting}}
-  <script src="/assets/prism.js"></script>
-{{/unless}}
-<script type="text/javascript">{{{ script }}}</script>
+</script>
+{{/if}}
+<script type="text/javascript">
+  {
+    {
+      {
+        script;
+      }
+    }
+  }
+</script>
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,14 +39,16 @@
 </script>
 {{#each scripts}}
 <script src="{{ this }}"></script>
-{{/each}}
-{{#if algoliaApiKey}}
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-  <script type="text/javascript">
-    docsearch({
-      apiKey: "{{ algoliaApiKey }}",
-      indexName: "{{ algoliaIndex }}",
-      inputSelector: "#docsSearch",
-    });
-  </script>
+{{/each}} {{#if algoliaApiKey}}
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
+></script>
+<script type="text/javascript">
+  docsearch({
+    apiKey: "{{ algoliaApiKey }}",
+    indexName: "{{ algoliaIndex }}",
+    inputSelector: "#docsSearch"
+  });
+</script>
 {{/if}}

@@ -1,4 +1,4 @@
-import { readFile, readdir } from "fs-extra";
+import { readFile, readdir, mkdirp } from "fs-extra";
 import { join, parse } from "path";
 import { getConfig } from "./config";
 import recursiveReadDir from "recursive-readdir";
@@ -11,9 +11,11 @@ import { filePathtoUrl } from "./helpers";
 
 export const getContentPath = async () => {
   const config = await getConfig();
-  return config.contentDir
+  const path = config.contentDir
     ? join(".", config.contentDir)
     : join(".", "content");
+  await mkdirp(path);
+  return path;
 };
 
 export const getDistPath = async () => {

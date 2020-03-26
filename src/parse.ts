@@ -10,14 +10,15 @@ export const renderMd = (md: string, avoidParagraphs = false) => {
   if (avoidParagraphs) renderer.paragraph = p => p;
   return marked.parse(frontMatter<FrontMatter>(md).body, {
     smartypants: true,
-    highlight: (str, lang, callback) => {
-      if (!callback) return;
+    highlight: (str, lang) => {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return callback(null, hljs.highlight(lang, str).value);
-        } catch (error) {}
+          return hljs.highlight(lang, str).value;
+        } catch (error) {
+          return str;
+        }
       }
-      return callback(null, "");
+      return str;
     },
     renderer
   });

@@ -30,14 +30,12 @@ const _getConfig = async () => {
   const config: StaartSiteConfig = searchResult ? searchResult.config : {};
   let gitRepoUrl = config.repo;
   let staartVersion: string | undefined = undefined;
-  if (searchResult && searchResult.filepath) {
-    const packagePath = join(searchResult.filepath, "..", "package.json");
-    try {
-      const pkg = await readJSON(packagePath);
-      gitRepoUrl = gitRepoUrl || pkg.repository;
-      staartVersion = pkg.dependencies["@staart/site"];
-    } catch (error) {}
-  }
+  const packagePath = join(".", "package.json");
+  try {
+    const pkg = await readJSON(packagePath);
+    gitRepoUrl = gitRepoUrl || pkg.repository;
+    staartVersion = pkg.dependencies["@staart/site"];
+  } catch (error) {}
   config.staartVersion = staartVersion;
   if (gitRepoUrl) config._gitRepo = gitUrlParse(gitRepoUrl);
   return config;

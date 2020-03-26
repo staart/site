@@ -254,7 +254,7 @@ pre {
     display: block;
     color: inherit;
     font-size: 100%;
-    padding: 0;
+    padding: 1rem;
     margin: 0;
     border-radius: 0;
   }
@@ -441,6 +441,9 @@ img {
   code {
     background: #650000;
     color: #fff;
+  }
+  pre code {
+    background-color: #111;
   }
   .post-footer {
     color: rgba($light-color, 0.75);

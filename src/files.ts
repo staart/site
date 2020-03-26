@@ -64,11 +64,11 @@ export const getHomePath = async () => {
   if (config.homePath) return config.homePath;
   let file: string | undefined = undefined;
   file = join(contentDir, "index.md");
-  if (safeReadFile(file)) return file;
+  if (await safeReadFile(file)) return file;
   file = join(contentDir, "README.md");
-  if (safeReadFile(file)) return file;
+  if (await safeReadFile(file)) return file;
   file = join(contentDir, "..", "README.md");
-  if (safeReadFile(file)) return file;
+  if (await safeReadFile(file)) return file;
   return join("..", "src", "index.md");
 };
 

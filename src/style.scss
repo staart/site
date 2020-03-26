@@ -34,7 +34,7 @@ main#content {
   li + li {
     margin-top: 0.5rem;
   }
-  
+
   li {
     padding-left: 0.5rem;
   }
@@ -181,7 +181,8 @@ footer#colophon {
   width: 90%;
   white-space: nowrap;
   overflow-x: auto;
-  a, button {
+  a,
+  button {
     color: lighten($link-color, 10%);
   }
   p {
@@ -258,6 +259,11 @@ pre {
 
 table {
   width: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 table th {
@@ -303,12 +309,14 @@ img {
     input.docs-search {
       background-size: contain;
     }
-    li, .search-li {
+    li,
+    .search-li {
       display: inline-block;
       margin-right: 1.25rem;
     }
     &.has-focus {
-      li, .search-li {
+      li,
+      .search-li {
         margin-right: 0;
       }
     }
@@ -326,7 +334,7 @@ img {
   svg {
     height: 1.25rem;
     path {
-      fill: lighten($link-color, 10%);;
+      fill: lighten($link-color, 10%);
     }
   }
 }
@@ -364,7 +372,8 @@ img {
   margin-right: 0.1em;
   opacity: 0.5;
 }
-.external-link span:last-child, .sr-only {
+.external-link span:last-child,
+.sr-only {
   position: fixed;
   z-index: -1;
   left: -10%;
@@ -417,7 +426,8 @@ img {
   h3 {
     color: rgba(255, 255, 255, 0.6);
   }
-  footer#colophon a, footer#colophon button {
+  footer#colophon a,
+  footer#colophon button {
     color: lighten($link-color, 25%);
   }
   code {
@@ -433,7 +443,8 @@ img {
   .byline {
     background-color: rgba(255, 255, 255, 0.05);
     nav a svg {
-      g, path {
+      g,
+      path {
         fill: #fff;
       }
     }

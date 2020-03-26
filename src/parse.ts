@@ -3,14 +3,22 @@ import frontMatter from "front-matter";
 import { FrontMatter } from "./interfaces";
 import { listContentFiles, readContentFile } from "./files";
 import { getConfig } from "./config";
-import highlight from "highlight.js";
+import hljs from "highlight.js";
 
 export const renderMd = (md: string, avoidParagraphs = false) => {
   const renderer = new Renderer();
   if (avoidParagraphs) renderer.paragraph = p => p;
   return marked.parse(frontMatter<FrontMatter>(md).body, {
     smartypants: true,
-    highlight: (code, language, callback) => {},
+    highlight: (str, lang, callback) => {
+      if (!callback) return;
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return callback(null, hljs.highlight(lang, str).value);
+        } catch (error) {}
+      }
+      return callback(null, "");
+    },
     renderer
   });
 };

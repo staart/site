@@ -6,6 +6,7 @@
   "bin": "./dist/index.js",
   "types": "./dist/module.d.ts",
   "repository": "git@github.com:staart/site",
+  "homepage": "https://staart.js.org/site",
   "author": "Anand Chowdhary <mail@anandchowdhary.com>",
   "license": "MIT",
   "files": [

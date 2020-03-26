@@ -17,9 +17,7 @@ export const getConfig = async (userConfig?: StaartSiteConfig) => {
 export const readPackage = async (): Promise<
   { [key: string]: any } | undefined
 > => {
-  const searchResult = await explorer.search();
-  if (!searchResult) return;
-  const packagePath = join(searchResult.filepath, "..", "package.json");
+  const packagePath = join(".", "package.json");
   try {
     return await readJSON(packagePath);
   } catch (error) {}

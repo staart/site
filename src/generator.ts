@@ -445,6 +445,6 @@ const generatePage = async (path: string, content: string) => {
       collapseWhitespace: true,
       processScripts: ["application/ld+json", "text/javascript"],
       minifyCSS: true
-    })
+    }).replace("// prettier-ignore ", "")
   );
 };

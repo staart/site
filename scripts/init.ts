@@ -13,6 +13,7 @@ import {
   ensureDir,
   mkdirp,
   pathExistsSync,
+  writeFile,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -95,6 +96,29 @@ export const init = async () => {
     esModuleInterop: true,
   });
   await remove(join(".", ".staart", ".eleventy.ts"));
+
+  const cssFiles = (
+    await recursiveReaddir(join(".", ".staart", "src"))
+  ).filter((i) => i.endsWith(".css"));
+  await writeFile(
+    join(".", ".staart", "src", "includes", "inline-css.njk"),
+    `
+      {% include "style/properties.njk" %}
+
+      {% include "style/type.css" %}
+      {% include "style/layout.css" %}
+      {% include "style/content.css" %}
+      {% include "style/mobile.css" %}
+      {% include "style/custom-css.css" %}
+
+      ${cssFiles
+        .map(
+          (i) =>
+            `{% include "${replaceStart(i, ".staart/src/includes/", "")}" %}`
+        )
+        .join("\n")}
+    `
+  );
 };
 
 export const watcher = (onChange?: Function) => {

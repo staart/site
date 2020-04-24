@@ -2,10 +2,6 @@
 layout: base
 ---
 
-<section>
-  <h1>{{ data | dump }}</h1>
-  <h2>Impact</h2>
-</section>
-
+{% include "components/features/features.njk" %}
 {% include "components/pricing/pricing.njk" %}
 {% include "components/faq/faq.njk" %}

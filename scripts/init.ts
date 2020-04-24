@@ -11,6 +11,7 @@ import {
   removeSync,
   pathExists,
   ensureDir,
+  mkdirp,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -49,6 +50,10 @@ export const init = async () => {
   await remove(join(".", ".staart"));
   await mkdir(join(".", ".staart"));
 
+  for await (const file of [".eleventy.ts"]) {
+    await copyFile(join(__dirname, "..", file), join(".", ".staart", file));
+  }
+
   const files = await readdir(join("."));
   for await (const file of files) {
     if ((await lstat(join(".", file))).isFile())
@@ -57,7 +62,13 @@ export const init = async () => {
 
   for await (const dir of ["eleventy", "src", "static", "data"]) {
     if (await pathExists(join(".", dir)))
-      await copy(join(".", dir), join(".", ".staart", dir));
+      await copy(join(".", dir), join(".", ".staart", dir), {
+        recursive: true,
+      });
+    if (await pathExists(join(__dirname, "..", dir)))
+      await copy(join(__dirname, "..", dir), join(".", ".staart", dir), {
+        recursive: true,
+      });
   }
   await ensureDir(join(".", ".staart", "data"));
   if (pathExists(join(".", ".staartrc")))
@@ -67,6 +78,7 @@ export const init = async () => {
     );
 
   for await (const dir of ["content"]) {
+    await mkdirp(join(".", dir));
     const content = await recursiveReaddir(join(".", dir));
     for await (const file of content) {
       if ((await lstat(join(".", file))).isFile())
@@ -86,18 +98,24 @@ export const init = async () => {
 export const watcher = (onChange?: Function) => {
   ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) =>
     watch(
-      join(".", dir),
+      join(__dirname, "..", dir),
       { recursive: true },
       (event: string, file: string) => {
         console.log(event, file);
         if (event === "change") {
           try {
-            copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+            copyFileSync(
+              join(__dirname, "..", dir, file),
+              join(".", ".staart", dir, file)
+            );
           } catch (error) {}
         } else {
           try {
-            removeSync(join(".", ".staart", dir, file));
-            copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+            removeSync(join(".", ".staart", __dirname, "..", dir, file));
+            copyFileSync(
+              join(__dirname, "..", dir, file),
+              join(".", ".staart", dir, file)
+            );
           } catch (error) {}
         }
         if (onChange) onChange();

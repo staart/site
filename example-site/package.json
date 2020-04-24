@@ -8,5 +8,20 @@
     "watch": "ts-node ../scripts/cli.ts watch",
     "serve": "ts-node ../scripts/cli.ts serve",
     "start": "npm run serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "clean-css": "^4.2.3",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eleventy-plugin-pwa": "^1.0.8",
+    "eleventy-plugin-safe-external-links": "^0.1.4",
+    "htmlnano": "^0.2.5",
+    "human-readable-numbers": "^0.9.5",
+    "luxon": "^1.23.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^5.2.7",
+    "node-html-to-image": "^1.2.0"
   }
 }

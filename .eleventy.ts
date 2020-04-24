@@ -6,6 +6,7 @@ import { config } from "dotenv";
 config();
 
 import filters from "./eleventy/filters";
+import shortcodes from "./eleventy/shortcodes";
 import transforms from "./eleventy/transforms";
 
 module.exports = function(config: any) {
@@ -16,6 +17,9 @@ module.exports = function(config: any) {
 
   Object.keys(filters).forEach((filterName) => {
     config.addFilter(filterName, filters[filterName]);
+  });
+  Object.keys(shortcodes).forEach((shortcodeName) => {
+    config.addAsyncShortcode(shortcodeName, shortcodes[shortcodeName]);
   });
 
   Object.keys(transforms).forEach((transformName) => {

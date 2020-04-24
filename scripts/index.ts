@@ -1,5 +1,6 @@
 import { init, watcher } from "./init";
 import { buildEleventy } from "./build";
+const liveServer = require("live-server");
 
 /**
  * Build production site
@@ -28,4 +29,9 @@ export const serve = async (...params: string[]) => {
   await init();
   watcher(() => buildEleventy(params, "development"));
   buildEleventy(params, "development");
+  liveServer.start({
+    root: "dist",
+    open: true,
+    logLevel: 0,
+  });
 };

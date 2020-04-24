@@ -14,6 +14,8 @@ import {
   mkdirp,
   pathExistsSync,
   writeFile,
+  readFile,
+  readJson,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -119,6 +121,25 @@ export const init = async () => {
         .join("\n")}
     `
   );
+
+  const config = await readJson(join(".", ".staartrc"));
+  const doodles = await readdir(join(".", ".staart", "static", "doodles"));
+  for await (const doodle of doodles) {
+    await writeFile(
+      join(".", ".staart", "static", "doodles", doodle),
+      (
+        await readFile(
+          join(".", ".staart", "static", "doodles", doodle),
+          "utf8"
+        )
+      )
+        .replace(/#000/g, config.doodleBorderColor || "#000")
+        .replace(
+          /#123456/g,
+          config.doodleFillColor || config.themeColor || "#123456"
+        )
+    );
+  }
 };
 
 export const watcher = (onChange?: Function) => {

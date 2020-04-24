@@ -30,7 +30,7 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
   });
 };
 
-const staart = async () => {
+export const init = async () => {
   await remove(join(".", ".staart"));
   await mkdir(join(".", ".staart"));
   const files = await readdir(join("."));
@@ -54,5 +54,3 @@ const staart = async () => {
   });
   await remove(join(".", ".staart", ".eleventy.ts"));
 };
-
-staart();

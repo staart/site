@@ -14,14 +14,13 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run clean && cross-env ELEVENTY_ENV=production eleventy && npm run post-process",
+    "prebuild": "ts-node scripts/staart.ts",
+    "build": "npm run prebuild && cross-env ELEVENTY_ENV=production eleventy && npm run post-process",
     "post-process": "ts-node scripts/post-process/index.ts",
-    "watch": "eleventy --watch",
-    "serve": "eleventy --serve",
-    "debug": "DEBUG=* eleventy",
-    "clean": "del-cli dist",
-    "start": "npm run clean && npm run serve",
-    "compile-config": "tsc --lib es6 --esModuleInterop true .eleventy.ts && ts-node scripts/start.ts",
+    "watch": "npm run prebuild && eleventy --watch",
+    "serve": "npm run prebuild && eleventy --serve",
+    "debug": "npm run prebuild && DEBUG=* eleventy",
+    "start": "npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",
     "semantic-release": "semantic-release"
@@ -36,7 +35,6 @@
     "@types/luxon": "^1.22.0",
     "clean-css": "^4.2.3",
     "cross-env": "^7.0.2",
-    "del-cli": "^3.0.0",
     "dotenv": "^8.2.0",
     "eleventy-plugin-pwa": "^1.0.8",
     "eleventy-plugin-safe-external-links": "^0.1.4",

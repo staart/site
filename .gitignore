@@ -93,3 +93,5 @@ typings/
 # Built files
 dist/
 public/
+.eleventy.js
+eleventy/*.js

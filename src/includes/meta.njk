@@ -1,0 +1,26 @@
+{%- set absolutePageUrl -%}{{ page.url | url | absoluteUrl(meta.url) }}{%- endset -%}
+
+{# Meta Tags #}
+<meta name="description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
+<meta property="og:title" content="{{ title or meta.title }}">
+<meta property="og:description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
+<meta property="og:url" content="{{ absolutePageUrl }}">
+
+{# Twitter #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@karuna2020_org">
+<meta name="twitter:creator" content="@karuna2020_org">
+<meta name="twitter:title" content="{{ title or meta.title }}">
+<meta name="twitter:description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
+
+{# Favicon #}
+<link rel="shortcut icon" type="image/png" href="{{ '/static/images/favicon/favicon.ico' | url }}">
+<link rel="icon" type="image/png" href="{{ '/static/images/favicon/apple-touch-icon.png' | url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/static/images/favicon/apple-touch-icon.png' | url }}">
+<meta name="theme-color" content="#c00058">
+
+{# Manifest #}
+<link rel="manifest" href="{{ '/site.webmanifest' | url }}">
+
+{# RSS Feed #}
+<link type="application/atom+xml" rel="alternate" href="{{ meta.url }}/feed.xml" title="{{ meta.title }}">

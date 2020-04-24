@@ -93,3 +93,4 @@ typings/
 # Built files
 dist/
 public/
+.staart/

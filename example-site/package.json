@@ -1,0 +1,12 @@
+{
+  "name": "example-site",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node ../scripts/cli.ts build",
+    "watch": "ts-node ../scripts/cli.ts watch",
+    "serve": "ts-node ../scripts/cli.ts serve",
+    "start": "npm run serve"
+  }
+}

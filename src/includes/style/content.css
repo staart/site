@@ -31,3 +31,13 @@ a:hover {
   margin-left: 0.5rem;
   transform: scale(1.25);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background-color: #f1c40f;
+}

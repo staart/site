@@ -7,3 +7,17 @@ html {
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.doodle {
+  position: absolute;
+  right: -10vw;
+  bottom: -5vh;
+  max-width: 550px;
+}
+@media (max-width: 900px) {
+  .doodle {
+    position: static;
+    margin-top: 5vh;
+    margin-bottom: -10vh;
+  }
+}

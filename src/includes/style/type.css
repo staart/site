@@ -9,10 +9,6 @@ code {
   font-family: "SFMono-Regular", Consolas, Liberation Mono, Menlo, monospace;
 }
 
-::selection {
-  background-color: #f2b8cc;
-}
-
 h1,
 h2,
 h3,

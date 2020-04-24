@@ -14,12 +14,10 @@
     "src"
   ],
   "scripts": {
-    "prebuild": "ts-node scripts/staart.ts",
-    "build": "npm run prebuild && cross-env ELEVENTY_ENV=production eleventy && npm run post-process",
-    "post-process": "ts-node scripts/post-process/index.ts",
-    "watch": "npm run prebuild && eleventy --watch",
-    "serve": "npm run prebuild && eleventy --serve",
-    "debug": "npm run prebuild && DEBUG=* eleventy",
+    "build": "ts-node scripts/cli.ts build",
+    "watch": "ts-node scripts/cli.ts watch",
+    "serve": "ts-node scripts/cli.ts serve",
+    "debug": "ts-node scripts/cli.ts debug",
     "start": "npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",

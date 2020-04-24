@@ -5,9 +5,9 @@ export const buildEleventy = (
   env: string = process.env.NODE_ENV ?? "development"
 ) => {
   childProcess.execSync(
-    `npx cross-env ELEVENTY_ENV=${env} npx @11ty/eleventy --config=.staart/.eleventy.js ${flags
-      .map((flag) => `--${flag}`)
-      .join(" ")}`,
+    `npx cross-env ELEVENTY_ENV=${env} npx @11ty/eleventy --config=.staart/.eleventy.js ${flags.join(
+      " "
+    )}`,
     {
       stdio: "inherit",
     }

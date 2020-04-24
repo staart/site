@@ -9,6 +9,8 @@ import {
   watch,
   copyFileSync,
   removeSync,
+  pathExists,
+  ensureDir,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -53,9 +55,16 @@ export const init = async () => {
       await copyFile(join(".", file), join(".", ".staart", file));
   }
 
-  for await (const dir of ["eleventy", "src", "static"]) {
-    await copy(join(".", dir), join(".", ".staart", dir));
+  for await (const dir of ["eleventy", "src", "static", "data"]) {
+    if (await pathExists(join(".", dir)))
+      await copy(join(".", dir), join(".", ".staart", dir));
   }
+  await ensureDir(join(".", ".staart", "data"));
+  if (pathExists(join(".", ".staartrc")))
+    await copyFile(
+      join(".", ".staartrc"),
+      join(".", ".staart", "data", "config.json")
+    );
 
   for await (const dir of ["content"]) {
     const content = await recursiveReaddir(join(".", dir));
@@ -75,7 +84,7 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
-  ["src", "static", "eleventy", "content"].forEach((dir) =>
+  ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) =>
     watch(
       join(".", dir),
       { recursive: true },

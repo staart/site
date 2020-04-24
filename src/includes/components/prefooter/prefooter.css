@@ -1,0 +1,7 @@
+.prefooter {
+  background-color: #ffe600;
+  padding: 5vh 0 10vh 0;
+}
+.prefooter .container > div {
+  max-width: 500px;
+}

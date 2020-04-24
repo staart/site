@@ -1,0 +1,10 @@
+#faq {
+  background-color: whitesmoke;
+  padding: 2.5rem 0;
+}
+#faq details + details {
+  margin-top: 1rem;
+}
+#faq details {
+  max-width: 600px;
+}

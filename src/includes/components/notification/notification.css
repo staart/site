@@ -1,23 +1,23 @@
-.message {
+.notification {
   padding: 1.5vh 0;
   background-color: #e2650d;
   color: #fff;
 }
-.message h2 {
+.notification h2 {
   margin-bottom: 0.5rem;
 }
-.message p {
+.notification p {
   margin: 0;
 }
-.message .container {
+.notification .container {
   display: flex;
   align-items: center;
 }
-.message p {
+.notification p {
   margin-right: 2rem;
   flex: 1 0 0;
 }
-.message a.button {
+.notification a.button {
   font-size: 100%;
   padding: 0.5rem 1rem;
 }

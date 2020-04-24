@@ -1,0 +1,58 @@
+#pricing {
+  background-color: whitesmoke;
+  padding: 2.5vh 0 5vh 0;
+  margin-top: 7.5vh;
+}
+#pricing .container {
+  display: flex;
+  margin-top: -7.5vh;
+}
+#pricing .container > div {
+  flex: 1 0 0;
+  background-color: #fff;
+  margin: 0 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+#pricing h3 {
+  margin: 0;
+}
+#pricing h3 + div {
+  font-size: 150%;
+  font-weight: bold;
+  color: #66029c;
+}
+#pricing .button {
+  margin-top: 0.5rem;
+  background-color: #ebd3f5;
+  color: inherit;
+}
+#pricing .button + p {
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+  max-width: 100%;
+  font-size: 80%;
+  opacity: 0.75;
+}
+#pricing .recommended .button {
+  background: #66029c;
+  color: #fff;
+}
+#pricing ul {
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+#pricing li {
+  margin: 1rem 0;
+}
+#pricing p {
+  font-size: 90%;
+  max-width: 80%;
+}

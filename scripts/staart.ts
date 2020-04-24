@@ -1,6 +1,6 @@
-import _fs from "fs";
-const { copyFile, mkdir, unlink } = _fs.promises;
 import { join } from "path";
+import {} from "fs-extra";
+import {} from "typescript";
 
 const staart = async () => {
   await mkdir(join(".", ".staart"), { recursive: true });

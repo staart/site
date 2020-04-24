@@ -1,0 +1,9 @@
+---
+permalink: /static/styles/style.css
+---
+
+{%- set css -%}
+  {% include "inline-css.njk" %}
+  {% include "style/admin.css" %}
+{%- endset -%}
+{{ css | cssmin | safe }}

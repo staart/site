@@ -1,0 +1,11 @@
+:root {
+  --brand-color: {% if meta.primaryColor %}{{ meta.primaryColor }}{% else %}#F00{% endif %};
+  --spacing: 1em;
+  --font-size: 1.25rem;
+}
+@media screen and (min-width: 40em) {
+  :root {
+    --spacing: 2em;
+    --font-size: 1.5rem;
+  }
+}

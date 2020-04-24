@@ -1,14 +1,14 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
-const safeLinks = require("eleventy-plugin-safe-external-links");
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import safeLinks from "eleventy-plugin-safe-external-links";
+import { config } from "dotenv";
+config();
 
-const filters = require("./eleventy/filters.js");
-const transforms = require("./eleventy/transforms.js");
+import filters from "./eleventy/filters";
+import transforms from "./eleventy/transforms";
 
-require("dotenv").config();
-
-module.exports = function(config) {
+module.exports = function(config: any) {
   config.setUseGitIgnore(false);
 
   config.addPlugin(pluginRss);

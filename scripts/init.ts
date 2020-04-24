@@ -12,6 +12,7 @@ import {
   pathExists,
   ensureDir,
   mkdirp,
+  pathExistsSync,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -97,30 +98,31 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
-  ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) =>
-    watch(
-      join(__dirname, "..", dir),
-      { recursive: true },
-      (event: string, file: string) => {
-        console.log(event, file);
-        if (event === "change") {
-          try {
-            copyFileSync(
-              join(__dirname, "..", dir, file),
-              join(".", ".staart", dir, file)
-            );
-          } catch (error) {}
-        } else {
-          try {
-            removeSync(join(".", ".staart", __dirname, "..", dir, file));
-            copyFileSync(
-              join(__dirname, "..", dir, file),
-              join(".", ".staart", dir, file)
-            );
-          } catch (error) {}
+  ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) => {
+    if (pathExistsSync(join(__dirname, "..", dir)))
+      watch(
+        join(__dirname, "..", dir),
+        { recursive: true },
+        (event: string, file: string) => {
+          console.log(event, file);
+          if (event === "change") {
+            try {
+              copyFileSync(
+                join(__dirname, "..", dir, file),
+                join(".", ".staart", dir, file)
+              );
+            } catch (error) {}
+          } else {
+            try {
+              removeSync(join(".", ".staart", __dirname, "..", dir, file));
+              copyFileSync(
+                join(__dirname, "..", dir, file),
+                join(".", ".staart", dir, file)
+              );
+            } catch (error) {}
+          }
+          if (onChange) onChange();
         }
-        if (onChange) onChange();
-      }
-    )
-  );
+      );
+  });
 };

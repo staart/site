@@ -5,10 +5,9 @@ import { join } from "path";
 const staart = async () => {
   await mkdir(join(".", ".staart"), { recursive: true });
   await copyFile(
-    join(".", ".eleventy.js"),
-    join(".", ".staart", ".eleventy.js")
+    join(".", ".eleventy.ts"),
+    join(".", ".staart", ".eleventy.ts")
   );
-  await unlink(join(".", ".eleventy.js"));
 };
 
 staart();

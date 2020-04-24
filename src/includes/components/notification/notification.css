@@ -1,0 +1,23 @@
+.message {
+  padding: 1.5vh 0;
+  background-color: #e2650d;
+  color: #fff;
+}
+.message h2 {
+  margin-bottom: 0.5rem;
+}
+.message p {
+  margin: 0;
+}
+.message .container {
+  display: flex;
+  align-items: center;
+}
+.message p {
+  margin-right: 2rem;
+  flex: 1 0 0;
+}
+.message a.button {
+  font-size: 100%;
+  padding: 0.5rem 1rem;
+}

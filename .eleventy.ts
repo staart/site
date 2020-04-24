@@ -46,7 +46,7 @@ module.exports = function(config: any) {
 
   return {
     dir: {
-      input: "src",
+      input: ".staart/src",
       output: "dist",
       includes: "includes",
       layouts: "layouts",

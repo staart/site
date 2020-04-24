@@ -1,4 +1,5 @@
 import { init } from "./init";
+import { buildEleventy } from "./build";
 
 /**
  * Build production site
@@ -6,6 +7,7 @@ import { init } from "./init";
  */
 export const build = async (...params: string[]) => {
   await init();
+  buildEleventy(params, "production");
 };
 
 /**
@@ -14,6 +16,7 @@ export const build = async (...params: string[]) => {
  */
 export const watch = async (...params: string[]) => {
   await init();
+  buildEleventy(["--watch", ...params], "development");
 };
 
 /**
@@ -22,12 +25,5 @@ export const watch = async (...params: string[]) => {
  */
 export const serve = async (...params: string[]) => {
   await init();
-};
-
-/**
- * Run site in debug mode
- * @param params - CLI parameters and flags
- */
-export const debug = async (...params: string[]) => {
-  await init();
+  buildEleventy(["--serve", ...params], "development");
 };

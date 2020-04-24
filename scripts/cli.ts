@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { build, watch, serve, debug } from ".";
+import { build, watch, serve } from ".";
 
 const args = process.argv;
 if (args.length < 3) throw new Error("Command not found");
@@ -12,7 +12,6 @@ const cli = async () => {
   if (command === "build") return build(...params);
   if (command === "watch") return watch(...params);
   if (command === "serve") return serve(...params);
-  if (command === "debug") return debug(...params);
 };
 
 cli();

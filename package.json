@@ -14,10 +14,10 @@
     "src"
   ],
   "scripts": {
-    "build": "ts-node scripts/cli.ts build",
-    "watch": "ts-node scripts/cli.ts watch",
-    "serve": "ts-node scripts/cli.ts serve",
-    "debug": "ts-node scripts/cli.ts debug",
+    "build": "tsc",
+    "build-site": "ts-node scripts/cli.ts build",
+    "watch-site": "ts-node scripts/cli.ts watch",
+    "serve-site": "ts-node scripts/cli.ts serve",
     "start": "npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",

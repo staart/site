@@ -15,8 +15,9 @@
     {% include "meta.njk" %}
   </head>
   <body class="site">
-    {% include "notification.njk" %} {% include "header/header.njk" %}
+    {% include "components/notification/notification.njk" %}
+    {% include "components/header/header.njk" %}
     <main class="main">{{ content | safe }}</main>
-    {% include "footer.njk" %}
+    {% include "components/footer/footer.njk" %}
   </body>
 </html>

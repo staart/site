@@ -48,6 +48,7 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
 
 export const init = async () => {
   await remove(join(".", ".staart"));
+  await remove(join(".", ".dist"));
   await mkdir(join(".", ".staart"));
 
   for await (const file of [".eleventy.ts"]) {

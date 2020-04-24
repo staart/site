@@ -62,12 +62,12 @@ export const init = async () => {
   }
 
   for await (const dir of ["eleventy", "src", "static", "data"]) {
-    if (await pathExists(join(".", dir)))
-      await copy(join(".", dir), join(".", ".staart", dir), {
-        recursive: true,
-      });
     if (await pathExists(join(__dirname, "..", dir)))
       await copy(join(__dirname, "..", dir), join(".", ".staart", dir), {
+        recursive: true,
+      });
+    if (await pathExists(join(".", dir)))
+      await copy(join(".", dir), join(".", ".staart", dir), {
         recursive: true,
       });
   }

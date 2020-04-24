@@ -143,8 +143,17 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
+  watch(join(".", ".staartrc"), {}, (event: string) => {
+    try {
+      if (event === "change")
+        copyFileSync(
+          join(".", ".staartrc"),
+          join(".", ".staart", "data", "config.json")
+        );
+    } catch (error) {}
+  });
   [[__dirname, ".."], ["."]].forEach((prefix) => {
-    ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) => {
+    ["src", "static", "eleventy", "content"].forEach((dir) => {
       if (pathExistsSync(join(...prefix, dir)))
         watch(
           join(...prefix, dir),

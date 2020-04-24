@@ -7,6 +7,7 @@ import {
   getPreEmitDiagnostics,
   flattenDiagnosticMessageText,
 } from "typescript";
+import { replaceStart } from "./util";
 
 const compile = (fileNames: string[], options: CompilerOptions) => {
   const program = createProgram(fileNames, options);
@@ -40,7 +41,14 @@ const staart = async () => {
   for await (const dir of ["eleventy", "src"]) {
     await copy(join(".", dir), join(".", ".staart", dir));
   }
-  const content = await readdir(join(".", "content"));
+  const content = await recursiveReaddir(join(".", "content"));
+  for await (const file of content) {
+    if ((await lstat(join(".", file))).isFile())
+      await copyFile(
+        join(".", file),
+        join(".", ".staart", "src", replaceStart(file, "content/", ""))
+      );
+  }
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
   });

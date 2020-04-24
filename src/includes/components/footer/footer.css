@@ -1,0 +1,25 @@
+footer {
+  background-color: #000;
+  color: #fff;
+  font-size: 80%;
+  padding: 2.5vh 0;
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+footer a {
+  color: inherit;
+}
+footer nav {
+  display: flex;
+}
+footer nav a + a {
+  margin-left: 2rem;
+}
+
+@media (max-width: 900px) {
+  footer .container {
+    display: block;
+  }
+}

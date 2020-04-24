@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10vh;
+}
+.navbar > a:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.33rem;
+}
+.navbar > div {
+  display: flex;
+}
+.navbar > div a + a {
+  margin-left: 2.5rem;
+}
+.navbar a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.navbar a img {
+  display: block;
+  margin: 0 0.75rem 0 0;
+  height: 3.5rem;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    display: block;
+  }
+  .navbar > div {
+    margin-top: 1rem;
+  }
+}

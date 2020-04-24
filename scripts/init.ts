@@ -91,7 +91,9 @@ export const watcher = (onChange?: Function) => {
       (event: string, file: string) => {
         console.log(event, file);
         if (event === "change") {
-          copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+          try {
+            copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+          } catch (error) {}
         } else {
           try {
             removeSync(join(".", ".staart", dir, file));

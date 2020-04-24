@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
+const HRNumbers = require("human-readable-numbers");
 
 export default {
   dateToFormat: function(date: Date, format: string) {
@@ -25,4 +26,5 @@ export default {
   numberToFloat: function(num: string) {
     return parseFloat(num).toLocaleString();
   },
+  numberToReadable: (num: string | number) => HRNumbers.toHumanString(num),
 };

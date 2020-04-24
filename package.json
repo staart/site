@@ -43,6 +43,7 @@
     "gh-release": "^3.5.0",
     "gitmoji-changelog": "^2.1.0",
     "htmlnano": "^0.2.5",
+    "human-readable-numbers": "^0.9.5",
     "luxon": "^1.23.0",
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.7",

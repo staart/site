@@ -1,5 +1,6 @@
 import { join } from "path";
-import { ensureDir, copyFile, copy, readdir } from "fs-extra";
+import { mkdir, copyFile, copy, readdir, remove, lstat } from "fs-extra";
+import recursiveReaddir from "recursive-readdir";
 import {
   CompilerOptions,
   createProgram,
@@ -29,17 +30,21 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
 };
 
 const staart = async () => {
-  await ensureDir(join(".", ".staart"));
+  await remove(join(".", ".staart"));
+  await mkdir(join(".", ".staart"));
   const files = await readdir(join("."));
   for await (const file of files) {
-    await copyFile(join(".", file), join(".", ".staart", file));
+    if ((await lstat(join(".", file))).isFile())
+      await copyFile(join(".", file), join(".", ".staart", file));
   }
   for await (const dir of ["eleventy", "src"]) {
     await copy(join(".", dir), join(".", ".staart", dir));
   }
+  const content = await readdir(join(".", "content"));
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
   });
+  await remove(join(".", ".staart", ".eleventy.ts"));
 };
 
 staart();

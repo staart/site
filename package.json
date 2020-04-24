@@ -30,6 +30,8 @@
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-plugin-rss": "^1.0.7",
     "@semantic-release/git": "^9.0.0",
+    "@types/clean-css": "^4.2.1",
+    "@types/luxon": "^1.22.0",
     "clean-css": "^4.2.3",
     "cross-env": "^7.0.2",
     "del-cli": "^3.0.0",

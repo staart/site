@@ -37,6 +37,7 @@ module.exports = function(config: any) {
   config.addLayoutAlias("base", "base.njk");
   config.addLayoutAlias("post", "post.njk");
 
+  config.addPassthroughCopy({ static: "." });
   config.setDataDeepMerge(true);
 
   return {

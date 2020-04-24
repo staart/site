@@ -43,11 +43,11 @@ export const init = async () => {
       await copyFile(join(".", file), join(".", ".staart", file));
   }
 
-  for await (const dir of ["eleventy", "src"]) {
+  for await (const dir of ["eleventy", "src", "static"]) {
     await copy(join(".", dir), join(".", ".staart", dir));
   }
 
-  for await (const dir of ["content", "static"]) {
+  for await (const dir of ["content"]) {
     const content = await recursiveReaddir(join(".", dir));
     for await (const file of content) {
       if ((await lstat(join(".", file))).isFile())

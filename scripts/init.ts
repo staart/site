@@ -122,31 +122,33 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
-  ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) => {
-    if (pathExistsSync(join(__dirname, "..", dir)))
-      watch(
-        join(__dirname, "..", dir),
-        { recursive: true },
-        (event: string, file: string) => {
-          console.log(event, file);
-          if (event === "change") {
-            try {
-              copyFileSync(
-                join(__dirname, "..", dir, file),
-                join(".", ".staart", dir, file)
-              );
-            } catch (error) {}
-          } else {
-            try {
-              removeSync(join(".", ".staart", __dirname, "..", dir, file));
-              copyFileSync(
-                join(__dirname, "..", dir, file),
-                join(".", ".staart", dir, file)
-              );
-            } catch (error) {}
+  [[__dirname, ".."], ["."]].forEach((prefix) => {
+    ["src", "static", "eleventy", "content", ".staartrc"].forEach((dir) => {
+      if (pathExistsSync(join(...prefix, dir)))
+        watch(
+          join(...prefix, dir),
+          { recursive: true },
+          (event: string, file: string) => {
+            console.log(event, file);
+            if (event === "change") {
+              try {
+                copyFileSync(
+                  join(...prefix, dir, file),
+                  join(".", ".staart", dir, file)
+                );
+              } catch (error) {}
+            } else {
+              try {
+                removeSync(join(".", ".staart", ...prefix, dir, file));
+                copyFileSync(
+                  join(...prefix, dir, file),
+                  join(".", ".staart", dir, file)
+                );
+              } catch (error) {}
+            }
+            if (onChange) onChange();
           }
-          if (onChange) onChange();
-        }
-      );
+        );
+    });
   });
 };

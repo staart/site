@@ -1,5 +1,15 @@
 import { join } from "path";
-import { mkdir, copyFile, copy, readdir, remove, lstat } from "fs-extra";
+import {
+  mkdir,
+  copyFile,
+  copy,
+  readdir,
+  remove,
+  lstat,
+  watch,
+  copyFileSync,
+  removeSync,
+} from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
   CompilerOptions,
@@ -62,4 +72,26 @@ export const init = async () => {
     esModuleInterop: true,
   });
   await remove(join(".", ".staart", ".eleventy.ts"));
+};
+
+export const watcher = (onChange?: Function) => {
+  watch(
+    join(".", "src"),
+    { recursive: true },
+    (event: string, file: string) => {
+      console.log(event, file);
+      if (event === "change") {
+        copyFileSync(join(".", "src", file), join(".", ".staart", "src", file));
+      } else {
+        try {
+          removeSync(join(".", ".staart", "src", file));
+          copyFileSync(
+            join(".", "src", file),
+            join(".", ".staart", "src", file)
+          );
+        } catch (error) {}
+      }
+      if (onChange) onChange();
+    }
+  );
 };

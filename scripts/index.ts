@@ -1,4 +1,4 @@
-import { init } from "./init";
+import { init, watcher } from "./init";
 import { buildEleventy } from "./build";
 
 /**
@@ -16,7 +16,8 @@ export const build = async (...params: string[]) => {
  */
 export const watch = async (...params: string[]) => {
   await init();
-  buildEleventy(["--watch", ...params], "development");
+  watcher(() => buildEleventy(params, "development"));
+  buildEleventy(params, "development");
 };
 
 /**
@@ -25,5 +26,6 @@ export const watch = async (...params: string[]) => {
  */
 export const serve = async (...params: string[]) => {
   await init();
-  buildEleventy(["--serve", ...params], "development");
+  watcher(() => buildEleventy(params, "development"));
+  buildEleventy(params, "development");
 };

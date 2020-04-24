@@ -15,9 +15,6 @@
   ],
   "scripts": {
     "build": "tsc",
-    "build-site": "ts-node scripts/cli.ts build",
-    "watch-site": "ts-node scripts/cli.ts watch",
-    "serve-site": "ts-node scripts/cli.ts serve",
     "start": "npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",

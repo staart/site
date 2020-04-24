@@ -1,10 +1,12 @@
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.6;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: var(--font-size, 1rem);
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 125%;
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, Liberation Mono, Menlo, monospace;
 }
 
 ::selection {

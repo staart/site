@@ -1,0 +1,49 @@
+header {
+  background-color: #ffe600;
+  padding: 5vh 0 10vh 0;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10vh;
+}
+header nav > a:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.33rem;
+}
+header nav > div {
+  display: flex;
+}
+header nav > div a + a {
+  margin-left: 2.5rem;
+}
+header nav a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+header p {
+  max-width: 500px;
+}
+header nav a img {
+  display: block;
+  margin: 0 0.75rem 0 0;
+  height: 3.5rem;
+}
+header .container > div {
+  max-width: 600px;
+}
+header .doodle {
+  bottom: -10vh;
+}
+
+@media (max-width: 900px) {
+  header nav {
+    display: block;
+  }
+  header nav > div {
+    margin-top: 1rem;
+  }
+}

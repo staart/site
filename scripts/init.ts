@@ -75,23 +75,22 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
-  watch(
-    join(".", "src"),
-    { recursive: true },
-    (event: string, file: string) => {
-      console.log(event, file);
-      if (event === "change") {
-        copyFileSync(join(".", "src", file), join(".", ".staart", "src", file));
-      } else {
-        try {
-          removeSync(join(".", ".staart", "src", file));
-          copyFileSync(
-            join(".", "src", file),
-            join(".", ".staart", "src", file)
-          );
-        } catch (error) {}
+  ["src", "static", "eleventy", "content"].forEach((dir) =>
+    watch(
+      join(".", dir),
+      { recursive: true },
+      (event: string, file: string) => {
+        console.log(event, file);
+        if (event === "change") {
+          copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+        } else {
+          try {
+            removeSync(join(".", ".staart", dir, file));
+            copyFileSync(join(".", dir, file), join(".", ".staart", dir, file));
+          } catch (error) {}
+        }
+        if (onChange) onChange();
       }
-      if (onChange) onChange();
-    }
+    )
   );
 };

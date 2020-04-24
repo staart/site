@@ -21,7 +21,7 @@
     "debug": "DEBUG=* eleventy",
     "clean": "del-cli dist",
     "start": "npm run clean && npm run serve",
-    "compile-config": "tsc --lib es6 --esModuleInterop true .eleventy.ts",
+    "compile-config": "tsc --lib es6 --esModuleInterop true .eleventy.ts && ts-node scripts/start.ts",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",
     "semantic-release": "semantic-release"

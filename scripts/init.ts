@@ -17,10 +17,13 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
   );
   allDiagnostics.forEach((diagnostic) => {
     if (diagnostic.file) {
-      let { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
+      const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
         diagnostic.start!
       );
-      let message = flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+      const message = flattenDiagnosticMessageText(
+        diagnostic.messageText,
+        "\n"
+      );
       console.log(
         `${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`
       );
@@ -33,22 +36,28 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
 export const init = async () => {
   await remove(join(".", ".staart"));
   await mkdir(join(".", ".staart"));
+
   const files = await readdir(join("."));
   for await (const file of files) {
     if ((await lstat(join(".", file))).isFile())
       await copyFile(join(".", file), join(".", ".staart", file));
   }
+
   for await (const dir of ["eleventy", "src"]) {
     await copy(join(".", dir), join(".", ".staart", dir));
   }
-  const content = await recursiveReaddir(join(".", "content"));
-  for await (const file of content) {
-    if ((await lstat(join(".", file))).isFile())
-      await copyFile(
-        join(".", file),
-        join(".", ".staart", "src", replaceStart(file, "content/", ""))
-      );
+
+  for await (const dir of ["content", "static"]) {
+    const content = await recursiveReaddir(join(".", dir));
+    for await (const file of content) {
+      if ((await lstat(join(".", file))).isFile())
+        await copyFile(
+          join(".", file),
+          join(".", ".staart", "src", replaceStart(file, `${dir}/`, ""))
+        );
+    }
   }
+
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
   });

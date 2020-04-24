@@ -37,12 +37,6 @@ module.exports = function(config: any) {
   config.addLayoutAlias("base", "base.njk");
   config.addLayoutAlias("post", "post.njk");
 
-  config.addPassthroughCopy("admin");
-  config.addPassthroughCopy("src/email");
-  config.addPassthroughCopy("src/static");
-  config.addPassthroughCopy("src/CNAME");
-  config.addPassthroughCopy("src/robots.txt");
-
   config.setDataDeepMerge(true);
 
   return {

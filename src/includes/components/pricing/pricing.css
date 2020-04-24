@@ -1,11 +1,9 @@
 #pricing {
-  background-color: whitesmoke;
-  padding: 2.5vh 0 5vh 0;
-  margin-top: 7.5vh;
+  background: linear-gradient(transparent 10%, whitesmoke 10.0001%);
+  padding: 2.5vh 0;
 }
 #pricing .container {
   display: flex;
-  margin-top: -7.5vh;
 }
 #pricing .container > div {
   flex: 1 0 0;

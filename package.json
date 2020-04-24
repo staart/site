@@ -14,6 +14,13 @@
     "src"
   ],
   "scripts": {
+    "build": "npm run clean && cross-env ELEVENTY_ENV=production eleventy && npm run post-process",
+    "post-process": "ts-node scripts/post-process/index.ts",
+    "watch": "eleventy --watch",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=* eleventy",
+    "clean": "del-cli dist",
+    "start": "npm run clean && npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",
     "semantic-release": "semantic-release"

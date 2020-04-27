@@ -5,7 +5,7 @@ import {
   ensureFile,
   copyFile,
   copy,
-  remove
+  remove,
 } from "fs-extra";
 import {
   getDistPath,
@@ -19,7 +19,8 @@ import {
   getScriptPath,
   getBreadcrumbs,
   getBreadcrumbsSchema,
-  getNextPreviousNav
+  getNextPreviousNav,
+  createCname,
 } from "./files";
 import { cached } from "./cache";
 import { join, parse } from "path";
@@ -30,7 +31,7 @@ import {
   getNavbar,
   getSiteMeta,
   registerPartials,
-  getCustomCss
+  getCustomCss,
 } from "./data";
 import { minify } from "html-minifier";
 import { removeHeading, getTitle, getTags, getFilesForTag } from "./parse";
@@ -165,11 +166,11 @@ export const generate = async (customConfig?: StaartSiteConfig) => {
   if (!config.noHome) await generatePage("index.html", await getHomeContent());
   if (!config.noSitemap) await generateSitemap();
   const files = (await listContentFiles()).filter(
-    file => !["index.md", "sitemap.md"].includes(file)
+    (file) => !["index.md", "sitemap.md"].includes(file)
   );
   const allTags = await getTags();
   const tags: typeof allTags = {};
-  Object.keys(allTags).forEach(tag => {
+  Object.keys(allTags).forEach((tag) => {
     tags[tag] = allTags[tag];
   });
   for await (const key of Object.keys(tags)) {
@@ -218,8 +219,8 @@ ${filesList}`;
     let content = await readContentFile(file);
     if (parse(file).name === "index" && !config.noContentList) {
       const deepFiles = (await listContentFiles(join(file, "..")))
-        .filter(f => f !== "index.md")
-        .map(f => join(file, "..", f));
+        .filter((f) => f !== "index.md")
+        .map((f) => join(file, "..", f));
       if (deepFiles.length) {
         content += "\n\n" + (await getNavbar(deepFiles));
       }
@@ -233,7 +234,7 @@ ${filesList}`;
       schemaVersion: 1,
       message: "",
       label: config.shieldSchemaLabel || "docs",
-      color: config.shieldSchemaColor || "blueviolet"
+      color: config.shieldSchemaColor || "blueviolet",
     };
     await ensureDir(join(await getDistPath(), "shield-schema"));
     const nArticles = (await listContentFiles()).length;
@@ -273,6 +274,7 @@ ${filesList}`;
     await remove(join(await getDistPath(), "@"));
   } catch (error) {}
   await copyAssets();
+  await createCname();
 };
 
 const generateSitemap = async () => {
@@ -281,7 +283,7 @@ const generateSitemap = async () => {
   let content = (await getSitemapContent()) + "\n\n" + (await getNavbar(files));
   await generatePage("sitemap.html", content);
   const sitemap = new SitemapStream({
-    hostname: config.baseUrl || "http://localhost:8080"
+    hostname: config.baseUrl || "http://localhost:8080",
   });
   for await (const file of files) {
     let newFile = file;
@@ -321,7 +323,7 @@ const generateSitemap = async () => {
         {
           collapseWhitespace: true,
           processScripts: ["application/ld+json"],
-          minifyCSS: true
+          minifyCSS: true,
         }
       )
     );
@@ -347,7 +349,7 @@ const generatePage = async (path: string, content: string) => {
         ).toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
-          day: "numeric"
+          day: "numeric",
         })}</time>. <a href="${
           githubUrl
             ? `${githubUrl}/blob/master/content/${path.replace(".html", ".md")}`
@@ -395,10 +397,9 @@ const generatePage = async (path: string, content: string) => {
     metaTitle:
       path === "index.html"
         ? (await getSiteMeta("title", "name")) || "Staart Site"
-        : `${await getTitle(content, false)} · ${(await getSiteMeta(
-            "title",
-            "name"
-          )) || "Staart Site"}`,
+        : `${await getTitle(content, false)} · ${
+            (await getSiteMeta("title", "name")) || "Staart Site"
+          }`,
     ...attributes,
     description: truncate(
       path === "index.html"
@@ -410,7 +411,7 @@ const generatePage = async (path: string, content: string) => {
             ""
           ),
       200
-    )
+    ),
   };
   if (process.env.NODE_ENV) {
     try {
@@ -444,7 +445,7 @@ const generatePage = async (path: string, content: string) => {
     minify(result, {
       collapseWhitespace: true,
       processScripts: ["application/ld+json", "text/javascript"],
-      minifyCSS: true
+      minifyCSS: true,
     }).replace("// prettier-ignore ", "")
   );
 };

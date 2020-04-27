@@ -1,4 +1,4 @@
-import { readFile, readdir, mkdirp } from "fs-extra";
+import { readFile, readdir, mkdirp, writeFile } from "fs-extra";
 import { join, parse } from "path";
 import { getConfig } from "./config";
 import recursiveReadDir from "recursive-readdir";
@@ -8,6 +8,12 @@ import frontMatter from "front-matter";
 import { getTitle } from "./parse";
 import { getSiteContent } from "./content";
 import { filePathtoUrl } from "./helpers";
+
+export const createCname = async () => {
+  const config = await getConfig();
+  const distPath = await getDistPath();
+  if (config.cname) await writeFile(join(distPath, "CNAME"), config.cname);
+};
 
 export const getContentPath = async () => {
   const config = await getConfig();
@@ -82,7 +88,7 @@ export const readContentFile = async (path: string) => {
 
 export const listRootFiles = async () => {
   const contentPath = await getContentPath();
-  let files = (await readdir(contentPath)).map(file =>
+  let files = (await readdir(contentPath)).map((file) =>
     parse(file).ext ? file : `${file}/index.md`
   );
   const result = [];
@@ -100,10 +106,10 @@ export const listRootFiles = async () => {
 export const listDirs = async () => {
   const contentPath = await getContentPath();
   return Array.from(
-    new Set((await recursiveReadDir(contentPath)).map(f => parse(f).dir))
+    new Set((await recursiveReadDir(contentPath)).map((f) => parse(f).dir))
   )
-    .filter(d => d !== contentPath)
-    .map(d => d.replace(`${contentPath}/`, ""));
+    .filter((d) => d !== contentPath)
+    .map((d) => d.replace(`${contentPath}/`, ""));
 };
 
 export const listContentFiles = async (
@@ -117,9 +123,9 @@ export const listContentFiles = async (
   let files = await recursiveReadDir(contentPath);
   const config = await getConfig();
   if (filterContentFiles)
-    files = files.filter(name =>
+    files = files.filter((name) =>
       (config.contentFileExt || ["md"])
-        .map(ext => `.${ext}`)
+        .map((ext) => `.${ext}`)
         .includes(parse(name).ext)
     );
   let finalFiles: string[] = [];
@@ -132,7 +138,7 @@ export const listContentFiles = async (
     }
   }
   if (removeContentPath)
-    finalFiles = finalFiles.map(file => file.replace(`${contentPath}/`, ""));
+    finalFiles = finalFiles.map((file) => file.replace(`${contentPath}/`, ""));
   return finalFiles;
 };
 
@@ -158,7 +164,7 @@ export const getTemplatePartsList = async () => {
     const defaultTemplateFiles = await readdir(defaultTemplatesPartDir);
     return Array.from(
       new Set([...templatePartsFiles, ...defaultTemplateFiles])
-    ).map(i => i.replace(".html", ""));
+    ).map((i) => i.replace(".html", ""));
   });
 };
 
@@ -231,7 +237,7 @@ export const getNextPrevious = async (
 ) => {
   return cached<string>(`next-prev-${type}-${current}`, async () => {
     const allContent = await getSiteContent();
-    const currentFile = allContent.filter(f => f.htmlPath === current);
+    const currentFile = allContent.filter((f) => f.htmlPath === current);
     if (!currentFile.length) return "";
     if (type === "next") {
       const next = currentFile[0].next;

@@ -11,6 +11,7 @@
     >{{#if netlify}}, hosted by
     <a href="https://www.netlify.com/">Netlify</a>{{/if}}</span
   >
+  {{#if noDarkTheme}}{{ else }}
   <span
     ><button class="theme-toggle" aria-label="Change theme to dark">
       <svg
@@ -23,6 +24,6 @@
           fill="#000"
           fill-rule="nonzero"
         />
-      </svg></button
-  ></span>
+      </svg></button></span
+  >{{/if}}
 </footer>

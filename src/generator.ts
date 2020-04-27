@@ -117,7 +117,7 @@ const addTheme = async (css: string) => {
     )
     .replace(
       "$header-text-color: #ffffff",
-      `$header-text-color: ${config.textColor || "#ffffff"}`
+      `$header-text-color: ${config.headerTextColor || "#ffffff"}`
     )
     .replace(
       "$link-color: #0e632a",

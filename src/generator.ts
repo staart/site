@@ -116,12 +116,16 @@ const addTheme = async (css: string) => {
       `$text-color: ${config.textColor || "#001b01"}`
     )
     .replace(
+      "$header-text-color: #ffffff",
+      `$header-text-color: ${config.textColor || "#ffffff"}`
+    )
+    .replace(
       "$link-color: #0e632a",
       `$link-color: ${config.linkColor || config.themeColor || "#0e632a"}`
     )
     .replace(
-      "$light-color: #fff",
-      `$light-color: ${config.lightColor || "#fff"}`
+      "$light-color: #ffffff",
+      `$light-color: ${config.lightColor || "#ffffff"}`
     );
 };
 export const getCss = async () => {

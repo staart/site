@@ -1,7 +1,8 @@
 $theme-color: #0e632c;
 $text-color: #001b01;
 $link-color: #0e632a;
-$light-color: #fff;
+$header-text-color: #ffffff;
+$light-color: #ffffff;
 
 body {
   font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -45,7 +46,7 @@ header#masthead {
 
   .masthead {
     background-color: $theme-color;
-    color: $light-color;
+    color: $header-text-color;
     padding: 7.5vh 0;
     max-width: 100%;
   }

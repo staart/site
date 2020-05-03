@@ -8,6 +8,19 @@ html {
   margin: 0 auto;
 }
 
+.container-text {
+  max-width: 720px;
+  margin-top: -12.5vh;
+  margin-bottom: 2.5vh;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.container-text h1:first-child {
+  margin-top: 0;
+}
+
 .doodle {
   position: absolute;
   right: -10vw;

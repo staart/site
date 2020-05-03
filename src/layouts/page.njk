@@ -16,7 +16,18 @@
   </head>
   <body class="site">
     {% include "components/notification/notification.njk" %}
-    <main class="main">{{ content | safe }}</main>
+    <header>
+      <div class="container">
+        {% include "components/navbar/navbar.njk" %}
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container container-text">
+        <h1>{{ title }}</h1>
+        {{ content | safe }}
+      </div>
+    </main>
     {% include "components/prefooter/prefooter.njk" %}
     {% include "components/footer/footer.njk" %}
   </body>

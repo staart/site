@@ -2,6 +2,18 @@
   background-color: #ffe600;
   padding: 5vh 0 10vh 0;
 }
-.prefooter .container > div {
+.prefooter .container > div,
+.preprefooter .container > div {
   max-width: 500px;
+}
+
+.preprefooter h2 {
+  margin-top: 0;
+}
+.preprefooter {
+  background-color: #fff;
+  padding: 5vh 0;
+}
+.page .preprefooter {
+  background-color: whitesmoke;
 }

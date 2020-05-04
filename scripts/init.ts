@@ -256,10 +256,12 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
           "utf8"
         )
       )
-        .replace(/#000/g, config.doodleBorderColor || "#000")
+        .replace(/#000/g, (config.theme || {}).doodleBorderColor || "#000")
         .replace(
           /#123456/g,
-          config.doodleFillColor || config.buttonBackgroundColor || "#123456"
+          (config.theme || {}).doodleFillColor ||
+            (config.theme || {}).buttonBackgroundColor ||
+            "#123456"
         )
     );
   }

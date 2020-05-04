@@ -1,0 +1,93 @@
+{
+  "name": "cofuturology",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node ../../scripts/cli.ts build",
+    "watch": "ts-node ../../scripts/cli.ts watch",
+    "serve": "ts-node ../../scripts/cli.ts serve",
+    "start": "npm run serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "clean-css": "^4.2.3",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eleventy-plugin-pwa": "^1.0.8",
+    "eleventy-plugin-safe-external-links": "^0.1.4",
+    "htmlnano": "^0.2.5",
+    "human-readable-numbers": "^0.9.5",
+    "luxon": "^1.23.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^5.2.7",
+    "node-html-to-image": "^1.2.0",
+    "ts-node": "^8.9.0"
+  },
+  "@staart/site": {
+    "title": "Cofuturology",
+    "listSubpages": true,
+    "ignoreHomeSubpages": true,
+    "theme": {
+      "headerBackgroundColor": "#ffe600",
+      "headerTextColor": "#000000",
+      "textColor": "#372500",
+      "linkColor": "#000000",
+      "buttonBackgroundColor": "#8e44ad",
+      "buttonBackgroundColorLight": "#ff9e9e",
+      "buttonTextColor": "#ffffff",
+      "doodleFillColor": "#8e44ad"
+    },
+    "navbar": [
+      "<a href='/episodes'>Episodes</a>",
+      "<a href='/listen'>How to Listen</a>"
+    ],
+    "preFooter": [
+      {
+        "type": "message",
+        "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/github.svg",
+        "title": "An open source podcast",
+        "text": "This website, podcast episodes, show notes, and our branding are all available on <a href='#'>GitHub</a>."
+      },
+      {
+        "type": "message",
+        "style": {
+          "background-color": "var(--headerBackgroundColor)",
+          "color": "var(--headerTextColor)",
+          "padding": "5vh 0 10vh 0"
+        },
+        "illustration": "dancing",
+        "title": "Cofuturology is available wherever you listen to podcasts.",
+        "ctaText": "Listen now →",
+        "ctaLink": "#"
+      }
+    ],
+    "footer": {
+      "text": "Hosted by Dr. Jeffrey White and Anand Chowdhary",
+      "links": [
+        "<a href='https://github.com/AnandChowdhary/cofuturology'>GitHub</a>"
+      ]
+    },
+    "pages": {
+      "/": {
+        "title": "cofuturology",
+        "components": [
+          {
+            "type": "header",
+            "title": "Cofuturology is a new podcast about the future.",
+            "text": "Hosted by philosopher Dr. Jeffrey White and creative technologist Anand Chowdhary, Cofuturology is available wherever you listen to podcasts.",
+            "ctaText": "Listen now →",
+            "ctaLink": "#",
+            "doodle": "float"
+          },
+          {
+            "type": "message",
+            "title": "An open source podcast",
+            "text": "This website, podcast episodes, show notes, and our branding are all available."
+          }
+        ]
+      }
+    }
+  }
+}

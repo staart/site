@@ -9,6 +9,10 @@ p:last-child {
   margin-bottom: 0;
 }
 
+.container-text {
+  background-color: #fff;
+}
+
 .button {
   background-color: var(--brand-color);
   color: var(--brand-text-color);

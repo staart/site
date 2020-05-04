@@ -1,11 +1,17 @@
 <nav class="navbar">
   <a href="/">
-    <img alt="" src="https://puppet.js.org/icon.7a37cd53.svg" />
-    <span>Puppet</span>
+    {% if pkg["@staart/site"].logo %}
+      <img alt="" src="https://puppet.js.org/icon.7a37cd53.svg" />
+    {% endif %}
+    {% if pkg["@staart/site"].title %}
+      <span>{{ pkg["@staart/site"].title }}</span>
+    {% elseif pkg.name %}
+      <span>{{ pkg.name }}</span>
+    {% endif %}
   </a>
   <div>
-    <a href="#pricing">Pricing</a>
-    <a href="#">Docs</a>
-    <a href="#">Login &rarr;</a>
+    {%- for item in pkg["@staart/site"].navbar %}
+      {{ item | safe }}
+    {%- endfor %}
   </div>
 </nav>

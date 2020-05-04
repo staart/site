@@ -1,11 +1,10 @@
 <footer>
   <div class="container">
-    <div>Made by <a href="https://anandchowdhary.com">Anand Chowdhary</a></div>
-    <nav>
-      <a href="https://twitter.com/AnandChowdhary">Twitter</a>
-      <a href="https://github.com/AnandChowdhary/puppet">GitHub</a>
-      <a href="https://www.npmjs.com/package/puppet">NPM</a>
-      <a href="#">Terms and Privacy</a>
-    </nav>
+    <div>{{ pkg["@staart/site"].footer.text | safe }}</div>
+    {% if pkg["@staart/site"].footer.links %}<nav>
+      {%- for item in pkg["@staart/site"].footer.links %}
+        {{ item | safe }}
+      {%- endfor %}
+    </nav>{% endif %}
   </div>
 </footer>

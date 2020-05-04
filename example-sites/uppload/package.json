@@ -29,6 +29,7 @@
     "title": "Uppload",
     "logo": "https://uppload.js.org/assets/icon-white.svg",
     "listSubpages": true,
+    "ignoreHomeSubpages": true,
     "theme": {
       "headerBackgroundColor": "#f05d5e",
       "headerTextColor": "#ffffff",

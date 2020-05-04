@@ -156,6 +156,8 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
       pagesToSub = (
         await recursiveReaddir(join(".", ".staart", "src"))
       ).filter((i) => i.endsWith("index.md"));
+      if (config.ignoreHomeSubpages)
+        pagesToSub = pagesToSub.filter((i) => i !== ".staart/src/index.md");
     }
   }
   for await (const file of pagesToSub) {
@@ -169,7 +171,7 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
           (await getTitleFromFile(
             join(".", file.replace(".md", ""), subFile).replace("index/", "")
           )) || subFile
-        }](./${subFile})`;
+        }](./${subFile.replace(".md", "")})\n`;
       }
       await writeFile(
         join(".", replaceStart(file, `src/`, "")),

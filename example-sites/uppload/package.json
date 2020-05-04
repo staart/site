@@ -41,7 +41,7 @@
     },
     "navbar": [
       "<a href='/getting-started'>Getting started</a>",
-      "<a href='/'>Docs</a>",
+      "<a href='/docs'>Docs</a>",
       "<a href='/blog'>Blog</a>",
       "<a href='https://github.com/elninotech/uppload' target='_blank'>GitHub</a>"
     ],
@@ -71,6 +71,21 @@
         "<a href='https://github.com/AnandChowdhary/puppet'>GitHub</a>",
         "<a href='https://www.npmjs.com/package/puppet'>NPM</a>"
       ]
+    },
+    "pages": {
+      "/": {
+        "title": "Uppload",
+        "components": [
+          {
+            "type": "header",
+            "title": "No-code, natural language web automation",
+            "text": "Puppet is the open-source no-code browser-based automation tool, powered by Google Chrome. Easily automate your workflows, scrape websites, and more.",
+            "ctaText": "Get for $4/month →",
+            "ctaLink": "#",
+            "doodle": "sleek"
+          }
+        ]
+      }
     },
     "faq": {
       "What are Secrets?": "Secrets are a form of encrypted text storage that allow you to store sensitive information. For example, you can use Secrets to store your username and password to use Puppet when logging in to web services. Secrets are encrypted with AES-256 using a unique key specific to you.",

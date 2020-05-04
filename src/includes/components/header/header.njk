@@ -2,16 +2,12 @@
   <div class="container">
     {% include "components/navbar/navbar.njk" %}
     <div>
-      <h1>No-code, natural language web automation</h1>
-      <p>
-        Puppet is the open-source no-code browser-based automation tool, powered
-        by Google Chrome. Easily automate your workflows, scrape websites, and
-        more.
-      </p>
+      <h1>{{ component_title }}</h1>
+      <p>{{ component_text }}</p>
       <div>
-        <a href="#" class="button">Get for $4/month &rarr;</a>
+        <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
       </div>
     </div>
-    <img alt="" src="/doodles/sleek.svg" class="doodle" />
+    <img alt="" src="/doodles/{{ component_doodle }}.svg" class="doodle" />
   </div>
 </header>

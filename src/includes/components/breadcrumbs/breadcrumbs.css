@@ -1,0 +1,21 @@
+.breadcrumbs {
+  display: flex;
+  margin: 0 0 -1rem 0;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+.breadcrumbs li:first-child,
+.breadcrumbs li:last-child {
+  display: none;
+}
+.breadcrumbs li {
+  margin-top: 0;
+  margin-right: 1rem;
+}
+.breadcrumbs li::after {
+  content: "›";
+  opacity: 0.5;
+  margin-left: 1rem;
+  display: inline-block;
+}

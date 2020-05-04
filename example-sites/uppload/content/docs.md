@@ -1,4 +1,4 @@
-# Uppload
+# Docs
 
 Uppload is a better JavaScript image uploader. It's highly customizable with 30+ plugins, completely free and open-source, and can be used with any file uploading backend.
 

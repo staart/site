@@ -1,6 +1,5 @@
 {% include "head.njk" %}
   <body class="site">
     {% include "components/notification/notification.njk" %}
-    {% include "components/header/header.njk" %}
-    <main class="main">{{ content | safe }}</main>
+    {{ content | safe }}
 {% include "foot.njk" %}

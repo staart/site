@@ -16,6 +16,7 @@ import {
   writeFile,
   readFile,
   readJson,
+  ensureFile,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -80,11 +81,15 @@ export const init = async () => {
     await mkdirp(join(".", dir));
     const content = await recursiveReaddir(join(".", dir));
     for await (const file of content) {
-      if ((await lstat(join(".", file))).isFile())
+      if ((await lstat(join(".", file))).isFile()) {
+        await ensureFile(
+          join(".", ".staart", "src", replaceStart(file, `${dir}/`, ""))
+        );
         await copyFile(
           join(".", file),
           join(".", ".staart", "src", replaceStart(file, `${dir}/`, ""))
         );
+      }
     }
   }
 

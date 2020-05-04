@@ -1,8 +1,19 @@
 :root {
-  --brand-color: {% if meta.primaryColor %}{{ meta.primaryColor }}{% else %}#F00{% endif %};
+  --brand-color: {% if pkg["@staart/site"].themeBackgroundColor %}{{ pkg["@staart/site"].themeBackgroundColor }}{% else %}#005291{% endif %};
+  --brand-color-light: {% if pkg["@staart/site"].themeBackgroundColor %}{{ pkg["@staart/site"].themeBackgroundColor }}{% else %}#74b9ff{% endif %};
+  --brand-text-color: {% if pkg["@staart/site"].themeTextColor %}{{ pkg["@staart/site"].themeTextColor }}{% else %}#ffffff{% endif %};
+  --text-color: {% if pkg["@staart/site"].textColor %}{{ pkg["@staart/site"].textColor }}{% else %}#001424{% endif %};
+  --link-color: {% if pkg["@staart/site"].linkColor %}{{ pkg["@staart/site"].linkColor }}{% else %}{% if pkg["@staart/site"].themeBackgroundColor %}{{ pkg["@staart/site"].themeBackgroundColor }}{% else %}#0984e3{% endif %}{% endif %};
+  --header-background-color: {% if pkg["@staart/site"].headerBackgroundColor %}{{ pkg["@staart/site"].headerBackgroundColor }}{% else %}#0984e3{% endif %};
+  --header-text-color: {% if pkg["@staart/site"].headerTextColor %}{{ pkg["@staart/site"].headerTextColor }}{% else %}#ffffff{% endif %};
+  --footer-background-color: {% if pkg["@staart/site"].headerBackgroundColor %}{{ pkg["@staart/site"].headerBackgroundColor }}{% else %}#000000{% endif %};
+  --footer-text-color: {% if pkg["@staart/site"].headerTextColor %}{{ pkg["@staart/site"].headerTextColor }}{% else %}#ffffff{% endif %};
+  --notification-background-color: {% if pkg["@staart/site"].notificationBackgroundColor %}{{ pkg["@staart/site"].notificationBackgroundColor }}{% else %}#81ecec{% endif %};
+  --notification-text-color: {% if pkg["@staart/site"].notificationTextColor %}{{ pkg["@staart/site"].notificationTextColor }}{% else %}#000000{% endif %};
   --spacing: 1em;
   --font-size: 1.25rem;
 }
+
 @media screen and (min-width: 40em) {
   :root {
     --spacing: 2em;

@@ -1,5 +1,6 @@
 .prefooter {
-  background-color: #ffe600;
+  background-color: var(--header-background-color);
+  color: var(--header-text-color);
   padding: 5vh 0 10vh 0;
 }
 .prefooter .container > div,

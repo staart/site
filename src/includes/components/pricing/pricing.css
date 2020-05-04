@@ -24,12 +24,12 @@
 #pricing h3 + div {
   font-size: 150%;
   font-weight: bold;
-  color: #66029c;
+  color: var(--brand-color);
 }
 #pricing .button {
   margin-top: 0.5rem;
-  background-color: #ebd3f5;
-  color: inherit;
+  background-color: var(--brand-color-light);
+  color: var(--text-color);
 }
 #pricing .button + p {
   margin: 0.5rem 0 0 0;
@@ -39,8 +39,8 @@
   opacity: 0.75;
 }
 #pricing .recommended .button {
-  background: #66029c;
-  color: #fff;
+  background: var(--brand-color);
+  color: var(--brand-text-color);
 }
 #pricing ul {
   margin: 2rem 0;

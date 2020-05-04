@@ -17,7 +17,7 @@ export const build = async (...params: string[]) => {
  */
 export const watch = async (...params: string[]) => {
   await init();
-  watcher(() => buildEleventy(params, "development"));
+  watcher(() => init().then(() => buildEleventy(params, "development")));
   buildEleventy(params, "development");
 };
 
@@ -27,7 +27,7 @@ export const watch = async (...params: string[]) => {
  */
 export const serve = async (...params: string[]) => {
   await init();
-  watcher(() => buildEleventy(params, "development"));
+  watcher(() => init().then(() => buildEleventy(params, "development")));
   buildEleventy(params, "development");
   liveServer.start({
     root: "dist",

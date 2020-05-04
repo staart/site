@@ -34,10 +34,10 @@
       "headerBackgroundColor": "#f05d5e",
       "headerTextColor": "#ffffff",
       "linkColor": "#dc3545",
-      "buttonBackgroundColor": "#81ecec",
+      "buttonBackgroundColor": "yellow",
       "buttonBackgroundColorLight": "#ff9e9e",
       "buttonTextColor": "#000000",
-      "doodleFillColor": "#81ecec"
+      "doodleFillColor": "yellow"
     },
     "navbar": [
       "<a href='/getting-started'>Getting started</a>",
@@ -60,8 +60,8 @@
           "padding": "5vh 0 10vh 0"
         },
         "illustration": "coffee",
-        "title": "Seriously—unlimited web automation jobs for the price of 1 cup of coffee per month.",
-        "ctaText": "Get for $4/month →",
+        "title": "The most powerful way to let your users select images.",
+        "ctaText": "GitHub repo →",
         "ctaLink": "#"
       }
     ],
@@ -78,9 +78,9 @@
         "components": [
           {
             "type": "header",
-            "title": "No-code, natural language web automation",
-            "text": "Puppet is the open-source no-code browser-based automation tool, powered by Google Chrome. Easily automate your workflows, scrape websites, and more.",
-            "ctaText": "Get for $4/month →",
+            "title": "The better image uploader for the web",
+            "text": "Uppload is the open-source file uploader with 20+ plugins to select, edit, and upload photos to any backend service.",
+            "ctaText": "Try it live →",
             "ctaLink": "#",
             "doodle": "sleek"
           }

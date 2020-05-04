@@ -1,0 +1,51 @@
+{
+  "name": "example-site",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node ../scripts/cli.ts build",
+    "watch": "ts-node ../scripts/cli.ts watch",
+    "serve": "ts-node ../scripts/cli.ts serve",
+    "start": "npm run serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "clean-css": "^4.2.3",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eleventy-plugin-pwa": "^1.0.8",
+    "eleventy-plugin-safe-external-links": "^0.1.4",
+    "htmlnano": "^0.2.5",
+    "human-readable-numbers": "^0.9.5",
+    "luxon": "^1.23.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^5.2.7",
+    "node-html-to-image": "^1.2.0",
+    "ts-node": "^8.9.0"
+  },
+  "@staart/site": {
+    "title": "Puppet",
+    "logo": "https://puppet.js.org/icon.7a37cd53.svg",
+    "themeColor": "#66029c",
+    "navbar": [
+      "<a href='/#pricing'>Pricing</a>",
+      "<a href='#'>Docs</a>",
+      "<a href='#'>Login &rarr;</a>"
+    ],
+    "footer": {
+      "text": "Made by <a href='https://anandchowdhary.com'>Anand Chowdhary</a>",
+      "links": [
+        "<a href='https://twitter.com/AnandChowdhary'>Twitter</a>",
+        "<a href='https://github.com/AnandChowdhary/puppet'>GitHub</a>",
+        "<a href='https://www.npmjs.com/package/puppet'>NPM</a>",
+        "<a href='#'>Terms and Privacy</a>"
+      ]
+    },
+    "faq": {
+      "What are Secrets?": "Secrets are a form of encrypted text storage that allow you to store sensitive information. For example, you can use Secrets to store your username and password to use Puppet when logging in to web services. Secrets are encrypted with AES-256 using a unique key specific to you.",
+      "Do you offer discounts to students and teachers?": "If you have an educational email address, you receive the Puppet Master plan for free. Just sign up with your school/university email and it will be activated. If you have an unrecognized institution domain, contact us with your ID and we'll set you up."
+    }
+  }
+}

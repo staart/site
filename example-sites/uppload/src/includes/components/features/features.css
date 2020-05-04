@@ -1,0 +1,54 @@
+#features .container {
+  display: flex;
+  padding: 5vh 0;
+}
+#features .container > div {
+  flex: 1 0 0;
+}
+#features textarea {
+  height: 18rem;
+  line-height: 2rem;
+  font-size: 2rem;
+  padding: 1rem;
+  font: inherit;
+  width: 85%;
+  box-sizing: border-box;
+  border: 1px solid #ffe600;
+  border-radius: 0.5rem;
+  resize: vertical;
+}
+#features .button {
+  font-size: 100%;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+#features .button:last-child {
+  background-color: #ebd3f5;
+  color: inherit;
+  margin-left: 0.5rem;
+}
+#features ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#features li span:first-child {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  width: 3.5rem;
+  height: 3.5rem;
+  text-align: center;
+  line-height: 3.5rem;
+  vertical-align: middle;
+  border-radius: 100%;
+  margin-right: 1rem;
+}
+#features li img {
+  width: 2.5rem;
+  margin-top: 0.5rem;
+  height: 2.5rem;
+}
+#features li + li {
+  margin-top: 1rem;
+}

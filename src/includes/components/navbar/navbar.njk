@@ -1,7 +1,7 @@
 <nav class="navbar">
   <a href="/">
     {% if pkg["@staart/site"].logo %}
-      <img alt="" src="https://puppet.js.org/icon.7a37cd53.svg" />
+      <img alt="" src="{{ pkg['@staart/site'].logo }}" />
     {% endif %}
     {% if pkg["@staart/site"].title %}
       <span>{{ pkg["@staart/site"].title }}</span>

@@ -1,17 +1,17 @@
-{%- set absolutePageUrl -%}{{ page.url | url | absoluteUrl(meta.url) }}{%- endset -%}
+{%- set absolutePageUrl -%}{{ page.url | url | absoluteUrl(pkg['@staart/site'].url) }}{%- endset -%}
 
 {# Meta Tags #}
-<meta name="description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
-<meta property="og:title" content="{{ title or meta.title }}">
-<meta property="og:description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
+<meta name="description" content="{{ (content or description or pkg['@staart/site'].description) | striptags | truncate(300) }}">
+<meta property="og:title" content="{{ title or pkg['@staart/site'].title }}">
+<meta property="og:description" content="{{ (content or description or pkg['@staart/site'].description) | striptags | truncate(300) }}">
 <meta property="og:url" content="{{ absolutePageUrl }}">
 
 {# Twitter #}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@karuna2020_org">
 <meta name="twitter:creator" content="@karuna2020_org">
-<meta name="twitter:title" content="{{ title or meta.title }}">
-<meta name="twitter:description" content="{{ (content or description or meta.description) | striptags | truncate(300) }}">
+<meta name="twitter:title" content="{{ title or pkg['@staart/site'].title }}">
+<meta name="twitter:description" content="{{ (content or description or pkg['@staart/site'].description) | striptags | truncate(300) }}">
 
 {# Favicon #}
 <link rel="shortcut icon" type="image/png" href="{{ '/static/images/favicon/favicon.ico' | url }}">
@@ -23,7 +23,7 @@
 <link rel="manifest" href="{{ '/site.webmanifest' | url }}">
 
 {# RSS Feed #}
-<link type="application/atom+xml" rel="alternate" href="{{ meta.url }}/feed.xml" title="{{ meta.title }}">
+<link type="application/atom+xml" rel="alternate" href="{{ pkg['@staart/site'].url }}/feed.xml" title="{{ pkg['@staart/site'].title }}">
 
 {# Custom fonts/CSS #}
 {% include "custom-head.njk" %}

@@ -1,5 +1,5 @@
 a {
-  color: var(--brand-color);
+  color: var(--link-color);
 }
 a:hover {
   opacity: 0.5;
@@ -14,8 +14,8 @@ p:last-child {
 }
 
 .button {
-  background-color: var(--brand-color);
-  color: var(--brand-text-color);
+  background-color: var(--button-color);
+  color: var(--button-text-color);
   font-weight: bold;
   text-decoration: none;
   padding: 0.5rem 1.5rem;
@@ -52,5 +52,5 @@ p:last-child {
 }
 
 ::selection {
-  background-color: var(--brand-color-light);
+  background-color: var(--button-color-light);
 }

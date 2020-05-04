@@ -6,3 +6,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.33rem;
 }
+
+header {
+  padding-top: 10vh;
+}

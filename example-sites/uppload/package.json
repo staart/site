@@ -1,5 +1,5 @@
 {
-  "name": "example-site",
+  "name": "uppload",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
@@ -26,21 +26,25 @@
     "ts-node": "^8.9.0"
   },
   "@staart/site": {
-    "title": "Puppet",
-    "logo": "https://puppet.js.org/icon.7a37cd53.svg",
-    "themeColor": "#66029c",
+    "title": "Uppload",
+    "logo": "https://uppload.js.org/assets/icon-white.svg",
+    "headerBackgroundColor": "#f05d5e",
+    "headerTextColor": "#ffffff",
+    "linkColor": "#dc3545",
+    "buttonBackgroundColor": "#81ecec",
+    "buttonTextColor": "#000000",
+    "doodleFillColor": "#81ecec",
     "navbar": [
-      "<a href='/#pricing'>Pricing</a>",
-      "<a href='#'>Docs</a>",
-      "<a href='#'>Login &rarr;</a>"
+      "<a href='/getting-started'>Getting started</a>",
+      "<a href='/'>Docs</a>",
+      "<a href='/blog'>Blog</a>",
+      "<a href='https://github.com/elninotech/uppload' target='_blank'>GitHub</a>"
     ],
     "footer": {
-      "text": "Made by <a href='https://anandchowdhary.com'>Anand Chowdhary</a>",
+      "text": "&copy; 2020 El Niño",
       "links": [
-        "<a href='https://twitter.com/AnandChowdhary'>Twitter</a>",
         "<a href='https://github.com/AnandChowdhary/puppet'>GitHub</a>",
-        "<a href='https://www.npmjs.com/package/puppet'>NPM</a>",
-        "<a href='#'>Terms and Privacy</a>"
+        "<a href='https://www.npmjs.com/package/puppet'>NPM</a>"
       ]
     },
     "faq": {

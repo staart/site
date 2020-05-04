@@ -159,7 +159,7 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
         .replace(/#000/g, config.doodleBorderColor || "#000")
         .replace(
           /#123456/g,
-          config.doodleFillColor || config.themeColor || "#123456"
+          config.doodleFillColor || config.buttonBackgroundColor || "#123456"
         )
     );
   }

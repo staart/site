@@ -1,12 +1,14 @@
+{% if pkg["@staart/site"].notificationText %}
 <div class="notification">
   <div class="container">
-    <p>
-      <strong>🎉 We're on Product Hunt!</strong>
-      $10 coupon code:
-      <code>GOLDENKITTY</code>
-    </p>
+    <p>{{ pkg["@staart/site"].notificationText }}</p>
+    {% if pkg["@staart/site"].notificationButtonText %}
     <div>
-      <a href="#" class="button">Upvote on Product Hunt &rarr;</a>
+      <a href="{{ pkg['@staart/site'].notificationLink }}" class="button">
+        {{ pkg["@staart/site"].notificationButtonText }}
+      </a>
     </div>
+    {% endif %}
   </div>
 </div>
+{% endif %}

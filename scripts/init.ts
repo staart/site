@@ -93,6 +93,30 @@ export const init = async () => {
     }
   }
 
+  const content = await recursiveReaddir(join(".", ".staart", "src"));
+  for await (const file of content) {
+    if (file.endsWith(".md")) {
+      const fileContents = await readFile(
+        join(".", replaceStart(file, `src/`, "")),
+        "utf8"
+      );
+      const lines = fileContents.split("\n");
+      if (!lines[0].includes("---")) {
+        const title = lines[0].replace("#", "").trim();
+        const firstLine = lines.shift();
+        await writeFile(
+          join(".", replaceStart(file, `src/`, "")),
+          `---
+title: ${title}
+layout: page
+---
+
+${fileContents.replace(`${firstLine}\n`, "")}`
+        );
+      }
+    }
+  }
+
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
   });

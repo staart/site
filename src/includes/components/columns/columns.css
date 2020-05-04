@@ -1,0 +1,21 @@
+.columns {
+  padding: 7.5vh 0;
+}
+
+.columns h2:first-child {
+  text-align: center;
+  margin-top: 0;
+}
+
+.columns .container {
+  display: flex;
+}
+.columns .container > * {
+  flex: 1 0 0;
+}
+.columns .container > *:first-child {
+  padding-right: 2rem;
+}
+.columns .container > *:last-child {
+  padding-left: 2rem;
+}

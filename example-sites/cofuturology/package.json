@@ -35,7 +35,7 @@
       "textColor": "#372500",
       "linkColor": "#000000",
       "buttonBackgroundColor": "#8e44ad",
-      "buttonBackgroundColorLight": "#ff9e9e",
+      "buttonBackgroundColorLight": "#f1c40f",
       "buttonTextColor": "#ffffff",
       "doodleFillColor": "#8e44ad"
     },
@@ -82,9 +82,17 @@
             "doodle": "float"
           },
           {
-            "type": "message",
-            "title": "An open source podcast",
-            "text": "This website, podcast episodes, show notes, and our branding are all available."
+            "type": "columns",
+            "title": "About the hosts",
+            "text1": "Jeffrey B. White, PhD, is an Assistant Professor at the Faculty of Behavioural, Management and Social Sciences (BMS), Department of Philosophy (WIJSB), University of Twente and Visiting Scholar at the Cognitive Neurorobotics Research Unit (Jun Tani), Okinawa Institute of Science and Technology. Jeff served as the co-chair of Philosophy of AI at the 2018 World Congress of Philosophy), edits papers for PhilPapers, reviews papers for several conferences and journals, and is a member of the Advisory Board for the peer-reviewed journal AI & Society.",
+            "text2": "Anand Chowdhary is a creative technologist and entrepreneur, and Creative Technology BSc student at University of Twente. He is the co-founder and CEO of Oswald Labs, an accessibility technology company that builds products for people with disabilities. He has been featured as one of the most innovative entrepreneurs in the Netherlands and listed in Forbes 30 Under 30 Asia 2018. He also works with startups as a consultant and advisor, maintains several open source projects, and serves on the Advisory Committee of the Dutch edtech nonprofit Oefenen.nl."
+          },
+          {
+            "type": "faq",
+            "questions": {
+              "How many episodes will you release?": "We don't know yet, but we have some ideas about what we want to talk about after the first few episodes. To be honestly, we'll have to see.",
+              "Can I listen to Cofuturology using my favorite podcast app?": "Yes, Cofuturology is available on all major podcast apps and platforms, like Pocket Casts, Spotify, Stitcher, and Apple Podcasts. Just search for the name and you'll find it."
+            }
           }
         ]
       }

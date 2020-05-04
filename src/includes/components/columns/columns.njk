@@ -1,0 +1,21 @@
+<section class="columns">
+  {% if component_title %}<h2>{{ component_title }}</h2>{% endif %}
+  <div class="container">
+    <div>
+      {% if component_text1 %}<p>{{ component_text1 }}</p>{% endif %}
+      {% if component_ctaLink %}
+        <div>
+          <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
+        </div>
+      {% endif %}
+    </div>
+    <div>
+      {% if component_text2 %}<p>{{ component_text2 }}</p>{% endif %}
+      {% if component_ctaLink %}
+        <div>
+          <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

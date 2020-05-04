@@ -2,12 +2,16 @@
   <div class="container">
     {% include "components/navbar/navbar.njk" %}
     <div>
-      <h1>{{ component_title }}</h1>
-      <p>{{ component_text }}</p>
+      {% if component_title %}<h1>{{ component_title }}</h1>{% endif %}
+      {% if component_text %}<p>{{ component_text }}</p>{% endif %}
+      {% if component_ctaText %}
       <div>
         <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
       </div>
+      {% endif %}
     </div>
-    <img alt="" src="/doodles/{{ component_doodle }}.svg" class="doodle" />
+    {% if component_doodle %}
+      <img alt="" src="/doodles/{{ component_doodle }}.svg" class="doodle" />
+    {% endif %}
   </div>
 </header>

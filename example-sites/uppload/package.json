@@ -40,6 +40,23 @@
       "<a href='/blog'>Blog</a>",
       "<a href='https://github.com/elninotech/uppload' target='_blank'>GitHub</a>"
     ],
+    "pre-footer": [
+      {
+        "type": "message",
+        "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/github.svg",
+        "title": "Open sourced on GitHub",
+        "text": "Puppet's source code is available for free on <a href='#'>GitHub</a>, and the underlying package is available on <a href='#'>npm</a>."
+      },
+      {
+        "type": "message",
+        "backgroundColor": "--var(headerBackgroundColor)",
+        "textColor": "--var(headerTextColor)",
+        "illustration": "coffee",
+        "title": "Seriously—unlimited web automation jobs for the price of 1 cup of coffee per month.",
+        "ctaText": "Get for $4/month →",
+        "ctaLink": "#"
+      }
+    ],
     "footer": {
       "text": "&copy; 2020 El Niño",
       "links": [

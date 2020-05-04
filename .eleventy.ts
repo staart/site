@@ -2,6 +2,7 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import safeLinks from "eleventy-plugin-safe-external-links";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import { config } from "dotenv";
 config();
 
@@ -13,6 +14,7 @@ module.exports = function (config: any) {
   config.setUseGitIgnore(false);
 
   config.addPlugin(pluginRss);
+  config.addPlugin(syntaxHighlight);
   config.addPlugin(safeLinks);
 
   Object.keys(filters).forEach((filterName) => {

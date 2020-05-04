@@ -9,7 +9,7 @@ import filters from "./eleventy/filters";
 import shortcodes from "./eleventy/shortcodes";
 import transforms from "./eleventy/transforms";
 
-module.exports = function(config: any) {
+module.exports = function (config: any) {
   config.setUseGitIgnore(false);
 
   config.addPlugin(pluginRss);
@@ -50,7 +50,6 @@ module.exports = function(config: any) {
       output: "dist",
       includes: "includes",
       layouts: "layouts",
-      data: "data",
     },
     templateFormats: ["njk", "md"],
     htmlTemplateEngine: "njk",

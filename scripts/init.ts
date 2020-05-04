@@ -75,12 +75,6 @@ export const init = async () => {
         recursive: true,
       });
   }
-  await ensureDir(join(".", ".staart", "data"));
-  if (pathExists(join(".", ".staartrc")))
-    await copyFile(
-      join(".", ".staartrc"),
-      join(".", ".staart", "data", "config.json")
-    );
 
   for await (const dir of ["content"]) {
     await mkdirp(join(".", dir));
@@ -122,7 +116,7 @@ export const init = async () => {
     `
   );
 
-  const config = await readJson(join(".", ".staartrc"));
+  const config = (await readJson(join(".", "package.json")))["@staart/site"];
   const doodles = await readdir(join(".", ".staart", "static", "doodles"));
   for await (const doodle of doodles) {
     await writeFile(
@@ -143,15 +137,6 @@ export const init = async () => {
 };
 
 export const watcher = (onChange?: Function) => {
-  watch(join(".", ".staartrc"), {}, (event: string) => {
-    try {
-      if (event === "change")
-        copyFileSync(
-          join(".", ".staartrc"),
-          join(".", ".staart", "data", "config.json")
-        );
-    } catch (error) {}
-  });
   [[__dirname, ".."], ["."]].forEach((prefix) => {
     ["src", "static", "eleventy", "content"].forEach((dir) => {
       if (pathExistsSync(join(...prefix, dir)))

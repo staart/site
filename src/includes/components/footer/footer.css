@@ -1,6 +1,6 @@
 footer {
-  background-color: var(--footer-background-color);
-  color: var(--footer-text-color);
+  background-color: var(--footerBackgroundColor);
+  color: var(--footerTextColor);
   font-size: 80%;
   padding: 2.5vh 0;
 }

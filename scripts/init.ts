@@ -167,7 +167,14 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
 
 export const watcher = (onChange?: Function) => {
   [[__dirname, ".."], ["."]].forEach((prefix) => {
-    ["src", "static", "eleventy", "content"].forEach((dir) => {
+    [
+      "src",
+      "static",
+      "eleventy",
+      "content",
+      "package.json",
+      "redirects.yml",
+    ].forEach((dir) => {
       if (pathExistsSync(join(...prefix, dir)))
         watch(
           join(...prefix, dir),

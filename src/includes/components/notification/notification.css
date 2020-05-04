@@ -1,7 +1,7 @@
 .notification {
   padding: 1.5vh 0;
-  background-color: var(--notification-background-color);
-  color: var(--notification-text-color);
+  background-color: var(--notificationBackgroundColor);
+  color: var(--notificationTextColor);
 }
 .notification h2 {
   margin-bottom: 0.5rem;

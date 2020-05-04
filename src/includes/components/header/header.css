@@ -1,6 +1,6 @@
 header {
-  background-color: var(--header-background-color);
-  color: var(--header-text-color);
+  background-color: var(--headerBackgroundColor);
+  color: var(--headerTextColor);
   padding: 2.5vh 0 10vh 0;
 }
 header p {

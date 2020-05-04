@@ -220,7 +220,6 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
           if (path !== ".staart/src") {
             try {
               const title = await getTitleFromFile(path + "index.md");
-              console.log(path, title);
               if (title)
                 list.push(
                   `<a itemprop="item" href="${path.replace(
@@ -231,7 +230,6 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
             } catch (error) {}
           }
         }
-        console.log(parts, list);
         await writeFile(
           join(".", replaceStart(file, `src/`, "")),
           (await readFile(join(".", replaceStart(file, `src/`, "")), "utf8"))

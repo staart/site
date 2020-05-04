@@ -32,6 +32,7 @@
     "headerTextColor": "#ffffff",
     "linkColor": "#dc3545",
     "buttonBackgroundColor": "#81ecec",
+    "buttonLightBackgroundColor": "#ff9e9e",
     "buttonTextColor": "#000000",
     "doodleFillColor": "#81ecec",
     "navbar": [
@@ -40,7 +41,7 @@
       "<a href='/blog'>Blog</a>",
       "<a href='https://github.com/elninotech/uppload' target='_blank'>GitHub</a>"
     ],
-    "pre-footer": [
+    "preFooter": [
       {
         "type": "message",
         "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/github.svg",
@@ -49,8 +50,11 @@
       },
       {
         "type": "message",
-        "backgroundColor": "--var(headerBackgroundColor)",
-        "textColor": "--var(headerTextColor)",
+        "style": {
+          "background-color": "var(--headerBackgroundColor)",
+          "color": "var(--headerTextColor)",
+          "padding": "5vh 0 10vh 0"
+        },
         "illustration": "coffee",
         "title": "Seriously—unlimited web automation jobs for the price of 1 cup of coffee per month.",
         "ctaText": "Get for $4/month →",

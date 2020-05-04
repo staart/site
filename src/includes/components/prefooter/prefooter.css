@@ -1,25 +1,19 @@
-.prefooter {
-  background-color: var(--header-background-color);
-  color: var(--header-text-color);
-  padding: 5vh 0 10vh 0;
-}
-.prefooter .container > div,
-.preprefooter .container > div {
+.message .container > div {
   max-width: 500px;
 }
 
-.preprefooter h2 {
+.message h2 {
   margin-top: 0;
 }
-.preprefooter {
+.message {
   background-color: #fff;
   padding: 5vh 0;
 }
-.preprefooter img {
+.message img.icon {
   height: 2.5rem;
   display: block;
   margin-bottom: 1rem;
 }
-.page .preprefooter {
+.page .message {
   background-color: whitesmoke;
 }

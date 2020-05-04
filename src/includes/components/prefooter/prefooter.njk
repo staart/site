@@ -1,23 +1,33 @@
-<div class="preprefooter">
-  <div class="container">
-    <div>
-      <img alt="" src="https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/github.svg">
-      <h2>Open sourced on GitHub</h2>
-      <p>Puppet's source code is available for free on <a href="#">GitHub</a>, and the underlying package is available on <a href="#">npm</a>.</p>
-    </div>
-  </div>
-</div>
-<div class="prefooter">
-  <div class="container">
-    <div>
-      <h2>
-        Seriously&mdash;unlimited web automation jobs for the price of 1 cup of
-        coffee per month.
-      </h2>
-      <div>
-        <a href="#" class="button">Get for $4/month &rarr;</a>
-      </div>
-    </div>
-    <img alt="" src="/doodles/coffee.svg" class="doodle" />
-  </div>
-</div>
+{% if pkg["@staart/site"]["preFooter"] %}
+  {% for item in pkg["@staart/site"]["preFooter"] %}
+    <section class="{{ item.type }}" style="{% if item.style %}{% for prop, value in item.style %}{{ prop }}:{{ value }};{% endfor %}{% endif %}">
+      <div class="container">
+        <div>
+          {% if item.icon %}
+            <img alt="" src="{{ item.icon }}" class="icon">
+          {% endif %}
+          {% if item.title %}
+            <h2>{{ item.title }}</h2>
+          {% endif %}
+          {% if item.text %}
+            <p>{{ item.text | safe }}</p>
+          {% endif %}
+          {% if item.ctaText %}
+            <div>
+              <a href="{{ item.ctaLink }}" class="button">{{ item.ctaText }}</a>
+            </div>
+          {% endif %}
+        </div>
+      {% if item.illustration %}
+        <div>
+          <img alt="" src="/doodles/{{ item.illustration }}.svg" class="doodle" />
+        </div>
+      {% endif %}
+      {% if item.image %}
+        <div>
+          <img alt="" src="{{ item.image }}" class="image" />
+        </div>
+      {% endif %}
+    </section>
+  {% endfor %}
+{% endif %}

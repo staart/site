@@ -2,9 +2,9 @@
   <div class="container">
     <div>{{ pkg["@staart/site"].footer.text | safe }}</div>
     {% if pkg["@staart/site"].footer.links %}<nav>
-      {%- for item in pkg["@staart/site"].footer.links %}
+      {% for item in pkg["@staart/site"].footer.links %}
         {{ item | safe }}
-      {%- endfor %}
+      {% endfor %}
     </nav>{% endif %}
   </div>
 </footer>

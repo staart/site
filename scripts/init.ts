@@ -223,7 +223,10 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
               console.log(path, title);
               if (title)
                 list.push(
-                  `<a href="${path.replace(".staart/src", "")}">${title}</a>`
+                  `<a itemprop="item" href="${path.replace(
+                    ".staart/src",
+                    ""
+                  )}"><span itemprop="name">${title}</span></a>`
                 );
             } catch (error) {}
           }

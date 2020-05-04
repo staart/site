@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0-beta.3",
   "module": "dist/scripts/index.js",
   "main": "dist/scripts/index.js",
   "bin": "./dist/scripts/cli.js",
@@ -14,7 +14,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && ts-node scripts/dist.ts",
     "start": "npm run serve",
     "changelog": "gitmoji-changelog",
     "release": "gh-release",

@@ -28,13 +28,16 @@
   "@staart/site": {
     "title": "Uppload",
     "logo": "https://uppload.js.org/assets/icon-white.svg",
-    "headerBackgroundColor": "#f05d5e",
-    "headerTextColor": "#ffffff",
-    "linkColor": "#dc3545",
-    "buttonBackgroundColor": "#81ecec",
-    "buttonLightBackgroundColor": "#ff9e9e",
-    "buttonTextColor": "#000000",
-    "doodleFillColor": "#81ecec",
+    "listSubpages": true,
+    "theme": {
+      "headerBackgroundColor": "#f05d5e",
+      "headerTextColor": "#ffffff",
+      "linkColor": "#dc3545",
+      "buttonBackgroundColor": "#81ecec",
+      "buttonBackgroundColorLight": "#ff9e9e",
+      "buttonTextColor": "#000000",
+      "doodleFillColor": "#81ecec"
+    },
     "navbar": [
       "<a href='/getting-started'>Getting started</a>",
       "<a href='/'>Docs</a>",

@@ -1,15 +1,15 @@
 :root {
-  buttonBackgroundColor: {% if pkg["@staart/site"].buttonBackgroundColor %}{{ pkg["@staart/site"].buttonBackgroundColor }}{% else %}#005291{% endif %};
-  buttonBackgroundColorLight: {% if pkg["@staart/site"].buttonLightBackgroundColor %}{{ pkg["@staart/site"].buttonLightBackgroundColor }}{% else %}#74b9ff{% endif %};
-  --buttonTextColor: {% if pkg["@staart/site"].buttonTextColor %}{{ pkg["@staart/site"].buttonTextColor }}{% else %}#ffffff{% endif %};
-  --textColor: {% if pkg["@staart/site"].textColor %}{{ pkg["@staart/site"].textColor }}{% else %}#001424{% endif %};
-  --linkColor: {% if pkg["@staart/site"].linkColor %}{{ pkg["@staart/site"].linkColor }}{% else %}{% if pkg["@staart/site"].buttonBackgroundColor %}{{ pkg["@staart/site"].buttonBackgroundColor }}{% else %}#0984e3{% endif %}{% endif %};
-  --headerBackgroundColor: {% if pkg["@staart/site"].headerBackgroundColor %}{{ pkg["@staart/site"].headerBackgroundColor }}{% else %}#0984e3{% endif %};
-  --headerTextColor: {% if pkg["@staart/site"].headerTextColor %}{{ pkg["@staart/site"].headerTextColor }}{% else %}#ffffff{% endif %};
-  --footerBackgroundColor: {% if pkg["@staart/site"].footerBackgroundColor %}{{ pkg["@staart/site"].footerBackgroundColor }}{% else %}#000000{% endif %};
-  --footerTextColor: {% if pkg["@staart/site"].footerTextColor %}{{ pkg["@staart/site"].footerTextColor }}{% else %}#ffffff{% endif %};
-  --notificationBackgroundColor: {% if pkg["@staart/site"].notificationBackgroundColor %}{{ pkg["@staart/site"].notificationBackgroundColor }}{% else %}#81ecec{% endif %};
-  --notificationTextColor: {% if pkg["@staart/site"].notificationTextColor %}{{ pkg["@staart/site"].notificationTextColor }}{% else %}#000000{% endif %};
+  --buttonBackgroundColor: {% if pkg["@staart/site"].theme.buttonBackgroundColor %}{{ pkg["@staart/site"].theme.buttonBackgroundColor }}{% else %}#005291{% endif %};
+  --buttonBackgroundColorLight: {% if pkg["@staart/site"].theme.buttonBackgroundColorLight %}{{ pkg["@staart/site"].theme.buttonBackgroundColorLight }}{% else %}#74b9ff{% endif %};
+  --buttonTextColor: {% if pkg["@staart/site"].theme.buttonTextColor %}{{ pkg["@staart/site"].theme.buttonTextColor }}{% else %}#ffffff{% endif %};
+  --textColor: {% if pkg["@staart/site"].theme.textColor %}{{ pkg["@staart/site"].theme.textColor }}{% else %}#001424{% endif %};
+  --linkColor: {% if pkg["@staart/site"].theme.linkColor %}{{ pkg["@staart/site"].theme.linkColor }}{% else %}{% if pkg["@staart/site"].theme.buttonBackgroundColor %}{{ pkg["@staart/site"].theme.buttonBackgroundColor }}{% else %}#0984e3{% endif %}{% endif %};
+  --headerBackgroundColor: {% if pkg["@staart/site"].theme.headerBackgroundColor %}{{ pkg["@staart/site"].theme.headerBackgroundColor }}{% else %}#0984e3{% endif %};
+  --headerTextColor: {% if pkg["@staart/site"].theme.headerTextColor %}{{ pkg["@staart/site"].theme.headerTextColor }}{% else %}#ffffff{% endif %};
+  --footerBackgroundColor: {% if pkg["@staart/site"].theme.footerBackgroundColor %}{{ pkg["@staart/site"].theme.footerBackgroundColor }}{% else %}#000000{% endif %};
+  --footerTextColor: {% if pkg["@staart/site"].theme.footerTextColor %}{{ pkg["@staart/site"].theme.footerTextColor }}{% else %}#ffffff{% endif %};
+  --notificationBackgroundColor: {% if pkg["@staart/site"].theme.notificationBackgroundColor %}{{ pkg["@staart/site"].theme.notificationBackgroundColor }}{% else %}#81ecec{% endif %};
+  --notificationTextColor: {% if pkg["@staart/site"].theme.notificationTextColor %}{{ pkg["@staart/site"].theme.notificationTextColor }}{% else %}#000000{% endif %};
   --spacing: 1em;
   --font-size: 1.25rem;
 }

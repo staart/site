@@ -25,7 +25,7 @@ import {
   getPreEmitDiagnostics,
   flattenDiagnosticMessageText,
 } from "typescript";
-import { replaceStart } from "./util";
+import { replaceStart, getTitleFromFile } from "./util";
 
 const compile = (fileNames: string[], options: CompilerOptions) => {
   const program = createProgram(fileNames, options);
@@ -146,6 +146,40 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
   );
 
   const config = (await readJson(join(".", "package.json")))["@staart/site"];
+
+  const listSubpages: string[] | boolean = config.listSubpages;
+  let pagesToSub: string[] = [];
+  if (listSubpages) {
+    if (Array.isArray(listSubpages)) {
+      pagesToSub = listSubpages.map((i) => join(".", ".staart", "src", i));
+    } else {
+      pagesToSub = (
+        await recursiveReaddir(join(".", ".staart", "src"))
+      ).filter((i) => i.endsWith("index.md"));
+    }
+  }
+  for await (const file of pagesToSub) {
+    const subFiles = (await readdir(join(file, ".."))).filter(
+      (i) => i.endsWith(".md") && !i.endsWith("index.md")
+    );
+    if (subFiles.length > 1) {
+      let list = "";
+      for await (const subFile of subFiles) {
+        list += `- [${
+          (await getTitleFromFile(
+            join(".", file.replace(".md", ""), subFile).replace("index/", "")
+          )) || subFile
+        }](./${subFile})`;
+      }
+      await writeFile(
+        join(".", replaceStart(file, `src/`, "")),
+        (await readFile(join(".", replaceStart(file, `src/`, "")), "utf8")) +
+          "\n\n" +
+          list
+      );
+    }
+  }
+
   const doodles = await readdir(join(".", ".staart", "static", "doodles"));
   for await (const doodle of doodles) {
     await writeFile(

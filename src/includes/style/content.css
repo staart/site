@@ -45,6 +45,38 @@ p:last-child {
   transform: scale(1.25);
 }
 
+table {
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table th {
+  font-weight: 600;
+}
+
+table td,
+table th {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 1rem;
+}
+
+table tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+table tr:nth-child(2n) td {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+img {
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

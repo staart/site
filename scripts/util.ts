@@ -1,4 +1,4 @@
-import { readFile } from "fs-extra";
+import { lstat, readFile } from "fs-extra";
 import { join } from "path";
 
 /**
@@ -30,10 +30,9 @@ export const replaceEnd = (
  * Get the title of a markdown content file
  * @param file - File name
  */
-export const getTitleFromFile = async (file: string) => {
+export const getTitleFromFile = async (file: string): Promise<string> => {
   const fileContents = await readFile(join(".", file), "utf8");
-  if (fileContents.includes("title:")) {
+  if (fileContents.includes("title:"))
     return fileContents.split("title:")[1].split("\n")[0].trim();
-  }
   return "";
 };

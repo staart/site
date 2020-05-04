@@ -113,6 +113,22 @@ layout: page
 
 ${fileContents.replace(`${firstLine}\n`, "")}`
         );
+      } else {
+        const title = lines.find((i) => i.startsWith("# "))?.replace("# ", "");
+        if (
+          !(lines.find((i, x) => x < 10 && i.startsWith("layout:")) || [])
+            .length
+        )
+          lines[1] += "\nlayout: page";
+        if (
+          !(lines.find((i, x) => x < 10 && i.startsWith("title:")) || []).length
+        ) {
+          if (title) lines[1] += `\ntitle: ${title}`;
+        }
+        await writeFile(
+          join(".", replaceStart(file, `src/`, "")),
+          lines.filter((i) => !i.startsWith(`# ${title}`)).join("\n")
+        );
       }
     }
   }
@@ -179,6 +195,53 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
           "\n\n" +
           list
       );
+    }
+  }
+
+  if (!config.disableBreadcrumbs) {
+    const files = (
+      await recursiveReaddir(join(".", ".staart", "src"))
+    ).filter((i) => i.endsWith(".md"));
+    for await (const file of files) {
+      const parts = file.replace(".staart/src/", "").split("/");
+      if (
+        parts.length > 1 &&
+        parts[0] !== "@" &&
+        parts[parts.length - 1] !== "index.md"
+      ) {
+        const list: string[] = [];
+        for await (const part of parts) {
+          const path = join(
+            ".",
+            ".staart",
+            "src",
+            parts.join("/").split(part)[0]
+          ).replace("index/", "");
+          if (path !== ".staart/src") {
+            try {
+              const title = await getTitleFromFile(path + "index.md");
+              console.log(path, title);
+              if (title)
+                list.push(
+                  `<a href="${path.replace(".staart/src", "")}">${title}</a>`
+                );
+            } catch (error) {}
+          }
+        }
+        console.log(parts, list);
+        await writeFile(
+          join(".", replaceStart(file, `src/`, "")),
+          (await readFile(join(".", replaceStart(file, `src/`, "")), "utf8"))
+            .split("\n")
+            .map((i, index) => {
+              if (index < 10 && i.startsWith("title: ")) {
+                i += `\nbreadcrumbs: ${JSON.stringify(list)}`;
+              }
+              return i.trim();
+            })
+            .join("\n")
+        );
+      }
     }
   }
 

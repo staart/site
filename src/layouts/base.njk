@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html class="no-js" lang="{{ meta.lang }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      {%- if title -%}{{ title }} · {{ pkg["@staart/site"].title or pkg.name }}{%- else -%}{{
-        pkg["@staart/site"].title or pkg.name
-      }}{%- endif -%}
-    </title>
-    {%- set css -%}{% include "inline-css.njk" %}{%- endset -%}
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
-    {% include "meta.njk" %}
-  </head>
+{% include "head.njk" %}
   <body class="site">
     {% include "components/notification/notification.njk" %}
     {% include "components/header/header.njk" %}
     <main class="main">{{ content | safe }}</main>
-    {% include "components/prefooter/prefooter.njk" %}
-    {% include "components/footer/footer.njk" %}
-  </body>
-</html>
+{% include "foot.njk" %}

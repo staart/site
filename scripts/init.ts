@@ -107,7 +107,7 @@ export const init = async () => {
         await writeFile(
           join(".", replaceStart(file, `src/`, "")),
           `---
-title: ${title}
+title: "${title}"
 layout: page
 ---
 
@@ -123,7 +123,7 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
         if (
           !(lines.find((i, x) => x < 10 && i.startsWith("title:")) || []).length
         ) {
-          if (title) lines[1] += `\ntitle: ${title}`;
+          if (title) lines[1] += `\ntitle: "${title}"`;
         }
         await writeFile(
           join(".", replaceStart(file, `src/`, "")),

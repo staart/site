@@ -146,12 +146,6 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
     `
       {% include "style/properties.njk" %}
 
-      {% include "style/type.css" %}
-      {% include "style/layout.css" %}
-      {% include "style/content.css" %}
-      {% include "style/mobile.css" %}
-      {% include "style/custom-css.css" %}
-
       ${cssFiles
         .map(
           (i) =>
@@ -266,7 +260,7 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
     );
   }
 
-  const pages = config.pages;
+  const pages = config.pages || {};
   for await (const path of Object.keys(pages)) {
     const page = path.endsWith("/") ? `${path}index.njk` : `${path}.njk`;
     await ensureFile(join(".", ".staart", "src", page));

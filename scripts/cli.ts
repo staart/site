@@ -14,4 +14,6 @@ const cli = async () => {
   if (command === "serve") return serve(...params);
 };
 
-cli();
+cli()
+  .then(() => {})
+  .catch((error) => console.log("ERROR", error));

@@ -11,7 +11,7 @@
       {% endif %}
     </div>
     {% if component_doodle %}
-      <img alt="" src="/doodles/{{ component_doodle }}.svg" class="doodle" />
+      <img alt="" src="{{ ('/doodles/' + component_doodle + '.svg') | url }}" class="doodle" />
     {% endif %}
   </div>
 </header>

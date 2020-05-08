@@ -5,7 +5,7 @@
       {% if component_text1 %}<p>{{ component_text1 }}</p>{% endif %}
       {% if component_ctaLink %}
         <div>
-          <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
+          <a href="{{ component_ctaLink | url }}" class="button">{{ component_ctaText }}</a>
         </div>
       {% endif %}
     </div>
@@ -13,7 +13,7 @@
       {% if component_text2 %}<p>{{ component_text2 }}</p>{% endif %}
       {% if component_ctaLink %}
         <div>
-          <a href="{{ component_ctaLink }}" class="button">{{ component_ctaText }}</a>
+          <a href="{{ component_ctaLink | url }}" class="button">{{ component_ctaText }}</a>
         </div>
       {% endif %}
     </div>

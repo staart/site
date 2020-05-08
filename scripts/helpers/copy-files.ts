@@ -15,7 +15,10 @@ import { replaceStart } from "../util";
 
 export const copyFiles = async () => {
   for await (const file of [".eleventy.ts"]) {
-    await copyFile(join(__dirname, "..", file), join(".", ".staart", file));
+    await copyFile(
+      join(__dirname, "..", "..", file),
+      join(".", ".staart", file)
+    );
   }
 
   const files = await readdir(join("."));
@@ -25,8 +28,8 @@ export const copyFiles = async () => {
   }
 
   for await (const dir of ["eleventy", "src", "static", "data"]) {
-    if (await pathExists(join(__dirname, "..", dir)))
-      await copy(join(__dirname, "..", dir), join(".", ".staart", dir), {
+    if (await pathExists(join(__dirname, "..", "..", dir)))
+      await copy(join(__dirname, "..", "..", dir), join(".", ".staart", dir), {
         recursive: true,
       });
     if (await pathExists(join(".", dir)))

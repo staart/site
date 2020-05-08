@@ -17,6 +17,7 @@ import {
   readFile,
   readJson,
   ensureFile,
+  writeJson,
 } from "fs-extra";
 import recursiveReaddir from "recursive-readdir";
 import {
@@ -156,7 +157,18 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
     `
   );
 
-  const config = (await readJson(join(".", "package.json")))["@staart/site"];
+  if (!(await pathExists(join(".", "package.json")))) {
+    await writeJson(join(".", "package.json"), {});
+  }
+  let config = (await readJson(join(".", "package.json")))["@staart/site"];
+  if (!config) {
+    if (await pathExists(join(".", ".staartrc"))) {
+      config = await readJson(join(".", ".staartrc"));
+    }
+    const currentPackage: any = await readJson(join(".", "package.json"));
+    currentPackage["@staart/site"] = { ...config };
+    await writeJson(join(".", ".staart", "package.json"), currentPackage);
+  }
 
   const listSubpages: string[] | boolean = config.listSubpages;
   let pagesToSub: string[] = [];

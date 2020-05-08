@@ -1,4 +1,4 @@
-import { init, watcher } from "./init";
+import { init, watcher, revert } from "./init";
 import { buildEleventy } from "./build";
 const liveServer = require("live-server");
 
@@ -9,6 +9,7 @@ const liveServer = require("live-server");
 export const build = async (...params: string[]) => {
   await init();
   buildEleventy(params, "production");
+  await revert();
 };
 
 /**

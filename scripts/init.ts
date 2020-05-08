@@ -52,6 +52,18 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
   });
 };
 
+export const revert = async () => {
+  if (await pathExists(join(".", "package.json"))) {
+    const currentPackage: any = await readJson(join(".", "package.json"));
+    delete currentPackage["@staart/site"];
+    delete currentPackage._staartrc;
+    await writeFile(
+      join(".", "package.json"),
+      JSON.stringify(currentPackage, null, 2)
+    );
+  }
+};
+
 export const init = async () => {
   await remove(join(".", ".staart"));
   await remove(join(".", ".dist"));
@@ -167,7 +179,11 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
     }
     const currentPackage: any = await readJson(join(".", "package.json"));
     currentPackage["@staart/site"] = { ...config };
-    await writeJson(join(".", ".staart", "package.json"), currentPackage);
+    currentPackage._staartrc = true;
+    await writeFile(
+      join(".", "package.json"),
+      JSON.stringify(currentPackage, null, 2)
+    );
   }
 
   const listSubpages: string[] | boolean = config.listSubpages;

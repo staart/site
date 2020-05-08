@@ -1,5 +1,6 @@
 import { pathExists, readJson, writeFile, writeJson } from "fs-extra";
 import { join } from "path";
+import childProcess from "child_process";
 
 export const revert = async () => {
   if (await pathExists(join(".", "package.json"))) {
@@ -17,7 +18,12 @@ export const revert = async () => {
 
 export const createPackageJson = async () => {
   if (!(await pathExists(join(".", "package.json")))) {
-    await writeJson(join(".", "package.json"), {});
+    await writeJson(join(".", "package.json"), {
+      dependencies: { "@staart/site": "latest" },
+    });
+    childProcess.execSync("npm i", {
+      stdio: "inherit",
+    });
   }
   let config = (await readJson(join(".", "package.json")))["@staart/site"];
   if (!config) {

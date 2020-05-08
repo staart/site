@@ -27,6 +27,8 @@ export const init = async () => {
   await copyFiles();
   await updateMarkdownFiles();
 
+  const config = await createPackageJson();
+
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
     resolveJsonModule: true,
@@ -50,7 +52,6 @@ export const init = async () => {
     `
   );
 
-  const config = await createPackageJson();
   await generateSubpages(config);
 
   if (!config.disableBreadcrumbs) await generateBreadcrumbs();

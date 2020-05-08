@@ -20,7 +20,7 @@ export const createPackageJson = async () => {
   if (!(await pathExists(join(".", "package.json")))) {
     await writeJson(join(".", "package.json"), {});
   }
-  childProcess.execSync("cd .staart && npm i @staart/site@3.0.0-beta.11", {
+  childProcess.execSync("cd .staart && npm i @staart/site@3.0.0-beta.14", {
     stdio: "inherit",
   });
   let config = (await readJson(join(".", "package.json")))["@staart/site"];

@@ -55,12 +55,14 @@ const compile = (fileNames: string[], options: CompilerOptions) => {
 export const revert = async () => {
   if (await pathExists(join(".", "package.json"))) {
     const currentPackage: any = await readJson(join(".", "package.json"));
-    delete currentPackage["@staart/site"];
-    delete currentPackage._staartrc;
-    await writeFile(
-      join(".", "package.json"),
-      JSON.stringify(currentPackage, null, 2)
-    );
+    if (currentPackage._staartrc) {
+      delete currentPackage["@staart/site"];
+      delete currentPackage._staartrc;
+      await writeFile(
+        join(".", "package.json"),
+        JSON.stringify(currentPackage, null, 2) + "\n"
+      );
+    }
   }
 };
 

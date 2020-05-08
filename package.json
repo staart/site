@@ -1,6 +1,6 @@
 {
   "name": "@staart/site",
-  "version": "3.0.0-beta.15",
+  "version": "3.0.0-beta.16",
   "module": "dist/scripts/index.js",
   "main": "dist/scripts/index.js",
   "bin": "./dist/scripts/cli.js",

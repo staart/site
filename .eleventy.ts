@@ -11,7 +11,7 @@ import shortcodes from "./eleventy/shortcodes";
 import transforms from "./eleventy/transforms";
 
 import pkg from "./package.json";
-const settings: any = pkg["@staart/site"] || {};
+const settings: any = (pkg as any)["@staart/site"] || {};
 
 module.exports = (config: any) => {
   config.setUseGitIgnore(false);

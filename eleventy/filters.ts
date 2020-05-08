@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
 const HRNumbers = require("human-readable-numbers");
 import pkg from "../package.json";
-const settings: any = pkg["@staart/site"] || {};
+const settings: any = (pkg as any)["@staart/site"] || {};
 
 export default {
   dateToFormat: function (date: Date, format: string) {

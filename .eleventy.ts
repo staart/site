@@ -13,7 +13,7 @@ import transforms from "./eleventy/transforms";
 import pkg from "./package.json";
 const settings = pkg["@staart/site"] || {};
 
-export default (config: any) => {
+module.exports = (config: any) => {
   config.setUseGitIgnore(false);
 
   config.addPlugin(pluginRss);

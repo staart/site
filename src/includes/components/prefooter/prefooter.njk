@@ -20,7 +20,7 @@
         </div>
       {% if item.illustration %}
         <div>
-          <img alt="" src="/doodles/{{ item.illustration }}.svg" class="doodle" />
+          <img alt="" src="{{ ('/doodles/' + illustration + '.svg') | safeUrl }}" class="doodle" />
         </div>
       {% endif %}
       {% if item.image %}

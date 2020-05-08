@@ -1,4 +1,4 @@
-{%- set absolutePageUrl -%}{{ page.url | url | absoluteUrl(pkg['@staart/site'].url) }}{%- endset -%}
+{%- set absolutePageUrl -%}{{ page.url | safeUrl | absoluteUrl(pkg['@staart/site'].url) }}{%- endset -%}
 
 {# Meta Tags #}
 <meta name="description" content="{{ (content or description or pkg['@staart/site'].description) | striptags | truncate(300) }}">
@@ -14,13 +14,13 @@
 <meta name="twitter:description" content="{{ (content or description or pkg['@staart/site'].description) | striptags | truncate(300) }}">
 
 {# Favicon #}
-<link rel="shortcut icon" type="image/png" href="{{ '/static/images/favicon/favicon.ico' | url }}">
-<link rel="icon" type="image/png" href="{{ '/static/images/favicon/apple-touch-icon.png' | url }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/static/images/favicon/apple-touch-icon.png' | url }}">
+<link rel="shortcut icon" type="image/png" href="{{ '/static/images/favicon/favicon.ico' | safeUrl }}">
+<link rel="icon" type="image/png" href="{{ '/static/images/favicon/apple-touch-icon.png' | safeUrl }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/static/images/favicon/apple-touch-icon.png' | safeUrl }}">
 <meta name="theme-color" content="#c00058">
 
 {# Manifest #}
-<link rel="manifest" href="{{ '/site.webmanifest' | url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | safeUrl }}">
 
 {# RSS Feed #}
 <link type="application/atom+xml" rel="alternate" href="{{ pkg['@staart/site'].url }}/feed.xml" title="{{ pkg['@staart/site'].title }}">

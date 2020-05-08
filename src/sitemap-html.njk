@@ -7,7 +7,7 @@ title: Sitemap
 
 <ul>
   {% for page in collections.all %}
-  {% set absoluteUrl %}{{ page.url | url | absoluteUrl(pkg["@staart/site"].url)}}{% endset %}
+  {% set absoluteUrl %}{{ page.url | safeUrl | absoluteUrl(pkg["@staart/site"].url)}}{% endset %}
   {% if page.data.title %}
   <li>
     <a href="{{ absoluteUrl }}">{{ page.data.title }}</a>

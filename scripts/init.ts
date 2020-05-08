@@ -135,6 +135,7 @@ ${fileContents.replace(`${firstLine}\n`, "")}`
 
   compile([join(".", ".staart", ".eleventy.ts")], {
     esModuleInterop: true,
+    resolveJsonModule: true,
   });
   await remove(join(".", ".staart", ".eleventy.ts"));
 

@@ -27,6 +27,7 @@
   },
   "@staart/site": {
     "title": "Uppload",
+    "baseUrl": "https://uppload.js.org",
     "logo": "https://uppload.js.org/assets/icon-white.svg",
     "listSubpages": true,
     "ignoreHomeSubpages": true,

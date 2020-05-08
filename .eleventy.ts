@@ -10,7 +10,10 @@ import filters from "./eleventy/filters";
 import shortcodes from "./eleventy/shortcodes";
 import transforms from "./eleventy/transforms";
 
-module.exports = function (config: any) {
+import pkg from "./package.json";
+const settings = pkg["@staart/site"] || {};
+
+export default (config: any) => {
   config.setUseGitIgnore(false);
 
   config.addPlugin(pluginRss);
@@ -57,5 +60,6 @@ module.exports = function (config: any) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
     passthroughFileCopy: true,
+    pathPrefix: settings.baseUrl,
   };
 };

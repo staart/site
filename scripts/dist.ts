@@ -1,4 +1,4 @@
-import { copy } from "fs-extra";
+import { copy, remove } from "fs-extra";
 import { join } from "path";
 
 const setupDist = async () => {
@@ -6,6 +6,7 @@ const setupDist = async () => {
   for await (const file of files) {
     await copy(join(".", file), join(".", "dist", file));
   }
+  await remove(join(".", "dist", "package.json"));
 };
 
 setupDist();

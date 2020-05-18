@@ -67,7 +67,7 @@
     "onchange": "^7.0.2",
     "prettier": "^2.0.5",
     "semantic-release": "^17.0.7",
-    "semantic-release-gitmoji": "^1.3.3",
+    "semantic-release-gitmoji": "^1.3.4",
     "typescript": "^3.9.2"
   }
 }

@@ -30,7 +30,7 @@
     "axios": "^0.19.2",
     "concurrently": "^5.2.0",
     "cosmiconfig": "^6.0.0",
-    "front-matter": "^3.2.1",
+    "front-matter": "^4.0.0",
     "fs-extra": "^9.0.0",
     "git-url-parse": "^11.1.2",
     "handlebars": "^4.7.6",

@@ -39,7 +39,7 @@
     "live-server": "^1.2.1",
     "marked": "^1.1.0",
     "minimist": "^1.2.5",
-    "node-cache": "^5.1.1",
+    "node-cache": "^5.1.2",
     "recursive-readdir": "^2.2.2",
     "remove-markdown": "^0.3.0",
     "sass": "^1.26.8",

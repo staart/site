@@ -44,7 +44,7 @@
     "remove-markdown": "^0.3.0",
     "sass": "^1.26.8",
     "signale": "^1.4.0",
-    "sitemap": "^6.1.5",
+    "sitemap": "^6.1.7",
     "truncate": "^2.1.0",
     "yaml": "^1.10.0"
   },

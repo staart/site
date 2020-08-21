@@ -27,7 +27,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "concurrently": "^5.2.0",
     "cosmiconfig": "^6.0.0",
     "front-matter": "^4.0.2",

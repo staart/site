@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
-    "@types/fs-extra": "^9.0.3",
+    "@types/fs-extra": "^9.0.4",
     "@types/git-url-parse": "^9.0.0",
     "@types/highlight.js": "^10.1.0",
     "@types/html-minifier": "^3.5.3",

@@ -46,7 +46,7 @@
     "signale": "^1.4.0",
     "sitemap": "^6.3.3",
     "truncate": "^2.1.0",
-    "yaml": "^1.10.0"
+    "yaml": "^1.10.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",

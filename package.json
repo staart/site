@@ -60,7 +60,7 @@
     "@types/recursive-readdir": "^2.2.0",
     "@types/remove-markdown": "^0.1.1",
     "@types/sass": "^1.16.0",
-    "@types/signale": "^1.4.1",
+    "@types/signale": "^1.4.2",
     "@types/yaml": "^1.9.7",
     "gh-release": "^5.0.1",
     "gitmoji-changelog": "^2.2.1",

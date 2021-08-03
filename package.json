@@ -62,7 +62,7 @@
     "@types/sass": "^1.16.1",
     "@types/signale": "^1.4.2",
     "@types/yaml": "^1.9.7",
-    "gh-release": "^5.0.1",
+    "gh-release": "^6.0.0",
     "gitmoji-changelog": "^2.2.1",
     "onchange": "^7.1.0",
     "prettier": "^2.3.2",

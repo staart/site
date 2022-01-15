@@ -37,7 +37,7 @@
     "highlight.js": "^10.5.0",
     "html-minifier": "^4.0.0",
     "live-server": "^1.2.1",
-    "marked": "^1.2.7",
+    "marked": "^4.0.10",
     "minimist": "^1.2.5",
     "node-cache": "^5.1.1",
     "recursive-readdir": "^2.2.2",
